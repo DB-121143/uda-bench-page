@@ -1,0 +1,73 @@
+/* src/index.css */
+
+/* 如果之前有从 Google Fonts import 的，可以删掉或注释掉 */
+/* @import url("https://fonts.googleapis.com/css2?family=Open+Sans:..."); */
+
+@font-face {
+  font-family: "Lora Local";
+  src: url("./assets/fonts/Lora-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Lora Local";
+  src: url("./assets/fonts/Lora-Medium.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Lora Local";
+  src: url("./assets/fonts/Lora-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 多行截断为 3 行，用 ... */
+.clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.clamp-8 {
+  display: -webkit-box;
+  -webkit-line-clamp: 8;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+
+/* 你之前的全局样式，比如滚动条那段，也继续写在这里 */
+* {
+  scrollbar-width: auto;
+  scrollbar-color: #cbd5f5 #e5e7eb;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background-color: #e5e7eb;
+  border-radius: 9999px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #cbd5f5;
+  border-radius: 9999px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #9ca3af;
+}

@@ -1,0 +1,8 @@
+{
+    "SQL":[
+        "SELECT name, color, object\nFROM wikiart",
+        "2\n\n\n",
+        "1\n2111\n",
+        "2\n\n\n"
+    ]
+}
