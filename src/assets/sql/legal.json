@@ -1,0 +1,108 @@
+{
+    "1000": [
+        "SELECT nationality_for_applicant, plaintiff, fine_amount, plaintiff_current_status, legal_basis_num \nFROM legal;",
+        "SELECT judge_name, legal_basis_num, hearing_year \nFROM legal;",
+        "SELECT case_number, plaintiff \nFROM legal;",
+        "SELECT first_judge \nFROM legal;",
+        "SELECT hearing_year \nFROM legal;",
+        "SELECT judge_name, charges, counsel_for_respondent, first_judge, nationality_for_applicant \nFROM legal;",
+        "SELECT case_number, judge_name \nFROM legal;",
+        "SELECT charges, plaintiff \nFROM legal;",
+        "SELECT evidence, judge_name \nFROM legal;",
+        "SELECT judge_name, case_number \nFROM legal;"
+    ],
+    "1010": [
+        "SELECT verdict, MIN(case_number) AS min_case_number \nFROM legal \nGROUP BY verdict;",
+        "SELECT nationality_for_applicant, COUNT(judge_name) AS count_judge_name \nFROM legal \nGROUP BY nationality_for_applicant;",
+        "SELECT nationality_for_applicant, AVG(legal_basis_num) AS avg_legal_basis_num \nFROM legal \nGROUP BY nationality_for_applicant;",
+        "SELECT nationality_for_applicant, MAX(legal_basis_num) AS max_legal_basis_num \nFROM legal \nGROUP BY nationality_for_applicant;",
+        "SELECT nationality_for_applicant, COUNT(defendant_current_status) AS count_defendant_current_status \nFROM legal \nGROUP BY nationality_for_applicant;",
+        "SELECT verdict, MIN(legal_basis_num) AS min_legal_basis_num \nFROM legal \nGROUP BY verdict;",
+        "SELECT nationality_for_applicant, MAX(legal_basis_num) AS max_legal_basis_num \nFROM legal \nGROUP BY nationality_for_applicant;",
+        "SELECT case_type, SUM(legal_basis_num) AS sum_legal_basis_num \nFROM legal \nGROUP BY case_type;",
+        "SELECT case_type, COUNT(evidence) AS count_evidence \nFROM legal \nGROUP BY case_type;",
+        "SELECT case_type, COUNT(case_number) AS count_case_number \nFROM legal \nGROUP BY case_type;"
+    ],
+    "1110": [
+        "SELECT verdict, MIN(case_number) AS min_case_number \nFROM legal \nWHERE plaintiff_current_status != 'Activist' \nGROUP BY verdict;"
+    ],
+    "1210": [
+        "SELECT nationality_for_applicant, MAX(case_number) AS max_case_number \nFROM legal \nWHERE defendant_current_status != 'Company' AND legal_basis_num >= 1 \nGROUP BY nationality_for_applicant;",
+        "SELECT verdict, MIN(legal_basis_num) AS min_legal_basis_num \nFROM legal \nWHERE legal_fees = '3265' AND defendant != 'Construction, Forestry, Mining and Energy Union' AND legal_fees != '2000' \nGROUP BY verdict;"
+    ],
+    "1310": [
+        "SELECT nationality_for_applicant, MAX(legal_basis_num) AS max_legal_basis_num \nFROM legal \nWHERE verdict != 'Dismissed' OR first_judge != 0 \nGROUP BY nationality_for_applicant;",
+        "SELECT nationality_for_applicant, MAX(case_number) AS max_case_number \nFROM legal \nWHERE first_judge != 0 OR evidence < 1 OR defendant = 'Secretary, Department of Employment and Workplace Relations' \nGROUP BY nationality_for_applicant;"
+    ],
+    "1410": [
+        "SELECT case_type, SUM(legal_basis_num) AS sum_legal_basis_num \nFROM legal \nWHERE (judgment_year = 2009 AND plaintiff != 'Telstra Corporation Limited') OR (verdict != 'Others' AND counsel_for_applicant = 'Dr J G Azzi') \nGROUP BY case_type;"
+    ],
+    "1100": [
+        "SELECT nationality_for_applicant, fine_amount, hearing_year \nFROM legal \nWHERE fine_amount = 20000.00;",
+        "SELECT counsel_for_respondent, judgment_year, verdict \nFROM legal \nWHERE verdict = 'Not Guilty';",
+        "SELECT evidence, plaintiff, fine_amount \nFROM legal \nWHERE plaintiff != 'Deputy Commissioner of Taxation';",
+        "SELECT verdict, defendant, legal_basis_num \nFROM legal \nWHERE legal_basis_num != 4;",
+        "SELECT evidence, hearing_year, verdict \nFROM legal \nWHERE hearing_year = 2007;",
+        "SELECT defendant_current_status, defendant, plaintiff_current_status \nFROM legal \nWHERE defendant = 'Darrell Lea Chocolate Shops Pty Ltd';",
+        "SELECT case_number, plaintiff_current_status, plaintiff \nFROM legal \nWHERE case_number <= 5;",
+        "SELECT verdict, counsel_for_respondent, plaintiff \nFROM legal \nWHERE counsel_for_respondent = 'Mr BJ Sullivan SC';",
+        "SELECT hearing_year, legal_basis_num, defendant_current_status \nFROM legal \nWHERE defendant_current_status = 'Workplace Inspecto';",
+        "SELECT legal_fees, judge_name, charges \nFROM legal \nWHERE judge_name != 'Black';"
+    ],
+    "1200": [
+        "SELECT plaintiff_current_status, legal_fees, plaintiff \nFROM legal \nWHERE legal_fees != '7500' AND charges != 'Abuse of process';",
+        "SELECT defendant_current_status, verdict, counsel_for_applicant \nFROM legal \nWHERE counsel_for_applicant = 'M D Wyles' AND case_number >= 17;",
+        "SELECT fine_amount, counsel_for_applicant, legal_basis_num \nFROM legal \nWHERE fine_amount != 210000.00 AND nationality_for_applicant != 'Bangladesh';",
+        "SELECT verdict, hearing_year, defendant_current_status \nFROM legal \nWHERE verdict != 'Not Guilty' AND defendant_current_status != 'Company';",
+        "SELECT case_number, first_judge, hearing_year \nFROM legal \nWHERE hearing_year = 2007 AND case_number >= 17;",
+        "SELECT hearing_year, nationality_for_applicant, counsel_for_respondent \nFROM legal \nWHERE hearing_year != 2008 AND counsel_for_respondent = 'R Knowles';",
+        "SELECT judgment_year, case_type, counsel_for_applicant \nFROM legal \nWHERE judgment_year != 2006 AND case_number < 17;",
+        "SELECT nationality_for_applicant, plaintiff_current_status, verdict \nFROM legal \nWHERE verdict = 'Guilty' AND case_number >= 5;",
+        "SELECT legal_fees, first_judge, defendant_current_status \nFROM legal \nWHERE legal_fees != '1300' AND legal_basis_num >= 4;",
+        "SELECT nationality_for_applicant, counsel_for_applicant, hearing_year \nFROM legal \nWHERE hearing_year = 2008 AND plaintiff_current_status != 'Fisherman';",
+        "SELECT first_judge, fine_amount, legal_fees \nFROM legal \nWHERE fine_amount = 210000.00 AND defendant_current_status != 'A workplace inspector' AND nationality_for_applicant != 'China' AND counsel_for_respondent != 'S Ricketson';",
+        "SELECT plaintiff, first_judge, defendant_current_status \nFROM legal \nWHERE first_judge > 1 AND first_judge >= 0 AND charges != 'Administrative Case' AND case_type != 'Others';",
+        "SELECT evidence, verdict, judgment_year \nFROM legal \nWHERE verdict = 'Not Guilty' AND case_type != 'Administrative Case' AND evidence >= 1 AND counsel_for_respondent != 'T Reilly';",
+        "SELECT nationality_for_applicant, counsel_for_respondent, hearing_year \nFROM legal \nWHERE nationality_for_applicant != 'Vietnam' AND first_judge < 1 AND hearing_year = 2008 AND first_judge >= 0;",
+        "SELECT defendant, hearing_year, nationality_for_applicant \nFROM legal \nWHERE hearing_year != 2006 AND defendant_current_status = 'Producer and distributor of the documentary' AND verdict = 'Approved' AND nationality_for_applicant = 'India';",
+        "SELECT charges, nationality_for_applicant, case_number \nFROM legal \nWHERE charges != 'Sequestration orders against the estates of the applicants' AND nationality_for_applicant != 'Romania' AND hearing_year = 2009 AND hearing_year = 2008;",
+        "SELECT first_judge, case_type, fine_amount \nFROM legal \nWHERE first_judge >= 1 AND first_judge <= 0 AND case_number < 10 AND defendant_current_status = 'Professor of Surgery in the University of Western Australia (UWA)';",
+        "SELECT nationality_for_applicant, judge_name, defendant \nFROM legal \nWHERE judge_name != 'Dowsett' AND case_number = 17 AND counsel_for_applicant != 'Mr R Lilley SC' AND legal_basis_num >= 2;",
+        "SELECT case_type, verdict, case_number \nFROM legal \nWHERE case_number != 17 AND plaintiff != 'Shen' AND legal_fees = '1300' AND verdict = 'Others';",
+        "SELECT fine_amount, plaintiff_current_status, legal_basis_num \nFROM legal \nWHERE legal_basis_num >= 2 AND plaintiff_current_status != 'Bussiness Man' AND plaintiff_current_status != 'Employee' AND evidence <= 1;"
+    ],
+    "1300": [
+        "SELECT judgment_year, defendant, case_number \nFROM legal \nWHERE judgment_year != 2006 OR case_number > 17;",
+        "SELECT plaintiff_current_status, verdict, legal_fees \nFROM legal \nWHERE plaintiff_current_status != 'An Active Member Of The Bharatiya Janta Party In Kerala State' OR defendant_current_status != 'The trustee of Mr Boensch__ bankrupt estate';",
+        "SELECT first_judge, judgment_year, evidence \nFROM legal \nWHERE evidence != 1 OR charges != 'Application forudicial review of a decision to deny a Remaining Relative visa';",
+        "SELECT first_judge, hearing_year, defendant \nFROM legal \nWHERE defendant = 'Siminton' OR counsel_for_respondent != 'T Wong';",
+        "SELECT evidence, fine_amount, nationality_for_applicant \nFROM legal \nWHERE fine_amount != 20000.00 OR defendant_current_status = 'Distribution of counterfeit goods saler';",
+        "SELECT counsel_for_respondent, case_type, legal_basis_num \nFROM legal \nWHERE case_type != 'Commercial Case' OR judge_name != 'Gyles';",
+        "SELECT verdict, fine_amount, legal_fees \nFROM legal \nWHERE verdict != 'Guilty' OR nationality_for_applicant = 'Philippines';",
+        "SELECT counsel_for_respondent, case_type, defendant \nFROM legal \nWHERE defendant = 'IPM Operation and Maintenance Loy Yang Pty Ltd' OR judge_name != 'Weinbergj';",
+        "SELECT verdict, nationality_for_applicant, counsel_for_respondent \nFROM legal \nWHERE verdict != 'Approved' OR evidence != 1;",
+        "SELECT charges, counsel_for_respondent, nationality_for_applicant \nFROM legal \nWHERE counsel_for_respondent = 'Mr R Richter QC' OR hearing_year = 2007;",
+        "SELECT nationality_for_applicant, verdict, counsel_for_respondent \nFROM legal \nWHERE verdict != 'Guilty' OR hearing_year != 2007 OR plaintiff != 'Australian Prudential Regulation Authority' OR defendant_current_status = 'Professor of Surgery in the University of Western Australia (UWA)';",
+        "SELECT defendant_current_status, plaintiff, case_type \nFROM legal \nWHERE case_type = 'Others' OR judgment_year = 2007 OR legal_fees != '2960' OR case_type != 'Others';",
+        "SELECT first_judge, case_number, plaintiff \nFROM legal \nWHERE first_judge = 0 OR case_number != 10 OR verdict != 'Not Guilty' OR charges != 'Failure to consider the applicant''s refugee claims and failure to comply with s 424A(1)(a) of the Migration Act 1958';",
+        "SELECT plaintiff_current_status, case_type, judgment_year \nFROM legal \nWHERE case_type != 'Others' OR judge_name != 'Greenwood' OR defendant_current_status = 'Company' OR evidence > 1;",
+        "SELECT verdict, first_judge, case_number \nFROM legal \nWHERE verdict = 'Others' OR plaintiff_current_status = 'Deputy Commissioner Of Taxation' OR plaintiff_current_status != 'Employee' OR counsel_for_respondent != 'Mr J D Smith';",
+        "SELECT counsel_for_respondent, first_judge, charges \nFROM legal \nWHERE counsel_for_respondent != 'Mr S Lloyd' OR fine_amount != 20000.00 OR plaintiff != 'Australian Communications and Media Authority' OR first_judge >= 1;",
+        "SELECT fine_amount, judge_name, charges \nFROM legal \nWHERE fine_amount = 944120.00 OR case_number < 5 OR judge_name != 'Kiefel' OR fine_amount != 5000.00;",
+        "SELECT fine_amount, evidence, hearing_year \nFROM legal \nWHERE hearing_year != 2007 OR plaintiff != 'Roadshow Films Pty Ltd' OR case_number > 10 OR case_number > 17;",
+        "SELECT case_number, hearing_year, counsel_for_respondent \nFROM legal \nWHERE case_number <= 2 OR case_number >= 17 OR defendant_current_status = 'Business operator' OR case_number = 5;",
+        "SELECT plaintiff_current_status, evidence, judge_name \nFROM legal \nWHERE plaintiff_current_status != 'Fisherman' OR fine_amount = 20000.00 OR judgment_year != 2009 OR nationality_for_applicant != 'India';"
+    ],
+    "1400": [
+        "SELECT legal_basis_num, charges, first_judge \nFROM legal \nWHERE (charges = 'Unconscionable conduct under s 51AA of the Trade Practices Act 1976' AND counsel_for_applicant = 'Dr J Azzi') OR (nationality_for_applicant != 'Lebanon' AND fine_amount != 210000.00);",
+        "SELECT defendant_current_status, charges, judge_name \nFROM legal \nWHERE (charges != 'Application for constitutional writs in respect of the Tribunal''s decision' AND case_type != 'Others') OR (first_judge >= 0 AND plaintiff = 'Australian Securities and Investments Commission');",
+        "SELECT evidence, verdict, counsel_for_respondent \nFROM legal \nWHERE (verdict = 'Others' AND fine_amount = 210000.00) OR (evidence != 1 AND case_number < 2);",
+        "SELECT judgment_year, plaintiff, plaintiff_current_status \nFROM legal \nWHERE (plaintiff_current_status = 'Former Employee' AND counsel_for_applicant = 'Dr J Renwick') OR (first_judge > 0 AND counsel_for_respondent != '');",
+        "SELECT hearing_year, legal_fees, verdict \nFROM legal \nWHERE (hearing_year != 2007 AND verdict != 'Guilty') OR (verdict != 'Not Guilty' AND evidence != 1);",
+        "SELECT charges, hearing_year, case_type \nFROM legal \nWHERE (hearing_year = 2009 AND legal_fees = '3200') OR (first_judge <= 1 AND case_type != 'Others');",
+        "SELECT nationality_for_applicant, fine_amount, counsel_for_applicant \nFROM legal \nWHERE (fine_amount = 210000.00 AND legal_basis_num < 4) OR (counsel_for_applicant = 'Mr L Karp' AND plaintiff != 'Churche');",
+        "SELECT defendant, legal_basis_num, counsel_for_applicant \nFROM legal \nWHERE (defendant != 'Minister for Immigration and Multicultural Affairs and Refugee Review Tribunal' AND counsel_for_applicant != 'Mr R Dalton') OR (counsel_for_respondent != 'Ms M Allars' AND hearing_year != 2007);",
+        "SELECT fine_amount, plaintiff, verdict \nFROM legal \nWHERE (fine_amount = 944120.00 AND evidence > 1) OR (charges != 'Application for constitutional writs in respect of the Tribunal''s decision' AND verdict != 'Not Guilty');",
+        "SELECT case_type, case_number, fine_amount \nFROM legal \nWHERE (fine_amount != 20000.00 AND first_judge = 1) OR (nationality_for_applicant = 'Philippines' AND first_judge != 1);"
+    ]
+}

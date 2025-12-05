@@ -1,0 +1,178 @@
+{
+    "1001": [
+        "SELECT disease.diagnostic_methods, drug.manufacturer, drug.brand_name, disease.disease_name \nFROM drug \nJOIN disease ON drug.disease_name = disease.disease_name;",
+        "SELECT drug.mechanism_of_action, drug.storage_conditions, disease.diagnosis_challenges, disease.disease_name \nFROM drug \nJOIN disease ON drug.disease_name = disease.disease_name;",
+        "SELECT drug.single_dose, disease.pathogenesis, drug.recommended_usage, disease.diagnosis_challenges \nFROM drug \nJOIN disease ON drug.disease_name = disease.disease_name;",
+        "SELECT disease.treatments, disease.epidemiology, drug.prescription_status, drug.storage_conditions \nFROM drug \nJOIN disease ON drug.disease_name = disease.disease_name;",
+        "SELECT disease.diagnostic_methods, disease.preventive_measures, drug.mechanism_of_action, drug.recommended_usage \nFROM drug \nJOIN disease ON drug.disease_name = disease.disease_name;",
+        "SELECT drug.manufacturer, disease.complications, drug.pharmaceutical_form, disease.preventive_measures \nFROM drug \nJOIN disease ON drug.disease_name = disease.disease_name;",
+        "SELECT drug.brand_name, drug.unsuitable_population, disease.preventive_measures, disease.diagnosis_challenges \nFROM drug \nJOIN disease ON drug.disease_name = disease.disease_name;",
+        "SELECT drug.administration_route, disease.pathogenesis, disease.etiology, drug.mechanism_of_action \nFROM drug \nJOIN disease ON drug.disease_name = disease.disease_name;",
+        "SELECT disease.epidemiology, disease.sequelae, drug.indication, drug.activation_conditions \nFROM drug \nJOIN disease ON drug.disease_name = disease.disease_name;",
+        "SELECT disease.treatment_challenges, disease.diagnostic_methods, drug.administration_route, drug.generic_name \nFROM drug \nJOIN disease ON drug.disease_name = disease.disease_name;"
+    ],
+    "1002": [
+        "SELECT disease.treatments, institution.establishment_year, institution.parent_organization, institution.number_of_staff, drug.unsuitable_population \nFROM drug \nJOIN disease ON drug.disease_name = disease.disease_name \nJOIN institution ON disease.disease_name = institution.research_diseases;",
+        "SELECT institution.research_diseases, disease.risk_factors, drug.mechanism_of_action, disease.disease_name, drug.unsuitable_population \nFROM drug \nJOIN disease ON drug.disease_name = disease.disease_name \nJOIN institution ON disease.disease_name = institution.research_diseases;",
+        "SELECT institution.key_technologies, disease.etiology, drug.indication, disease.prognosis, drug.unsuitable_population \nFROM drug \nJOIN disease ON drug.disease_name = disease.disease_name \nJOIN institution ON disease.disease_name = institution.research_diseases;",
+        "SELECT drug.unsuitable_population, disease.disease_type, drug.recommended_usage, institution.institution_city, disease.sequelae \nFROM drug \nJOIN disease ON drug.disease_name = disease.disease_name \nJOIN institution ON disease.disease_name = institution.research_diseases;",
+        "SELECT disease.diagnostic_methods, disease.disease_type, institution.number_of_staff, drug.disease_name, institution.international_collaboration \nFROM drug \nJOIN disease ON drug.disease_name = disease.disease_name \nJOIN institution ON disease.disease_name = institution.research_diseases;",
+        "SELECT institution.key_achievements, drug.storage_conditions, disease.prognosis, institution.institution_country, institution.number_of_staff \nFROM drug \nJOIN disease ON drug.disease_name = disease.disease_name \nJOIN institution ON disease.disease_name = institution.research_diseases;",
+        "SELECT institution.technology_application, drug.mechanism_of_action, disease.epidemiology, drug.brand_name, disease.quality_of_life_impact \nFROM drug \nJOIN disease ON drug.disease_name = disease.disease_name \nJOIN institution ON disease.disease_name = institution.research_diseases;",
+        "SELECT disease.common_symptoms, institution.institution_city, institution.technology_application, disease.diagnostic_methods, drug.brand_name \nFROM drug \nJOIN disease ON drug.disease_name = disease.disease_name \nJOIN institution ON disease.disease_name = institution.research_diseases;",
+        "SELECT disease.epidemiology, disease.diagnosis_challenges, institution.institution_name, institution.key_technologies, drug.brand_name \nFROM drug \nJOIN disease ON drug.disease_name = disease.disease_name \nJOIN institution ON disease.disease_name = institution.research_diseases;",
+        "SELECT disease.epidemiology, disease.treatments, drug.pharmaceutical_form, institution.number_of_staff, institution.institution_type \nFROM drug \nJOIN disease ON drug.disease_name = disease.disease_name \nJOIN institution ON disease.disease_name = institution.research_diseases;"
+    ],
+    "1101": [
+        "SELECT disease.epidemiology, drug.brand_name, disease.risk_factors, drug.recommended_usage \nFROM disease \nJOIN drug ON disease.disease_name = drug.disease_name \nWHERE drug.manufacturer != 'GSK';",
+        "SELECT disease.drugs, drug.disease_name, drug.indication, disease.prognosis \nFROM disease \nJOIN drug ON disease.disease_name = drug.disease_name \nWHERE drug.brand_name = 'Nucala';"
+    ],
+    "1202": [
+        "SELECT institution.key_achievements, drug.manufacturer, institution.funding_sources, disease.disease_type \nFROM disease \nJOIN drug ON disease.disease_name = drug.disease_name \nJOIN institution ON disease.disease_name = institution.research_diseases \nWHERE disease.pathogenesis = 'congenital' AND institution.institution_country >= 'Egypt';",
+        "SELECT drug.side_effects, disease.treatments, institution.key_technologies, drug.mechanism_of_action \nFROM disease \nJOIN drug ON disease.disease_name = drug.disease_name \nJOIN institution ON disease.disease_name = institution.research_diseases \nWHERE disease.treatment_challenges != 'only_one_drug_available' AND disease.drugs != 'diuretics' AND drug.administration_route = 'injection';",
+        "SELECT disease.common_symptoms, drug.pharmaceutical_form, institution.funding_sources, drug.dosage_frequency \nFROM disease \nJOIN drug ON disease.disease_name = drug.disease_name \nJOIN institution ON disease.disease_name = institution.research_diseases \nWHERE disease.prognosis != 'partial_recovery' AND drug.active_ingredients != 'bendamustine';",
+        "SELECT disease.sequelae, drug.brand_name, drug.pharmaceutical_form, institution.parent_organization \nFROM disease \nJOIN drug ON disease.disease_name = drug.disease_name \nJOIN institution ON disease.disease_name = institution.research_diseases \nWHERE drug.pharmaceutical_form = 'tablet' AND drug.indication != 'Runny nose' AND disease.preventive_measures = 'meditation';"
+    ],
+    "1301": [
+        "SELECT disease.drugs, drug.disease_name, disease.treatments, drug.unsuitable_population \nFROM disease \nJOIN drug ON disease.disease_name = drug.disease_name \nWHERE drug.brand_name = 'REQUIP XL' OR drug.activation_conditions != 'before meals';",
+        "SELECT disease.disease_type, disease.diagnosis_challenges, drug.prescription_status, drug.unsuitable_population \nFROM disease \nJOIN drug ON disease.disease_name = drug.disease_name \nWHERE drug.activation_conditions != 'no special condition' OR drug.dosage_frequency >= 'once or twice a day' OR disease.pathogenesis = 'endocrine_disorder';",
+        "SELECT drug.active_ingredients, disease.disease_name, disease.sequelae, drug.side_effects \nFROM disease \nJOIN drug ON disease.disease_name = drug.disease_name \nWHERE disease.disease_name = 'Metastatic Colorectal Cancer' OR drug.administration_route != 'injection';",
+        "SELECT drug.recommended_usage, disease.preventive_measures, drug.unsuitable_population, disease.disease_type \nFROM disease \nJOIN drug ON disease.disease_name = drug.disease_name \nWHERE drug.dosage_frequency < '2 or 3 times daily' OR disease.sequelae != 'disability' OR disease.epidemiology != 'especially amongst young men and women';"
+    ],
+    "1402": [
+        "SELECT institution.institution_country, drug.manufacturer, drug.indication, disease.risk_factors \nFROM disease \nJOIN drug ON disease.disease_name = drug.disease_name \nJOIN institution ON disease.disease_name = institution.research_diseases \nWHERE (drug.single_dose != 'adults 10 mg' AND drug.active_ingredients = 'Roflumilast') OR (drug.storage_conditions != 'do not freeze liquid forms' AND institution.research_fields != 'cardiology');",
+        "SELECT drug.indication, institution.international_collaboration, disease.prognosis, drug.recommended_usage \nFROM disease \nJOIN drug ON disease.disease_name = drug.disease_name \nJOIN institution ON disease.disease_name = institution.research_diseases \nWHERE (drug.indication != 'constipation' AND disease.diagnosis_challenges != 'lack of accurate diagnostic test') OR (drug.single_dose = 'adult patients with EGPA 3x100 mg' AND disease.sequelae != 'gangrene');"
+    ],
+    "1111": [
+        "SELECT drug.prescription_status, MIN(drug.recommended_usage) AS min_drug_recommended_usage \nFROM disease \nJOIN drug ON disease.disease_name = drug.disease_name \nWHERE drug.manufacturer != 'GSK' \nGROUP BY drug.prescription_status;",
+        "SELECT drug.prescription_status, AVG(disease.epidemiology) AS avg_disease_epidemiology \nFROM disease \nJOIN drug ON disease.disease_name = drug.disease_name \nWHERE drug.pharmaceutical_form = 'tablet' \nGROUP BY drug.prescription_status;"
+    ],
+    "1212": [
+        "SELECT institution.research_fields, MAX(disease.quality_of_life_impact) AS max_disease_quality_of_life_impact \nFROM disease \nJOIN drug ON disease.disease_name = drug.disease_name \nJOIN institution ON disease.disease_name = institution.research_diseases \nWHERE institution.leadership = 'Pierre-Yves Marcy' AND drug.activation_conditions != 'take with food' \nGROUP BY institution.research_fields;",
+        "SELECT institution.research_fields, MAX(disease.diagnosis_challenges) AS max_disease_diagnosis_challenges \nFROM disease \nJOIN drug ON disease.disease_name = drug.disease_name \nJOIN institution ON disease.disease_name = institution.research_diseases \nWHERE institution.institution_country = 'United Kingdom' AND institution.research_fields != 'gastroenterology' AND disease.etiology = 'pulmonary embolism' \nGROUP BY institution.research_fields;",
+        "SELECT institution.institution_type, AVG(drug.dosage_frequency) AS avg_drug_dosage_frequency \nFROM disease \nJOIN drug ON disease.disease_name = drug.disease_name \nJOIN institution ON disease.disease_name = institution.research_diseases \nWHERE drug.generic_name != 'Linaclotide' AND disease.common_symptoms != 'headache' \nGROUP BY institution.institution_type;",
+        "SELECT drug.prescription_status, SUM(institution.institution_country) AS sum_institution_institution_country \nFROM disease \nJOIN drug ON disease.disease_name = drug.disease_name \nJOIN institution ON disease.disease_name = institution.research_diseases \nWHERE disease.diagnosis_challenges = 'lack of early recognition' AND disease.disease_name = 'Acute Intermittent Porphyria' AND disease.epidemiology = '27% of constipated patients relate constipation to medications' \nGROUP BY drug.prescription_status;"
+    ],
+    "1311": [
+        "SELECT drug.prescription_status, AVG(disease.quality_of_life_impact) AS avg_disease_quality_of_life_impact \nFROM disease \nJOIN drug ON disease.disease_name = drug.disease_name \nWHERE disease.treatment_challenges != 'only_one_drug_available' OR disease.drugs != 'diuretics' \nGROUP BY drug.prescription_status;",
+        "SELECT drug.prescription_status, AVG(disease.quality_of_life_impact) AS avg_disease_quality_of_life_impact \nFROM disease \nJOIN drug ON disease.disease_name = drug.disease_name \nWHERE drug.brand_name = 'Nucala' OR disease.diagnostic_methods = 'genetic_testing' OR drug.activation_conditions = 'requires co-administration with other drugs' \nGROUP BY drug.prescription_status;",
+        "SELECT drug.prescription_status, COUNT(disease.common_symptoms) AS count_disease_common_symptoms \nFROM disease \nJOIN drug ON disease.disease_name = drug.disease_name \nWHERE disease.diagnostic_methods = 'genetic_testing' OR disease.pathogenesis = 'traumatic' \nGROUP BY drug.prescription_status;",
+        "SELECT drug.prescription_status, SUM(disease.treatment_challenges) AS sum_disease_treatment_challenges \nFROM disease \nJOIN drug ON disease.disease_name = drug.disease_name \nWHERE disease.treatments != 'radiotherapy' OR drug.brand_name != 'Lo Loestrin FE' OR drug.brand_name = 'Nucala' \nGROUP BY drug.prescription_status;"
+    ],
+    "1412": [
+        "SELECT institution.institution_type, AVG(disease.epidemiology) AS avg_disease_epidemiology \nFROM disease \nJOIN drug ON disease.disease_name = drug.disease_name \nJOIN institution ON disease.disease_name = institution.research_diseases \nWHERE (drug.brand_name != 'Daliresp' AND disease.common_symptoms != 'back pain') OR (institution.key_technologies = 'enzyme-linked immunosorbent assay (ELISA)' AND drug.pharmaceutical_form != 'ointment') \nGROUP BY institution.institution_type;",
+        "SELECT institution.institution_type, MIN(disease.diagnosis_challenges) AS min_disease_diagnosis_challenges \nFROM disease \nJOIN drug ON disease.disease_name = drug.disease_name \nJOIN institution ON disease.disease_name = institution.research_diseases \nWHERE (drug.side_effects = 'diarrhea' AND drug.generic_name = 'Esomeprazole') OR (institution.research_diseases = 'Gut Microbiome Imbalance' AND disease.pathogenesis = 'infectious_fungal') \nGROUP BY institution.institution_type;"
+    ],
+    "1100": [
+        "SELECT manufacturer, activation_conditions, indication \nFROM drug \nWHERE activation_conditions = 'requires stimulation';",
+        "SELECT pharmaceutical_form, active_ingredients, administration_route \nFROM drug \nWHERE administration_route = 'injection';",
+        "SELECT manufacturer, brand_name, activation_conditions \nFROM drug \nWHERE brand_name != 'Actipraz 40 Mg Tablet';",
+        "SELECT indication, disease_name, recommended_usage \nFROM drug \nWHERE recommended_usage = 'take as prescribed';",
+        "SELECT epidemiology, risk_factors, etiology \nFROM disease \nWHERE risk_factors != 'infection';",
+        "SELECT sequelae, diagnostic_methods, affected_organs \nFROM disease \nWHERE affected_organs = 'ligaments';",
+        "SELECT treatment_challenges, disease_type, risk_factors \nFROM disease \nWHERE disease_type != 'others';",
+        "SELECT affected_organs, pathogenesis, treatments \nFROM disease \nWHERE treatments = 'stem cell transplantation';",
+        "SELECT epidemiology, sequelae, etiology \nFROM disease \nWHERE epidemiology != '3,500 to 4,000 children worldwide;",
+        "SELECT key_technologies, institution_country, international_collaboration \nFROM institution \nWHERE technology_application != 'FDA drug approval';",
+        "SELECT leadership, parent_organization, establishment_year \nFROM institution \nWHERE leadership = 'Tanja Gruber';"
+    ],
+    "1200": [
+        "SELECT prescription_status, side_effects, brand_name \nFROM drug \nWHERE prescription_status < 'unclassified' AND pharmaceutical_form != 'capsule';",
+        "SELECT recommended_usage, administration_route, dosage_frequency \nFROM drug \nWHERE dosage_frequency > 'every 4 to 6 hours as needed' AND active_ingredients != 'azithromycin';",
+        "SELECT activation_conditions, single_dose, recommended_usage \nFROM drug \nWHERE activation_conditions != 'take with food' AND dosage_frequency <= 'every 8 hours';",
+        "SELECT administration_route, indication, recommended_usage \nFROM drug \nWHERE administration_route != 'injection' AND storage_conditions < 'protect from light';",
+        "SELECT prescription_status, activation_conditions, storage_conditions \nFROM drug \nWHERE activation_conditions = 'before meals' AND storage_conditions < 'protect from moisture' AND side_effects != 'headache' AND mechanism_of_action != 'induces loss of consciousness';",
+        "SELECT disease_name, pharmaceutical_form, brand_name \nFROM drug \nWHERE brand_name = 'Omlek-D' AND pharmaceutical_form = 'gel' AND disease_name != 'Herpes simplex' AND indication != 'infections';",
+        "SELECT mechanism_of_action, active_ingredients, administration_route \nFROM drug \nWHERE administration_route = 'injection' AND manufacturer != 'Astra Zeneca' AND mechanism_of_action != 'enhancing glucose metabolism' AND administration_route != 'oral';",
+        "SELECT single_dose, mechanism_of_action, side_effects \nFROM drug \nWHERE side_effects = 'fever' AND storage_conditions = 'store below 25C or 77F' AND mechanism_of_action != 'broken down into 6-thioguanine nucleotides to exert immunosuppressive effects' AND active_ingredients = 'Omeprazole';",
+        "SELECT diagnosis_challenges, preventive_measures, disease_type \nFROM disease \nWHERE preventive_measures != 'exercise' AND common_symptoms != 'nausea';",
+        "SELECT diagnostic_methods, prognosis, affected_organs \nFROM disease \nWHERE prognosis = 'high_mortality' AND drugs = 'phenytoin';",
+        "SELECT risk_factors, prognosis, treatments \nFROM disease \nWHERE risk_factors != 'chronic pain' AND prognosis != 'asymptomatic';",
+        "SELECT treatments, affected_organs, etiology \nFROM disease \nWHERE affected_organs != 'cervix' AND epidemiology = 'occurs most often among Caucasian women';",
+        "SELECT quality_of_life_impact, risk_factors, preventive_measures \nFROM disease \nWHERE risk_factors != 'sedentary_lifestyle' AND affected_organs != 'bone' AND epidemiology != 'very common sexually transmitted infection' AND sequelae != 'blindness';",
+        "SELECT treatment_challenges, common_symptoms, disease_type \nFROM disease \nWHERE disease_type = 'iatrogenic' AND common_symptoms != 'tenderness' AND complications != 'chlamydial conjunctivitis' AND treatments != 'immunotherapy';",
+        "SELECT affected_organs, complications, diagnostic_methods \nFROM disease \nWHERE affected_organs = 'abdomen' AND complications != 'panic disorders' AND quality_of_life_impact != 'social_isolation' AND diagnostic_methods != 'clinical_evaluation';",
+        "SELECT institution_city, international_collaboration, institution_name \nFROM institution \nWHERE research_fields != 'molecular_biology' AND funding_sources = 'university grant';",
+        "SELECT leadership, research_fields, international_collaboration \nFROM institution \nWHERE technology_application = 'early diagnosis of cardiac TTR amyloidosis using DPD scintigraphy' AND key_technologies = 'navigation for insertion of screws';",
+        "SELECT technology_application, institution_country, institution_city \nFROM institution \nWHERE research_diseases = 'portal hypertensive gastropathy' AND key_technologies != 'bacteriological culture' AND research_diseases != 'chronic pain' AND institution_city != 'Ferndale';",
+        "SELECT institution_name, research_fields, research_diseases \nFROM institution \nWHERE key_achievements = 'post-graduate education in gastroenterology' AND parent_organization != 'University of Texas' AND leadership != 'K Persson Waller' AND institution_country > 'Vietnam';"
+    ],
+    "1300": [
+        "SELECT active_ingredients, brand_name, single_dose \nFROM drug \nWHERE active_ingredients != 'Antihistamines' OR single_dose != 'children 2-5 years 36 mcg';",
+        "SELECT unsuitable_population, administration_route, storage_conditions \nFROM drug \nWHERE unsuitable_population != 'patients with cyst on the ovary' OR storage_conditions > 'avoid freezing';",
+        "SELECT brand_name, pharmaceutical_form, active_ingredients \nFROM drug \nWHERE active_ingredients = 'mepolizumab' OR activation_conditions != 'before meals';",
+        "SELECT indication, prescription_status, disease_name \nFROM drug \nWHERE disease_name = 'Parkinson''s disease' OR mechanism_of_action != 'improving metabolic profile';",
+        "SELECT administration_route, side_effects, mechanism_of_action \nFROM drug \nWHERE administration_route != 'injection' OR indication = 'heartburn' OR storage_conditions > 'store in a tight, light-resistant container' OR recommended_usage = 'other';",
+        "SELECT brand_name, manufacturer, disease_name \nFROM drug \nWHERE manufacturer = 'Astellas' OR active_ingredients != 'Pravastatin sodium salt' OR generic_name = 'Pramipexole dihydrochloride' OR manufacturer = 'Preferred Pharmaceuticals, Inc.';",
+        "SELECT brand_name, single_dose, active_ingredients \nFROM drug \nWHERE brand_name != 'Duaklir Genuair' OR active_ingredients = 'Milnacipran' OR single_dose != 'adults 10-40 mg once a day' OR prescription_status = 'unclassified';",
+        "SELECT administration_route, manufacturer, active_ingredients \nFROM drug \nWHERE manufacturer != 'Cipla' OR generic_name != 'Ropinirole' OR storage_conditions >= 'store at room temperature' OR brand_name = 'Omlek-D';",
+        "SELECT diagnostic_methods, pathogenesis, drugs \nFROM disease \nWHERE diagnostic_methods != 'screening' OR drugs != 'acyclovir';",
+        "SELECT diagnosis_challenges, affected_organs, preventive_measures \nFROM disease \nWHERE diagnosis_challenges != 'difficult to find early' OR treatment_challenges != 'no clear silver bullet for therapy';",
+        "SELECT diagnostic_methods, common_symptoms, quality_of_life_impact \nFROM disease \nWHERE quality_of_life_impact = 'mobility_impairment' OR etiology != 'pneumonia';",
+        "SELECT quality_of_life_impact, etiology, pathogenesis \nFROM disease \nWHERE pathogenesis = 'congenital' OR sequelae != 'chronic pain';",
+        "SELECT epidemiology, affected_organs, sequelae \nFROM disease \nWHERE affected_organs != 'toes' OR etiology = 'genetic predisposition' OR treatment_challenges != 'limited options' OR pathogenesis != 'infectious_fungal';",
+        "SELECT treatment_challenges, disease_type, complications \nFROM disease \nWHERE complications = 'cervicitis' OR diagnostic_methods != 'laboratory_test' OR disease_name = 'Opioid Addiction' OR complications = 'heart related complications';",
+        "SELECT disease_type, drugs, treatment_challenges \nFROM disease \nWHERE disease_type != 'allergic' OR diagnostic_methods = 'endoscopy' OR drugs != 'antidepressants' OR preventive_measures = 'vaccination';",
+        "SELECT diagnosis_challenges, complications, diagnostic_methods \nFROM disease \nWHERE complications != 'large_blood_vessel_damage' OR disease_name != 'Pleural Effusion' OR treatment_challenges = 'financial_burden' OR quality_of_life_impact = 'dietary_restriction';",
+        "SELECT number_of_staff, parent_organization, key_technologies \nFROM institution \nWHERE international_collaboration = 'NCI cancer centers in the United States' OR institution_country != 'China';",
+        "SELECT institution_city, establishment_year, technology_application \nFROM institution \nWHERE research_fields != 'molecular_biology' OR international_collaboration != 'collaboration with research centres throughout Europe and the UK';",
+        "SELECT establishment_year, international_collaboration, leadership \nFROM institution \nWHERE leadership != 'John Niederhuber' OR research_fields != 'surgery' OR institution_name != 'Emory University' OR key_technologies = 'antibacterial photodynamic treatment (aPDT)';",
+        "SELECT international_collaboration, establishment_year, key_achievements \nFROM institution \nWHERE leadership = 'K Persson Waller' OR parent_organization != 'UNSW Sydney' OR institution_name = 'Flushing Hospital Medical Center' OR technology_application != 'individual counseling';"
+    ],
+    "1400": [
+        "SELECT recommended_usage, pharmaceutical_form, disease_name \nFROM drug \nWHERE (pharmaceutical_form = 'spray' AND dosage_frequency = 'twice daily') OR (side_effects != 'weight loss' AND activation_conditions != 'before meals');",
+        "SELECT recommended_usage, pharmaceutical_form, generic_name \nFROM drug \nWHERE (pharmaceutical_form != 'granule' AND manufacturer != 'Avanir Pharmaceuticals') OR (brand_name = 'PEG-Intron' AND brand_name = 'Nexium');",
+        "SELECT unsuitable_population, mechanism_of_action, administration_route \nFROM drug \nWHERE (administration_route = 'nasal' AND activation_conditions != 'requires stimulation') OR (indication = 'severe asthma' AND active_ingredients != 'Psilocybin');",
+        "SELECT disease_name, brand_name, unsuitable_population \nFROM drug \nWHERE (unsuitable_population = 'patients with stomach/intestinal problems' AND dosage_frequency = 'every 8 hours') OR (activation_conditions = 'requires stimulation' AND mechanism_of_action != 'produces relaxation to relieve pain');",
+        "SELECT treatments, common_symptoms, quality_of_life_impact \nFROM disease \nWHERE (common_symptoms = 'constipation' AND prognosis = 'variable') OR (epidemiology != '741 DR-TB cases in Ethiopia in 2018' AND risk_factors != 'immunosuppression');",
+        "SELECT disease_name, preventive_measures, common_symptoms \nFROM disease \nWHERE (common_symptoms != 'decreased appetite' AND complications != 'cardiovascular_disorders') OR (disease_type = 'infectious' AND disease_type = 'genetic');",
+        "SELECT affected_organs, quality_of_life_impact, sequelae \nFROM disease \nWHERE (affected_organs = 'nervous system' AND risk_factors != 'hyperlipidemia') OR (etiology = 'insulin resistance' AND diagnostic_methods != 'screening');",
+        "SELECT diagnostic_methods, disease_type, diagnosis_challenges \nFROM disease \nWHERE (diagnosis_challenges = 'difficult to define onset after opioid initiation' AND prognosis = 'stable') OR (risk_factors != 'genetic_predisposition' AND diagnostic_methods = 'genetic_testing');",
+        "SELECT number_of_staff, parent_organization, technology_application \nFROM institution \nWHERE (parent_organization = 'Shanghai Jiao Tong University School of Medicine' AND institution_city = 'London') OR (research_diseases != 'lower limb complications of diabetes' AND technology_application != 'intensive case management');",
+        "SELECT parent_organization, key_achievements, international_collaboration \nFROM institution \nWHERE (technology_application = 'inpatient psychiatric treatment' AND key_technologies = 'blood sample collection') OR (funding_sources != 'industry grant' AND key_achievements = 'Largest neuroscience study of mindfulness for addiction');"
+    ],
+    "1010": [
+        "SELECT research_fields, MIN(institution_country) AS min_institution_country \nFROM institution \nGROUP BY research_fields;",
+        "SELECT institution_type, COUNT(institution_name) AS count_institution_name \nFROM institution \nGROUP BY institution_type;",
+        "SELECT prescription_status, MIN(dosage_frequency) AS min_dosage_frequency \nFROM drug \nGROUP BY prescription_status;",
+        "SELECT prescription_status, COUNT(generic_name) AS count_generic_name \nFROM drug \nGROUP BY prescription_status;",
+        "SELECT prescription_status, AVG(recommended_usage) AS avg_recommended_usage \nFROM drug \nGROUP BY prescription_status;",
+        "SELECT prescription_status, MAX(recommended_usage) AS max_recommended_usage \nFROM drug \nGROUP BY prescription_status;",
+        "SELECT prescription_status, COUNT(storage_conditions) AS count_storage_conditions \nFROM drug \nGROUP BY prescription_status;",
+        "SELECT prescription_status, MIN(recommended_usage) AS min_recommended_usage \nFROM drug \nGROUP BY prescription_status;",
+        "SELECT prescription_status, MAX(recommended_usage) AS max_recommended_usage \nFROM drug \nGROUP BY prescription_status;",
+        "SELECT prescription_status, SUM(recommended_usage) AS sum_recommended_usage \nFROM drug \nGROUP BY prescription_status;"
+    ],
+    "1000": [
+        "SELECT international_collaboration, funding_sources, institution_country \nFROM institution;",
+        "SELECT key_technologies, institution_type, institution_name \nFROM institution;",
+        "SELECT side_effects, generic_name, activation_conditions, active_ingredients \nFROM drug;",
+        "SELECT active_ingredients, mechanism_of_action, indication, generic_name \nFROM drug;",
+        "SELECT single_dose \nFROM drug;",
+        "SELECT brand_name \nFROM drug;",
+        "SELECT risk_factors, epidemiology \nFROM disease;",
+        "SELECT disease_name, treatments, etiology \nFROM disease;",
+        "SELECT drugs, disease_type \nFROM disease;",
+        "SELECT disease_type \nFROM disease;"
+    ],
+    "1011": [
+        "SELECT drug.prescription_status, MIN(drug.recommended_usage) AS min_drug_recommended_usage \nFROM disease \nJOIN drug ON disease.disease_name = drug.disease_name \nGROUP BY drug.prescription_status;"
+    ],
+    "1012": [
+        "SELECT institution.institution_type, MIN(drug.recommended_usage) AS min_drug_recommended_usage \nFROM disease \nJOIN drug ON disease.disease_name = drug.disease_name \nJOIN institution ON disease.disease_name = institution.research_diseases \nGROUP BY institution.institution_type;"
+    ],
+    "1110": [
+        "SELECT research_fields, MIN(institution_country) AS min_institution_country \nFROM institution \nWHERE research_diseases != 'post-traumatic stress disorder' \nGROUP BY research_fields;"
+    ],
+    "1210": [
+        "SELECT institution_type, SUM(institution_country) AS sum_institution_country \nFROM institution \nWHERE parent_organization = 'University of Wisconsin' AND funding_sources != 'other' \nGROUP BY institution_type;",
+        "SELECT prescription_status, MAX(dosage_frequency) AS max_dosage_frequency \nFROM drug \nWHERE mechanism_of_action != 'competitive inhibition of HMG-CoA reductase, reduces cholesterol synthesis, increases LDL receptor expression, increases LDL catabolism, inhibits VLDL synthesis' AND mechanism_of_action = 'relieve watery eyes, itchy eyes/nose/throat, runny nose, and sneezing' AND pharmaceutical_form != 'gel' \nGROUP BY prescription_status;"
+    ],
+    "1310": [
+        "SELECT prescription_status, COUNT(manufacturer) AS count_manufacturer \nFROM drug \nWHERE brand_name = 'Savella' OR recommended_usage >= 'oral' \nGROUP BY prescription_status;",
+        "SELECT prescription_status, AVG(storage_conditions) AS avg_storage_conditions \nFROM drug \nWHERE single_dose = 'adults 25 mg' OR unsuitable_population != 'patients with diabetes' OR recommended_usage != 'intravenous' \nGROUP BY prescription_status;"
+    ],
+    "1410": [
+        "SELECT prescription_status, MIN(storage_conditions) AS min_storage_conditions \nFROM drug \nWHERE (prescription_status < 'unclassified' AND side_effects != 'hair loss') OR (disease_name != 'Chronic Obstructive Pulmonary Disease' AND administration_route = 'intravenous') \nGROUP BY prescription_status;"
+    ]
+}

@@ -2,10 +2,73 @@
 import { memo, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
+type ModalityType = "text" | "image" | "table";
+type UsageType = "general" | "categorical" | "numerical";
+
+type IconDefinition = {
+  label: string;
+  icon: React.ReactNode;
+  className: string;
+};
+
 type AttributeMeta = {
   key: string;
   label: string;
+  table: string;
   description: string;
+  modalities?: ModalityType[];
+  usage?: UsageType[];
+};
+
+const MODALITY_ICONS: Record<ModalityType, IconDefinition> = {
+  text: {
+    label: "Text",
+    icon: (
+      <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="1.8">
+        <path d="M4 6h16" strokeLinecap="round" />
+        <path d="M8 10h12" strokeLinecap="round" />
+        <path d="M4 14h16" strokeLinecap="round" />
+        <path d="M8 18h8" strokeLinecap="round" />
+      </svg>
+    ),
+    className: "bg-cyan-50 text-cyan-600 border-cyan-200",
+  },
+  image: {
+    label: "Image",
+    icon: (
+      <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="1.8">
+        <rect x="4" y="5" width="16" height="14" rx="2" ry="2" />
+        <path d="M9 13l2-2 3 3 2-2 3 3" strokeLinecap="round" strokeLinejoin="round" />
+        <circle cx="9" cy="9" r="1.2" fill="currentColor" stroke="none" />
+      </svg>
+    ),
+    className: "bg-amber-50 text-amber-500 border-amber-200",
+  },
+  table: {
+    label: "Table",
+    icon: (
+      <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="1.8">
+        <rect x="4" y="5" width="16" height="14" rx="2" ry="2" />
+        <path d="M4 11h16M10 5v14M16 5v14" strokeLinecap="round" />
+      </svg>
+    ),
+    className: "bg-emerald-50 text-emerald-600 border-emerald-200",
+  },
+};
+
+const USAGE_BADGES: Record<UsageType, { label: string; className: string }> = {
+  general: {
+    label: "G",
+    className: "bg-indigo-50 text-indigo-600 border-indigo-200",
+  },
+  categorical: {
+    label: "C",
+    className: "bg-fuchsia-50 text-fuchsia-600 border-fuchsia-200",
+  },
+  numerical: {
+    label: "N",
+    className: "bg-rose-50 text-rose-600 border-rose-200",
+  },
 };
 
 interface AttributeGlossaryProps {
@@ -113,9 +176,44 @@ const AttributeGlossaryComponent = ({ items, datasetKey = "default" }: Attribute
               {/* 左侧彩条 */}
               <div className="pointer-events-none absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-sky-400 via-indigo-400 to-purple-400" />
 
-              <div className="mb-1 inline-flex items-center gap-2">
-                <span className="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-0.5 text-base font-semibold text-slate-700 shadow-sm">
-                  {item.label}
+              <div className="mb-1 flex flex-wrap items-center gap-2">
+                <div className="flex items-center gap-2">
+                  <span className="inline-flex max-w-full items-center rounded-full border border-slate-200 bg-white px-3 py-0.5 text-base font-semibold text-slate-700 shadow-sm">
+                    {item.label}
+                  </span>
+                  <div className="flex items-center gap-1">
+                    {(item.modalities ?? []).map((mod) => {
+                      const cfg = MODALITY_ICONS[mod];
+                      if (!cfg)
+                        return null;
+                      return (
+                        <span
+                          key={`${item.key}-mod-${mod}`}
+                          title={cfg.label}
+                          className={`glossary-icon inline-flex h-6 w-6 items-center justify-center rounded-full border text-[0px] ${cfg.className}`}
+                        >
+                          {cfg.icon}
+                        </span>
+                      );
+                    })}
+                    {(item.usage ?? []).map((usage) => {
+                      const cfg = USAGE_BADGES[usage];
+                      if (!cfg)
+                        return null;
+                      return (
+                        <span
+                          key={`${item.key}-usage-${usage}`}
+                          title={usage}
+                          className={`glossary-icon inline-flex h-6 w-6 items-center justify-center rounded-full border text-[10px] font-bold ${cfg.className}`}
+                        >
+                          {cfg.label}
+                        </span>
+                      );
+                    })}
+                  </div>
+                </div>
+                <span className="ml-auto whitespace-nowrap rounded-full border border-slate-200 bg-slate-50 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.25em] text-slate-500">
+                  {item.table}
                 </span>
               </div>
 

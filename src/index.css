@@ -71,3 +71,41 @@
 *::-webkit-scrollbar-thumb:hover {
   background-color: #9ca3af;
 }
+
+.glossary-icon {
+  position: relative;
+  overflow: hidden;
+}
+
+.glossary-icon::after {
+  content: "";
+  position: absolute;
+  top: -150%;
+  left: -150%;
+  width: 400%;
+  height: 400%;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.6), transparent 55%),
+    radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.35), transparent 55%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.glossary-icon:hover::after,
+.glossary-icon:focus-visible::after {
+  opacity: 1;
+  animation: sheen-wave 1.2s ease forwards;
+}
+
+@keyframes sheen-wave {
+  0% {
+    transform: translate(-20%, -20%) scale(0.8);
+  }
+  50% {
+    transform: translate(20%, 20%) scale(1.1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(60%, 60%) scale(1.4);
+  }
+}

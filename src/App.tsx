@@ -6,53 +6,141 @@ import DatasetSelector, {
   type DatasetOption,
 } from "@/components/DatasetSelector";
 import SqlShowcase from "@/components/SqlShowcase";
+import Legend from "@/components/Legend";
+import JoinGraph from "@/components/JoinGraph";
 
 import players from "@/assets/players.json";
-import playersDescriptionMap from "@/assets/players_description.json";
-
 import medicine from "@/assets/medicine.json";
-import medicineDescriptionMap from "@/assets/medicine_description.json";
+import joinGraphData from "@/assets/join_graph.json";
+
+import artDescriptions from "@/assets/descriptions/art_descriptions.json";
+import cspaperDescriptions from "@/assets/descriptions/cspaper_descriptions.json";
+import financeDescriptions from "@/assets/descriptions/finance_descriptions.json";
+import healthcareDescriptions from "@/assets/descriptions/healthcare_decriptions.json";
+import legalDescriptions from "@/assets/descriptions/legal_descriptions.json";
+import playerDescriptions from "@/assets/descriptions/player_descriptions.json";
 
 // 你的 logo 文件（请在 src/assets 下放一个 uda-logo.svg 或改成你自己的文件名）
 import logo from "@/public/UDA.svg";
 
 type RowData = Record<string, unknown>;
 
-type AttributeMeta = {
-  key: string;
-  label: string;
-  description: string;
-};
-
-type RawDescriptionMap = Record<
-  string,
-  {
-    label: string;
-    description: string;
-  }
->;
-
-type DatasetId = "players" | "medicine";
+type DatasetId =
+  | "art"
+  | "cspaper"
+  | "player"
+  | "legal"
+  | "finance"
+  | "healthcare";
 
 type DatasetConfig = {
   id: DatasetId;
   label: string;
   data: RowData[];
-  descriptionMap: RawDescriptionMap;
 };
 
+type UsageType = "general" | "categorical" | "numerical";
+type ModalityType = "text" | "image" | "table";
+
+type AttributeMeta = {
+  key: string;
+  label: string;
+  table: string;
+  description: string;
+  usage: UsageType[];
+  modalities: ModalityType[];
+};
+
+type DescriptionField = {
+  name?: string;
+  table?: string;
+  description?: string;
+  usage?: string;
+  modality?: string;
+};
+
+type DatasetDescriptions = Record<string, DescriptionField[]>;
+
+const DESCRIPTION_SOURCES: Record<DatasetId, DatasetDescriptions> = {
+  art: artDescriptions,
+  cspaper: cspaperDescriptions,
+  finance: financeDescriptions,
+  healthcare: healthcareDescriptions,
+  legal: legalDescriptions,
+  player: playerDescriptions,
+};
+
+const splitPipes = (value?: string): string[] => {
+  if (!value) return [];
+  return value
+    .split(/[|;]+/)
+    .map((segment) => segment.trim().toLowerCase())
+    .filter(Boolean);
+};
+
+const parseUsage = (value?: string): UsageType[] => {
+  const allowed: UsageType[] = ["general", "categorical", "numerical"];
+  const list = splitPipes(value);
+  if (list.length === 0 && value) {
+    const lower = value.trim().toLowerCase();
+    if (allowed.includes(lower as UsageType)) return [lower as UsageType];
+  }
+  return list.filter((entry): entry is UsageType => allowed.includes(entry as UsageType));
+};
+
+const parseModality = (value?: string): ModalityType[] => {
+  const allowed: ModalityType[] = ["text", "image", "table"];
+  if (!value) return [];
+  const list = splitPipes(value);
+  if (list.length === 0 && value) {
+    const lower = value.trim().toLowerCase();
+    if (allowed.includes(lower as ModalityType)) return [lower as ModalityType];
+  }
+  return list.filter((entry): entry is ModalityType => allowed.includes(entry as ModalityType));
+};
+
+const flattenDescriptions = (
+  tables: DatasetDescriptions,
+  datasetId: DatasetId
+): AttributeMeta[] => {
+  const accumulated: AttributeMeta[] = [];
+  Object.entries(tables ?? {}).forEach(([tableName, fields]) => {
+    if (!Array.isArray(fields)) return;
+    fields.forEach((field, index) => {
+      const tableLabel = field.table ?? tableName ?? datasetId;
+      accumulated.push({
+        key: `${datasetId}-${tableLabel}-${field.name ?? index}`,
+        label: field.name ?? `field-${index}`,
+        table: tableLabel,
+        description:
+          field.description ??
+          "No description has been provided for this attribute yet.",
+        usage: parseUsage(field.usage),
+        modalities: parseModality(field.modality),
+      });
+    });
+  });
+  return accumulated;
+};
+
+const DATASET_ATTRIBUTE_REGISTRY: Record<DatasetId, AttributeMeta[]> =
+  Object.fromEntries(
+    Object.entries(DESCRIPTION_SOURCES).map(([datasetId, tables]) => [
+      datasetId,
+      flattenDescriptions(tables, datasetId as DatasetId),
+    ])
+  ) as Record<DatasetId, AttributeMeta[]>;
+
 const DATASETS: DatasetConfig[] = [
+  { id: "art", label: "Art", data: [] },
+  { id: "cspaper", label: "CSPaper", data: [] },
+  { id: "player", label: "Player", data: players as RowData[] },
+  { id: "legal", label: "Legal", data: [] },
+  { id: "finance", label: "Finance", data: [] },
   {
-    id: "players",
-    label: "Players (Demo)",
-    data: players as RowData[],
-    descriptionMap: playersDescriptionMap as RawDescriptionMap,
-  },
-  {
-    id: "medicine",
-    label: "Medicine Cases (Demo)",
+    id: "healthcare",
+    label: "Healthcare",
     data: medicine as RowData[],
-    descriptionMap: medicineDescriptionMap as RawDescriptionMap,
   },
 ];
 
@@ -63,7 +151,7 @@ const DATASET_OPTIONS: DatasetOption<DatasetId>[] = DATASETS.map((ds) => ({
 
 function App() {
   const [selectedDatasetId, setSelectedDatasetId] =
-    useState<DatasetId>("players");
+    useState<DatasetId>("player");
 
   const currentDataset = useMemo(() => {
     return (
@@ -73,25 +161,9 @@ function App() {
 
   const deferredDataset = useDeferredValue(currentDataset);
 
-  const columnKeys = useMemo(() => {
-    const firstRow = deferredDataset.data[0] as RowData | undefined;
-    if (!firstRow) return [] as string[];
-    return Object.keys(firstRow).filter((k) => !k.endsWith("_source"));
-  }, [deferredDataset]);
-
   const glossaryItems: AttributeMeta[] = useMemo(
-    () =>
-      columnKeys.map((key) => {
-        const meta = deferredDataset.descriptionMap[key];
-        return {
-          key,
-          label: meta?.label ?? key,
-          description:
-            meta?.description ??
-            "No description has been provided for this attribute yet.",
-        };
-      }),
-    [columnKeys, deferredDataset]
+    () => DATASET_ATTRIBUTE_REGISTRY[selectedDatasetId] ?? [],
+    [selectedDatasetId]
   );
   const datasetOptions: DatasetOption<DatasetId>[] = DATASET_OPTIONS;
 
@@ -223,12 +295,13 @@ function App() {
               </p>
             </div>
 
-            <div className="flex justify-center">
+            <div className="flex flex-col items-center gap-3">
               <DatasetSelector
                 value={selectedDatasetId}
                 options={datasetOptions}
                 onChange={(val) => setSelectedDatasetId(val)}
               />
+              <Legend />
             </div>
           </div>
 
@@ -247,6 +320,9 @@ function App() {
 
           {/* 新的 SQL 示例模块 */}
           <SqlShowcase datasetId={deferredDataset.id} />
+
+          {/* Joinable columns graph */}
+          <JoinGraph data={joinGraphData as any} />
         </section>
 
         {/* Divider */}

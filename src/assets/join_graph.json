@@ -1,0 +1,16 @@
+[
+  {
+    "key": "name",
+    "columns": [
+      { "id": "player.name", "label": "player_name", "table": "player" },
+      { "id": "manager.name", "label": "manager_name", "table": "manager" }
+    ]
+  },
+  {
+    "key": "team",
+    "columns": [
+      { "id": "player.team_id", "label": "player.team_id", "table": "player" },
+      { "id": "team.id", "label": "team.id", "table": "team" }
+    ]
+  }
+]

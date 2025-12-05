@@ -1,0 +1,106 @@
+{
+    "1000": [
+        "SELECT uses_reranker, multi_turn_retrieval, agent_framework \nFROM cspaper;",
+        "SELECT use_agent, baseline, topic \nFROM cspaper;",
+        "SELECT agent_framework, performance_on_NQ, evaluation_metric \nFROM cspaper;",
+        "SELECT performance_on_NQ, uses_knowledge_graph, evaluation_metric \nFROM cspaper;",
+        "SELECT generator_model, baseline, evaluation_dataset \nFROM cspaper;",
+        "SELECT agent_framework, topic, application_domain \nFROM cspaper;",
+        "SELECT application_domain, topic, retrieval_method \nFROM cspaper;",
+        "SELECT topic, data_modality, generator_model \nFROM cspaper;",
+        "SELECT agent_framework, topic, use_agent \nFROM cspaper;",
+        "SELECT topic, use_agent, retrieval_method \nFROM cspaper;"
+    ],
+    "1100": [
+        "SELECT agent_framework, application_domain, performance_on_hotpotqa \nFROM cspaper \nWHERE performance_on_hotpotqa != 'KILT-EM: 27.3 (T5-Base)';",
+        "SELECT generator_model, reasoning_depth, data_modality \nFROM cspaper \nWHERE data_modality = 'proprietary enterprise dataset';",
+        "SELECT uses_knowledge_graph, uses_reranker, use_agent \nFROM cspaper \nWHERE uses_knowledge_graph <= 'Yes';",
+        "SELECT baseline, uses_knowledge_graph, evaluation_dataset \nFROM cspaper \nWHERE evaluation_dataset = 'QAMPARI';",
+        "SELECT evaluation_dataset, baseline, use_agent \nFROM cspaper \nWHERE baseline = 'FLARE';",
+        "SELECT evaluation_dataset, reasoning_depth, data_modality \nFROM cspaper \nWHERE reasoning_depth = 'single-hop';",
+        "SELECT data_modality, multi_turn_retrieval, evaluation_metric \nFROM cspaper \nWHERE evaluation_metric = 'F1-score';",
+        "SELECT evaluation_metric, baseline, use_agent \nFROM cspaper \nWHERE use_agent = 'No';",
+        "SELECT retrieval_method, agent_framework, baseline \nFROM cspaper \nWHERE baseline = 'Single-step Approach';",
+        "SELECT topic, reasoning_depth, performance_on_hotpotqa \nFROM cspaper \nWHERE topic != 'LLM';",
+        "SELECT reasoning_depth, SUM(baseline_amount) AS sum_baseline_amount \nFROM cspaper \nWHERE retrieval_method = 'Web Search;"
+    ],
+    "1200": [
+        "SELECT performance_on_NQ, agent_framework, topic \nFROM cspaper \nWHERE performance_on_NQ != 'MH_test: 50.0' AND generator_model != 'GPT-4o-mini';",
+        "SELECT evaluation_metric, performance_on_hotpotqa, application_domain \nFROM cspaper \nWHERE application_domain = 'Academic' AND evaluation_metric = 'recall';",
+        "SELECT performance_on_hotpotqa, evaluation_metric, retrieval_method \nFROM cspaper \nWHERE performance_on_hotpotqa != 'BERT F1 Score: 0.7320' AND application_domain != 'Medical';",
+        "SELECT data_modality, uses_knowledge_graph, evaluation_dataset \nFROM cspaper \nWHERE data_modality != 'proprietary enterprise dataset' AND baseline = 'MLP';",
+        "SELECT performance_on_hotpotqa, evaluation_metric, baseline \nFROM cspaper \nWHERE baseline != 'BM25' AND reasoning_depth != 'single-hop';",
+        "SELECT baseline, uses_reranker, generator_model \nFROM cspaper \nWHERE baseline != 'GPT-3' AND use_agent != 'Yes';",
+        "SELECT retrieval_method, baseline, generator_model \nFROM cspaper \nWHERE retrieval_method != 'Other' AND evaluation_metric = 'RMSE';",
+        "SELECT multi_turn_retrieval, data_modality, performance_on_NQ \nFROM cspaper \nWHERE data_modality = 'Image' AND evaluation_metric != 'BERTScore';",
+        "SELECT performance_on_NQ, data_modality, evaluation_dataset \nFROM cspaper \nWHERE performance_on_NQ != 'Qwen-2.5-7B (Light-BEE): EM 38.71, F1 50.11' AND use_agent = 'Yes';",
+        "SELECT generator_model, baseline, performance_on_NQ \nFROM cspaper \nWHERE baseline = 'GPT-3' AND multi_turn_retrieval > 'No';",
+        "SELECT uses_reranker, performance_on_hotpotqa, data_modality \nFROM cspaper \nWHERE performance_on_hotpotqa = 'Comparison F1: 75.30)' AND performance_on_NQ = 'fact_single Recall@5: 0.705' AND use_agent = 'Yes' AND application_domain != 'Sports';",
+        "SELECT evaluation_dataset, uses_knowledge_graph, use_agent \nFROM cspaper \nWHERE uses_knowledge_graph > 'single-hop' AND generator_model != 'GPT-3' AND uses_reranker >= 'Text' AND evaluation_dataset != 'Musique';",
+        "SELECT performance_on_NQ, data_modality, application_domain \nFROM cspaper \nWHERE data_modality = 'Audio' AND uses_reranker <= 'Yes' AND use_agent < 'No' AND data_modality = 'proprietary enterprise dataset';",
+        "SELECT evaluation_metric, generator_model, agent_framework \nFROM cspaper \nWHERE agent_framework >= 'Other' AND use_agent < 'No' AND baseline = 'GPT-3' AND topic != 'Information Retrieval';",
+        "SELECT generator_model, retrieval_method, agent_framework \nFROM cspaper \nWHERE generator_model != 'GPT-Neo-1.3B' AND agent_framework >= 'ToT' AND multi_turn_retrieval != 'No' AND topic != 'Retrieval-Augmented Generation';",
+        "SELECT uses_reranker, application_domain, evaluation_metric \nFROM cspaper \nWHERE uses_reranker > 'Text' AND performance_on_hotpotqa != 'F1: 0.3066' AND evaluation_dataset != 'WebQSP' AND uses_reranker > 'No';",
+        "SELECT topic, application_domain, uses_knowledge_graph \nFROM cspaper \nWHERE topic != 'LLM' AND generator_model != 'Llama3.1-8B-Instruct' AND multi_turn_retrieval < 'Yes' AND topic != 'SFT';",
+        "SELECT performance_on_NQ, baseline, evaluation_metric \nFROM cspaper \nWHERE evaluation_metric = 'Contextual Recall' AND agent_framework <= 'ToT' AND evaluation_dataset = 'T-REx' AND evaluation_metric != 'Contextual Recall';",
+        "SELECT evaluation_dataset, evaluation_metric, application_domain \nFROM cspaper \nWHERE evaluation_dataset != 'NaturalQuestions' AND uses_knowledge_graph <= 'single-hop' AND multi_turn_retrieval <= 'Yes' AND multi_turn_retrieval = 'No';"
+    ],
+    "1300": [
+        "SELECT retrieval_method, uses_knowledge_graph, multi_turn_retrieval \nFROM cspaper \nWHERE retrieval_method != 'Dense Retrieval' OR evaluation_metric != 'AUC';",
+        "SELECT multi_turn_retrieval, baseline, data_modality \nFROM cspaper \nWHERE multi_turn_retrieval >= 'Yes' OR use_agent >= 'Yes';",
+        "SELECT uses_knowledge_graph, reasoning_depth, retrieval_method \nFROM cspaper \nWHERE retrieval_method = 'Dense Retrieval' OR performance_on_hotpotqa != 'EM (x4 compression): 0.430';",
+        "SELECT performance_on_NQ, uses_knowledge_graph, reasoning_depth \nFROM cspaper \nWHERE reasoning_depth = 'single-hop' OR use_agent >= 'No';",
+        "SELECT evaluation_dataset, performance_on_hotpotqa, agent_framework \nFROM cspaper \nWHERE performance_on_hotpotqa = 'F1: 62.87' OR use_agent <= 'No';",
+        "SELECT generator_model, uses_reranker, evaluation_metric \nFROM cspaper \nWHERE uses_reranker < 'Yes' OR topic != 'LLM';",
+        "SELECT data_modality, multi_turn_retrieval, agent_framework \nFROM cspaper \nWHERE data_modality != 'Image' OR agent_framework = 'ToT';",
+        "SELECT performance_on_NQ, reasoning_depth, generator_model \nFROM cspaper \nWHERE reasoning_depth = 'single-hop' OR data_modality != 'proprietary enterprise dataset';",
+        "SELECT data_modality, uses_reranker, generator_model \nFROM cspaper \nWHERE data_modality != 'Table' OR evaluation_metric = 'LLM-as-a-judge';",
+        "SELECT application_domain, use_agent, reasoning_depth \nFROM cspaper \nWHERE use_agent > 'Yes' OR reasoning_depth = 'single-hop';",
+        "SELECT data_modality, agent_framework, generator_model \nFROM cspaper \nWHERE data_modality != 'Image' OR baseline = 'GraphRAG' OR application_domain != 'Sports' OR reasoning_depth != 'multi-hop';",
+        "SELECT agent_framework, uses_reranker, use_agent \nFROM cspaper \nWHERE uses_reranker = 'Text' OR retrieval_method != 'Dense Retrieval' OR topic = 'No' OR uses_reranker != 'Text';",
+        "SELECT uses_knowledge_graph, retrieval_method, performance_on_NQ \nFROM cspaper \nWHERE uses_knowledge_graph >= 'Yes' OR multi_turn_retrieval = 'No' OR uses_knowledge_graph = 'No' OR evaluation_dataset != 'QuALITY';",
+        "SELECT data_modality, uses_reranker, reasoning_depth \nFROM cspaper \nWHERE uses_reranker < 'Text' OR topic != 'Data Selection' OR performance_on_hotpotqa = 'KILT-EM: 27.3 (T5-Base)' OR uses_reranker >= 'Text';",
+        "SELECT performance_on_NQ, data_modality, use_agent \nFROM cspaper \nWHERE data_modality != 'proprietary enterprise dataset' OR data_modality != 'Code' OR topic != 'SFT' OR agent_framework < 'ToT';",
+        "SELECT use_agent, reasoning_depth, multi_turn_retrieval \nFROM cspaper \nWHERE use_agent < 'No' OR performance_on_hotpotqa != 'EM (x16 compression): 0.426' OR uses_knowledge_graph >= 'single-hop' OR topic = 'LLM';",
+        "SELECT topic, performance_on_NQ, performance_on_hotpotqa \nFROM cspaper \nWHERE performance_on_hotpotqa != 'EM: 48.58' OR evaluation_metric = 'Accuracy' OR uses_knowledge_graph < 'Yes' OR data_modality != 'Image';",
+        "SELECT evaluation_metric, baseline, evaluation_dataset \nFROM cspaper \nWHERE baseline != 'FLARE' OR uses_knowledge_graph <= 'single-hop' OR performance_on_hotpotqa != 'Acc: 58.4' OR evaluation_metric = 'AUC';",
+        "SELECT generator_model, evaluation_metric, agent_framework \nFROM cspaper \nWHERE evaluation_metric = 'F1 score' OR multi_turn_retrieval >= 'No' OR use_agent < 'No' OR topic = 'SFT';",
+        "SELECT performance_on_hotpotqa, topic, multi_turn_retrieval \nFROM cspaper \nWHERE multi_turn_retrieval <= 'No' OR performance_on_hotpotqa = 'F1: 62.6' OR reasoning_depth = 'multi-hop' OR performance_on_hotpotqa != 'F1: 62.2';",
+        "SELECT retrieval_method, SUM(baseline_amount) AS sum_baseline_amount \nFROM cspaper \nWHERE uses_reranker = 'No' OR performance_on_hotpotqa = 'KILT-EM: 27.3 (T5-Base);"
+    ],
+    "1400": [
+        "SELECT uses_knowledge_graph, baseline, uses_reranker \nFROM cspaper \nWHERE baseline != 'RAPTOR' AND data_modality = 'Audio' AND generator_model = 'Llama3-8b' AND uses_reranker <= 'Text';",
+        "SELECT retrieval_method, generator_model, reasoning_depth \nFROM cspaper \nWHERE (generator_model = 'Mistral-7B-Instruct-v0.3' AND application_domain = 'Other') OR (agent_framework >= 'CoT' AND performance_on_hotpotqa != 'F1: 59.57');",
+        "SELECT evaluation_dataset, generator_model, topic \nFROM cspaper \nWHERE (generator_model != 'LLaMA-2-7B' AND uses_reranker <= 'Text') OR (uses_knowledge_graph >= 'single-hop' AND baseline != 'Vanilla');",
+        "SELECT evaluation_dataset, data_modality, agent_framework \nFROM cspaper \nWHERE (data_modality = 'Table' AND performance_on_hotpotqa = 'EM: 42.2') OR (evaluation_dataset != 'MS-MARCO' AND agent_framework >= 'ToT');",
+        "SELECT reasoning_depth, topic, multi_turn_retrieval \nFROM cspaper \nWHERE (multi_turn_retrieval != 'No' AND application_domain = 'Education') OR (performance_on_hotpotqa != 'EM: 0.303' AND retrieval_method != 'Sparse Retrieval');",
+        "SELECT baseline, use_agent, application_domain \nFROM cspaper \nWHERE (baseline = 'Vanilla RAG' AND performance_on_NQ != 'ROUGE-L: 0.0322') OR (performance_on_NQ = 'Llama-3.1: 67%' AND evaluation_metric = 'F1 score');",
+        "SELECT reasoning_depth, baseline, multi_turn_retrieval \nFROM cspaper \nWHERE (baseline != 'FL-RAG' AND retrieval_method = 'Other') OR (baseline = 'PoisonedRAG' AND baseline != 'PoisonedRAG');",
+        "SELECT performance_on_hotpotqa, uses_reranker, evaluation_dataset \nFROM cspaper \nWHERE (performance_on_hotpotqa != 'Compression of top 5 documents: EM: 33.67, F1: 45.06' AND uses_reranker < 'No') OR (application_domain = 'Sports' AND uses_knowledge_graph < 'single-hop');",
+        "SELECT reasoning_depth, evaluation_metric, application_domain \nFROM cspaper \nWHERE (reasoning_depth != 'single-hop' AND multi_turn_retrieval != 'Yes') OR (performance_on_NQ = 'Mistral-I7B (Keyword): acc: 61.0, cacc: 45.0' AND performance_on_NQ = 'LLaMA-3-8B (Light-BEE): EM 38.42, F1 49.23');",
+        "SELECT application_domain, topic, performance_on_hotpotqa \nFROM cspaper \nWHERE (performance_on_hotpotqa != 'Acc: 55.68' AND evaluation_metric = 'Recall') OR (multi_turn_retrieval > 'Yes' AND uses_knowledge_graph <= 'single-hop');",
+        "SELECT application_domain, performance_on_hotpotqa, retrieval_method \nFROM cspaper \nWHERE (performance_on_hotpotqa = 'F1: 0.3066' AND uses_knowledge_graph >= 'single-hop') OR (agent_framework > 'ToT' AND baseline != 'GPT-4');"
+    ],
+    "1010": [
+        "SELECT use_agent, MIN(baseline_amount) AS min_baseline_amount \nFROM cspaper \nGROUP BY use_agent;",
+        "SELECT uses_knowledge_graph, COUNT(topic) AS count_topic \nFROM cspaper \nGROUP BY uses_knowledge_graph;",
+        "SELECT uses_reranker, AVG(baseline_amount) AS avg_baseline_amount \nFROM cspaper \nGROUP BY uses_reranker;",
+        "SELECT topic, MAX(baseline_amount) AS max_baseline_amount \nFROM cspaper \nGROUP BY topic;",
+        "SELECT uses_knowledge_graph, COUNT(baseline_amount) AS count_baseline_amount \nFROM cspaper \nGROUP BY uses_knowledge_graph;",
+        "SELECT use_agent, MIN(baseline_amount) AS min_baseline_amount \nFROM cspaper \nGROUP BY use_agent;",
+        "SELECT topic, MAX(baseline_amount) AS max_baseline_amount \nFROM cspaper \nGROUP BY topic;",
+        "SELECT reasoning_depth, SUM(baseline_amount) AS sum_baseline_amount \nFROM cspaper \nGROUP BY reasoning_depth;"
+    ],
+    "1110": [
+        "SELECT uses_knowledge_graph, COUNT(evaluation_metric) AS count_evaluation_metric \nFROM cspaper \nWHERE reasoning_depth = 'multi-hop' \nGROUP BY uses_knowledge_graph;"
+    ],
+    "1310": [
+        "SELECT data_modality, AVG(baseline_amount) AS avg_baseline_amount \nFROM cspaper \nWHERE application_domain != 'Education' OR use_agent = 'Yes' \nGROUP BY data_modality;"
+    ],
+    "1220": [
+        "SELECT data_modality, AVG(baseline_amount) AS avg_baseline_amount \nFROM cspaper \nWHERE use_agent = 'Yes' AND retrieval_method != 'Web Search;"
+    ],
+    "1120": [
+        "SELECT uses_knowledge_graph, COUNT(reasoning_depth) AS count_reasoning_depth \nFROM cspaper \nWHERE (baseline = 'e5-base-v2;"
+    ]
+}

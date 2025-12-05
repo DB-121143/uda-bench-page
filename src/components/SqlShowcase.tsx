@@ -9,40 +9,33 @@ interface SqlShowcaseProps {
   datasetId: string;
 }
 
-/** 每个 JSON 的结构 */
-type SqlFileContent = {
-  SQL?: string[];
-};
+type SqlDatasetFile = Record<string, string[]>;
 
 type SqlModule = {
-  default: SqlFileContent;
+  default: SqlDatasetFile;
 };
 
 /**
  * 通过 Vite 的 import.meta.glob 把所有 sql/*.json 都扫一遍，
  * 生成 registry[datasetId][code] = SQL[]
  */
-const sqlModules = import.meta.glob("../assets/sql/**/*.json", {
+const sqlModules = import.meta.glob("../assets/sql/*.json", {
   eager: true,
 }) as Record<string, SqlModule>;
 
-const sqlRegistry: Record<string, Record<string, string[]>> = {};
+const sqlRegistry: Record<string, SqlDatasetFile> = {};
 
 for (const [path, mod] of Object.entries(sqlModules)) {
-  // 形如: ../assets/sql/players/0210.json
-  const match = path.match(/\/sql\/([^/]+)\/(\d{4})\.json$/);
+  const match = path.match(/\/sql\/([^/]+)\.json$/);
   if (!match) continue;
-  const dataset = match[1]; // players / medicine / ...
-  const code = match[2]; // 0210
-  const sqlArr = mod.default.SQL ?? [];
-  if (!sqlRegistry[dataset]) sqlRegistry[dataset] = {};
-  sqlRegistry[dataset][code] = sqlArr;
+  const dataset = match[1];
+  sqlRegistry[dataset] = mod.default ?? {};
 }
 
 /** 四个类别的状态定义（索引从 0 开始） */
 const S_STATES = ["OFF", "ON"] as const;
 const F_STATES = ["OFF", "SINGLE", "AND", "OR", "MIXED"] as const;
-const A_STATES = ["OFF", "GLOBAL", "GROUP"] as const;
+const A_STATES = ["OFF", "COUNT", "CALC"] as const;
 const J_STATES = ["OFF", "SINGLE", "MULTI"] as const;
 
 type RollerLabel = "S" | "F" | "A" | "J";
@@ -128,7 +121,7 @@ const SqlShowcaseComponent = ({ datasetId }: SqlShowcaseProps) => {
   // 四个滚轮的索引状态
   const [sIndex, setSIndex] = useState(0); // S: OFF, ON
   const [fIndex, setFIndex] = useState(0); // F: OFF, SINGLE, AND, OR, MIXED
-  const [aIndex, setAIndex] = useState(0); // A: OFF, GLOBAL, GROUP
+  const [aIndex, setAIndex] = useState(0); // A: OFF, COUNT, CALC
   const [jIndex, setJIndex] = useState(0); // J: OFF, SINGLE, MULTI
 
   // 组合编码：S F A J
