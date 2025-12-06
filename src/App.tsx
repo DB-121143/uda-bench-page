@@ -249,24 +249,42 @@ function App() {
             </h2>
           </div>
 
-          <div className="mx-auto max-w-3xl text-xs md:text-sm leading-relaxed text-slate-600 text-justify">
+          <div className="mx-auto max-w-3xl text-xs md:text-sm leading-relaxed text-slate-600 text-justify space-y-4">
             <p>
-              We are dedicated to exploring unstructured data as a first-class
-              object in modern analytics workflows, going beyond traditional
-              benchmarks that mostly focus on clean, well-defined tables or
-              single-turn question answering. UDA-Bench is designed as a
-              holistic benchmark for real-world unstructured data analysis,
-              where text, logs, semi-structured payloads and noisy metadata are
-              combined into complex scenarios that require retrieval, reasoning,
-              transformation and aggregation. Instead of optimizing for a single
-              static metric, we explicitly model the trade-offs between quality,
-              latency and cost across different systems and model families,
-              enabling practitioners to understand how their choices behave
-              under realistic workloads. By providing unified tasks, curated
-              evaluation protocols and interpretable per-query diagnostics,
-              UDA-Bench aims to serve as a shared playground for researchers and
-              engineers who care about building robust, transparent and
-              efficient unstructured data analysis pipelines.
+              The UDA-Bench dataset is a benchmark for unstructured data
+              analysis, encompassing large-scale and diverse datasets as well as
+              a rich set of queries. It aims to provide a comprehensive, diverse,
+              high-quality, and large-scale evaluation benchmark for existing
+              Unsupervised Data Analysis (UDA) systems. This is the first work
+              to construct such a comprehensive benchmark and conduct an
+              in-depth evaluation of existing Large Language Model (LLM)-based
+              unstructured data analysis systems.
+            </p>
+            <p>
+              UDA-Bench includes six unstructured datasets from different
+              domains, covering representative fields such as healthcare, law,
+              art, sports, science, and finance. Each dataset contains hundreds
+              to hundreds of thousands of documents, with the healthcare dataset
+              being particularly large, containing over 100,000 long and complex
+              documents, which is 100 times larger than existing benchmarks.
+              These datasets include not only text but also tables, images, and
+              other modalities, supporting a wide range of analytical tasks.
+            </p>
+            <p>
+              We designed 608 queries, grouped into five main categories:
+              Select, Filter, Join, Agg, and Mixed queries. These queries
+              encompass various complex combinations of operations, allowing for
+              comprehensive testing of system performance under different query
+              loads. Through these queries, UDA-Bench provides a multidimensional
+              evaluation framework to help researchers assess system performance
+              across different tasks and data attributes. Additionally, the
+              dataset defines 167 meaningful attributes, including categorical,
+              numerical, and string types, covering various document types,
+              modalities, and analysis difficulties. This aims to enhance the
+              system's ability to handle diverse and complex data processing
+              tasks. All labels have been manually annotated by a team of 30
+              graduate students, ensuring the quality and accuracy of the
+              dataset annotations.
             </p>
           </div>
         </section>
