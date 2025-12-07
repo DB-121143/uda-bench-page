@@ -31,3 +31,5 @@ export const DataIcon: React.FC<IconProps> = (props) => (
     />
   </svg>
 );
+
+// Dataset-specific icons are loaded directly from asset svgs in App

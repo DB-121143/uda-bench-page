@@ -139,7 +139,25 @@ const JoinGraph = ({ data, height = 420 }: JoinGraphProps) => {
   useEffect(() => {
     if (!ref.current || !width || nodes.length === 0) return;
     const handle = requestAnimationFrame(() => {
-      ref.current?.zoomToFit(450, 70);
+      const fg = ref.current as any;
+      if (typeof fg.zoomToFit === "function") {
+        fg.zoomToFit(450, 70);
+      }
+
+      // Recenter slightly down-right from the upper-left for a more balanced initial view
+      const xs = nodes.map((n) => (n.fx ?? n.x ?? 0));
+      const ys = nodes.map((n) => (n.fy ?? n.y ?? 0));
+      const minX = Math.min(...xs);
+      const minY = Math.min(...ys);
+      const offset = 80;
+      if (typeof fg.centerAt === "function") {
+        fg.centerAt(minX + offset, minY + offset, 450);
+      }
+
+      // Apply a closer initial zoom for better legibility
+      if (typeof fg.zoom === "function") {
+        fg.zoom(1.5, 450);
+      }
     });
     return () => cancelAnimationFrame(handle);
   }, [width, height, nodes.length]);

@@ -1,7 +1,14 @@
-import { useDeferredValue, useMemo, useState } from "react";
+import { useDeferredValue, useMemo, useRef, useState, useEffect } from "react";
+import type { JSX } from "react";
 import HoverSourceTable from "@/components/HoverSourceTable";
 import AttributeGlossary from "@/components/AttributeGlossary";
 import { GitHubIcon, PaperIcon, DataIcon } from "@/components/Icons";
+import artIcon from "@/assets/icons/art.svg";
+import cspaperIcon from "@/assets/icons/cspaper.svg";
+import financeIcon from "@/assets/icons/finance.svg";
+import healthcareIcon from "@/assets/icons/healthcare.svg";
+import legalIcon from "@/assets/icons/legal.svg";
+import playerIcon from "@/assets/icons/player.svg";
 import DatasetSelector, {
   type DatasetOption,
 } from "@/components/DatasetSelector";
@@ -20,6 +27,9 @@ import playerDescriptions from "@/assets/descriptions/player_descriptions.json";
 
 // 你的 logo 文件（请在 src/assets 下放一个 uda-logo.svg 或改成你自己的文件名）
 import logo from "@/public/UDA.svg";
+import benchmarkBuild from "@/public/benchmark_build.png";
+import queryCategory from "@/public/Query_category.png";
+import udaBig from "@/public/UDA-big.png";
 
 type RowData = Record<string, unknown>;
 type TableData = { name: string; rows: RowData[] };
@@ -173,10 +183,55 @@ const DATASETS: DatasetConfig[] = [
   },
 ];
 
+const DATASET_ICONS: Record<DatasetId, JSX.Element> = {
+  art: <img src={artIcon} alt="Art dataset icon" className="h-5 w-5" />,
+  cspaper: <img src={cspaperIcon} alt="CSPaper dataset icon" className="h-5 w-5" />,
+  player: <img src={playerIcon} alt="Player dataset icon" className="h-5 w-5" />,
+  legal: <img src={legalIcon} alt="Legal dataset icon" className="h-5 w-5" />,
+  finance: <img src={financeIcon} alt="Finance dataset icon" className="h-5 w-5" />,
+  healthcare: <img src={healthcareIcon} alt="Healthcare dataset icon" className="h-5 w-5" />,
+};
+
 const DATASET_OPTIONS: DatasetOption<DatasetId>[] = DATASETS.map((ds) => ({
   id: ds.id,
   label: ds.label,
+  icon: DATASET_ICONS[ds.id],
 }));
+
+const FAQ_ITEMS: { question: string; answer: JSX.Element }[] = [
+  {
+    question: "How can we obtain more information about the benchmark?",
+    answer: (
+      <p>
+        You can visit our <a className="text-sky-600 underline" href="https://github.com/DB-121143/UDA-Bench" target="_blank" rel="noreferrer">GitHub homepage</a> for more information.
+      </p>
+    ),
+  },
+  {
+    question: "How are the classifications of SQL defined?",
+    answer: (
+      <div className="space-y-3">
+        <p>
+          We use expert-designed templates based on real-world scenarios, and the overall classification is shown in the following figure.
+        </p>
+        <img
+          src={queryCategory}
+          alt="SQL classification overview"
+          className="w-full rounded-2xl border border-slate-200 shadow-sm"
+          loading="lazy"
+        />
+      </div>
+    ),
+  },
+  {
+    question: "Can we contribute to this benchmark?",
+    answer: (
+      <p>
+        Of course! We welcome issue reports, feature requests, or code contributions. Please ensure to follow the project's coding standards and testing requirements.
+      </p>
+    ),
+  },
+];
 
 function App() {
   const [selectedDatasetId, setSelectedDatasetId] =
@@ -189,6 +244,9 @@ function App() {
     finance: 0,
     healthcare: 0,
   });
+  const [faqOpen, setFaqOpen] = useState<boolean[]>(FAQ_ITEMS.map(() => false));
+  const faqRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const lastOpenedRef = useRef<number | null>(null);
 
   const currentDataset = useMemo(() => {
     return (
@@ -212,6 +270,29 @@ function App() {
   const currentTable = currentTables[safeTableIdx];
   const tableRows = currentTable?.rows ?? deferredDataset.data ?? [];
   const tableName = currentTable?.name ?? "default";
+
+  const toggleFaq = (idx: number) => {
+    setFaqOpen((prev) => {
+      const next = prev.map((open, i) => (i === idx ? !open : open));
+      // If opening, smooth scroll to the item after layout updates
+      if (!prev[idx]) {
+        lastOpenedRef.current = idx;
+      }
+      return next;
+    });
+  };
+
+  // Extra scroll pass after animations/images settle to ensure full visibility (e.g., with images)
+  useEffect(() => {
+    const idx = lastOpenedRef.current;
+    if (idx == null || !faqOpen[idx]) return;
+    const el = faqRefs.current[idx];
+    if (!el) return;
+      const timer = setTimeout(() => {
+        el.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 500);
+    return () => clearTimeout(timer);
+  }, [faqOpen]);
 
   const cycleTable = (direction: number) => {
     setTableIndex((prev) => {
@@ -319,32 +400,17 @@ function App() {
               unstructured data analysis systems.
             </p>
             <p>
-              UDA-Bench includes six unstructured datasets from different
-              domains, covering representative fields such as healthcare, law,
-              art, sports, science, and finance. Each dataset contains hundreds
-              to hundreds of thousands of documents, with the healthcare dataset
-              being particularly large, containing over 100,000 long and complex
-              documents, which is 100 times larger than existing benchmarks.
-              These datasets include not only text but also tables, images, and
-              other modalities, supporting a wide range of analytical tasks.
-            </p>
-            <p>
-              We designed 608 queries, grouped into five main categories:
-              Select, Filter, Join, Agg, and Mixed queries. These queries
-              encompass various complex combinations of operations, allowing for
-              comprehensive testing of system performance under different query
-              loads. Through these queries, UDA-Bench provides a multidimensional
-              evaluation framework to help researchers assess system performance
-              across different tasks and data attributes. Additionally, the
-              dataset defines 167 meaningful attributes, including categorical,
-              numerical, and string types, covering various document types,
-              modalities, and analysis difficulties. This aims to enhance the
-              system's ability to handle diverse and complex data processing
-              tasks. All labels have been manually annotated by a team of 30
-              graduate students, ensuring the quality and accuracy of the
-              dataset annotations.
+              The benchmark includes six multi-domain, multi-modal datasets spanning healthcare, law, art, sports, science, and finance, with sizes from hundreds to hundreds of thousands of documents. The healthcare dataset alone contains over 100,000 long, complex documents, making it two orders of magnitude larger than existing benchmarks. Beyond text, the data also includes tables, images, and other modalities, enabling realistic end-to-end analysis.
             </p>
           </div>
+            <div className="mx-auto flex max-w-4xl justify-center">
+              <img
+                src={benchmarkBuild}
+                alt="UDA-Bench benchmark build overview"
+                className="w-full max-w-4xl rounded-2xl border border-slate-200 shadow-md"
+                loading="lazy"
+              />
+            </div>
         </section>
 
         {/* Divider */}
@@ -407,6 +473,7 @@ function App() {
         {/* Divider */}
         <hr className="border-slate-200" />
 
+        
         {/* ====================== Overall Performance ====================== */}
         <section className="space-y-4">
           <div className="text-center">
@@ -421,12 +488,6 @@ function App() {
               quality index that blends retrieval fidelity, reasoning accuracy,
               and downstream execution stability. The score is recalculated with
               every release to reflect the latest datasets and system upgrades.
-            </p>
-            <p>
-              Beyond the composite score, we expose latency percentiles and
-              normalized cost footprints so teams can identify whether their
-              stack is throttled by infrastructure, model size, or orchestration
-              overhead. Each metric is anchored to reproducible workloads.
             </p>
             <p>
               Performance deltas are tracked longitudinally, allowing readers to
@@ -448,22 +509,61 @@ function App() {
             </h2>
           </div>
 
-          <div className="mx-auto max-w-3xl space-y-3 text-xs md:text-sm leading-relaxed text-slate-600 text-justify">
-            <p>
-              What makes UDA-Bench different from legacy leaderboards? We focus
-              on messy, multi-source corpora with provenance tracking, and our
-              tasks explicitly reward explainability and operator trust.
-            </p>
-            <p>
-              How frequently is the benchmark refreshed? We snapshot new logs,
-              text dumps, and semi-structured payloads every quarter, then run a
-              full evaluation sweep to keep historical comparisons meaningful.
-            </p>
-            <p>
-              Can teams contribute workloads or metrics? Absolutely—submit pull
-              requests with dataset manifests or evaluation hooks, and our
-              steering group will validate and merge them into the next cycle.
-            </p>
+          <div className="mx-auto max-w-3xl space-y-3">
+            {FAQ_ITEMS.map((item, idx) => {
+              const open = faqOpen[idx];
+              return (
+                <div
+                  key={item.question}
+                  ref={(el) => {
+                    faqRefs.current[idx] = el;
+                  }}
+                  className="overflow-hidden rounded-2xl border border-slate-200 bg-white/90 shadow-sm"
+                >
+                  <button
+                    type="button"
+                    onClick={() => toggleFaq(idx)}
+                    className="flex w-full items-center justify-between px-4 py-3 text-left"
+                    aria-expanded={open}
+                  >
+                    <span className="text-sm md:text-base font-semibold text-slate-900">{item.question}</span>
+                    <span
+                      className={`ml-3 inline-flex h-5 w-5 items-center justify-center text-slate-500 transition-transform ${
+                        open ? "rotate-180" : "rotate-0"
+                      }`}
+                    >
+                      <svg viewBox="0 0 20 20" aria-hidden="true" className="h-4 w-4">
+                        <path
+                          fill="currentColor"
+                          d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 11.17l3.71-3.94a.75.75 0 1 1 1.1 1.02l-4.25 4.5a.75.75 0 0 1-1.1 0l-4.25-4.5a.75.75 0 0 1 .02-1.06Z"
+                        />
+                      </svg>
+                    </span>
+                  </button>
+                  <div
+                    className={`border-t border-slate-200 bg-white px-4 text-xs md:text-sm text-slate-700 transition-all duration-700 ease-[cubic-bezier(0.25,0.8,0.25,1)] overflow-hidden ${
+                      open ? "max-h-[1200px] py-3 opacity-100 translate-y-0" : "max-h-0 py-0 opacity-0 -translate-y-1.5"
+                    }`}
+                  >
+                    <div className="leading-relaxed space-y-3">{item.answer}</div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* Divider */}
+        <hr className="border-slate-200" />
+
+        <section className="space-y-4">
+          <div className="mx-auto flex max-w-4xl justify-center">
+            <img
+              src={udaBig}
+              alt="UDA-Bench overview"
+              className="w-full max-w-4xl rounded-2xl border border-slate-200 shadow-md"
+              loading="lazy"
+            />
           </div>
         </section>
       </div>

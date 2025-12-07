@@ -1,9 +1,10 @@
 // src/components/DatasetSelector.tsx
-import { useState, type MouseEvent, type KeyboardEvent } from "react";
+import { useState, type MouseEvent, type KeyboardEvent, type ReactNode } from "react";
 
 export type DatasetOption<T extends string = string> = {
   id: T;
   label: string;
+  icon?: ReactNode;
 };
 
 type DatasetSelectorProps<T extends string = string> = {
@@ -36,7 +37,7 @@ const DatasetSelector = <T extends string>({
 
   return (
     <div
-      className="relative inline-flex w-56" // ✅ 固定整体宽度
+      className="relative inline-flex w-44" // ✅ 收窄整体宽度
       tabIndex={0}
       onBlur={() => {
         window.setTimeout(() => setOpen(false), 80);
@@ -49,8 +50,8 @@ const DatasetSelector = <T extends string>({
         className="inline-flex w-full items-center rounded-2xl border border-slate-200 bg-white/80 px-3 py-1.5 shadow-sm backdrop-blur-sm hover:border-slate-300"
         onClick={() => setOpen((prev) => !prev)}
       >
-        <span className="mr-2 inline-flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-sky-400 to-indigo-400 text-xs font-semibold text-white">
-          DS
+        <span className="mr-2 inline-flex h-8 w-8 items-center justify-center text-xs font-semibold text-slate-700">
+          {selected?.icon ? selected.icon : <span className="text-[10px]">DS</span>}
         </span>
         <span className="mx-1 flex-1 truncate text-xs md:text-sm font-medium text-slate-700">
           {selected?.label}
@@ -94,7 +95,10 @@ const DatasetSelector = <T extends string>({
                       : "border-transparent text-slate-600 hover:border-sky-200 hover:bg-slate-50 hover:text-slate-900",
                   ].join(" ")}
                 >
-                  <span className="truncate">{opt.label}</span>
+                  <span className="flex items-center gap-2 truncate">
+                    {opt.icon && <span className="inline-flex h-6 w-6 items-center justify-center text-slate-600">{opt.icon}</span>}
+                    <span className="truncate">{opt.label}</span>
+                  </span>
                   {isActive && (
                     <span className="ml-2 inline-flex h-5 w-5 items-center justify-center rounded-full bg-sky-500 text-xs font-semibold text-white">
                       ✓
