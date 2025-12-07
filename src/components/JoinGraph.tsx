@@ -147,13 +147,13 @@ const JoinGraph = ({ data, height = 420 }: JoinGraphProps) => {
   return (
     <div
       ref={containerRef}
-      className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white px-4 py-4 shadow-xl"
+      className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white px-6 py-4 shadow-xl"
     >
       <div className="relative">
-        <div className="mb-3 flex items-baseline justify-between gap-3">
+        <div className="mb-4 flex items-baseline justify-between gap-3">
           <div>
-            <h2 className="text-lg md:text-xl font-semibold text-slate-900">Neon Join Orbit</h2>
-            <p className="mt-0.5 text-xs text-slate-500">Join keys sit at the core; columns orbit with animated beams.</p>
+            <h2 className="text-lg md:text-xl font-semibold text-slate-900 leading-tight">Join Keys</h2>
+            <p className="mt-1 text-xs text-slate-500 leading-relaxed">Showing all the attributes used for join.</p>
           </div>
         </div>
         <div className="overflow-hidden rounded-2xl border border-slate-200 bg-gradient-to-b from-slate-50 via-white to-slate-50 p-2 shadow-inner">
@@ -163,16 +163,21 @@ const JoinGraph = ({ data, height = 420 }: JoinGraphProps) => {
             height={height}
             graphData={{ nodes, links }}
             backgroundColor="rgba(248,250,252,0.65)"
-            nodeLabel={(node) => {
-              const n = node as JoinNode;
-              return n.table ? `${n.label}\n${n.table}` : n.label;
+            nodeLabel={(node) => (node as JoinNode).label}
+            linkColor={(link) => {
+              const srcId = (link.source as any)?.id ?? link.source;
+              const tgtId = (link.target as any)?.id ?? link.target;
+              const isHoverLink = (ref.current as any)?.__hoverLink === link;
+              const touchesHoverNode = hoveredNode != null && (hoveredNode === srcId || hoveredNode === tgtId);
+              return isHoverLink || touchesHoverNode ? palette.linkHighlight : palette.link;
             }}
-            linkColor={(link) =>
-              (ref.current as any)?.__hoverLink === link || hoveredNode === (link.source as any)?.id
-                ? palette.linkHighlight
-                : palette.link
-            }
-            linkWidth={(link) => ((ref.current as any)?.__hoverLink === link ? 2.8 : 1.4)}
+            linkWidth={(link) => {
+              const srcId = (link.source as any)?.id ?? link.source;
+              const tgtId = (link.target as any)?.id ?? link.target;
+              const isHoverLink = (ref.current as any)?.__hoverLink === link;
+              const touchesHoverNode = hoveredNode != null && (hoveredNode === srcId || hoveredNode === tgtId);
+              return isHoverLink || touchesHoverNode ? 2.8 : 1.4;
+            }}
             linkCurvature={(link: any) => link.curvature ?? 0}
             linkDirectionalParticles={2}
             linkDirectionalParticleWidth={2.4}
@@ -223,7 +228,7 @@ const JoinGraph = ({ data, height = 420 }: JoinGraphProps) => {
               ctx.restore();
 
               // Label
-              const label = n.table ? `${n.label} (${n.table})` : n.label;
+              const label = n.label;
               ctx.font = `${fontSize}px 'Inter', 'Open Sans', sans-serif`;
               ctx.textAlign = "center";
               ctx.textBaseline = "middle";
@@ -233,18 +238,8 @@ const JoinGraph = ({ data, height = 420 }: JoinGraphProps) => {
               ctx.fillText(text, x, labelY);
             }}
             linkCanvasObjectMode={() => "after"}
-            linkCanvasObject={(link, ctx) => {
-              const hovered = (ref.current as any)?.__hoverLink === link;
-              if (!hovered) return;
-              const start = link.source as JoinNode;
-              const end = link.target as JoinNode;
-              const midX = ((start.x || 0) + (end.x || 0)) / 2;
-              const midY = ((start.y || 0) + (end.y || 0)) / 2;
-              ctx.save();
-              ctx.fillStyle = "#0f172a";
-              ctx.font = "12px 'Inter', 'Open Sans', sans-serif";
-              ctx.fillText(`${(start.label ?? "").toString()} → ${(end.label ?? "").toString()}`, midX, midY - 6);
-              ctx.restore();
+            linkCanvasObject={(_, __) => {
+              // Intentionally no label rendering on hover
             }}
             onLinkHover={(link) => {
               (ref.current as any).__hoverLink = link;

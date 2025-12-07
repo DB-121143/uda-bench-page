@@ -9,8 +9,6 @@ import SqlShowcase from "@/components/SqlShowcase";
 import Legend from "@/components/Legend";
 import JoinGraph from "@/components/JoinGraph";
 
-import players from "@/assets/players.json";
-import medicine from "@/assets/medicine.json";
 import joinGraphData from "@/assets/join_graph.json";
 
 import artDescriptions from "@/assets/descriptions/art_descriptions.json";
@@ -24,6 +22,7 @@ import playerDescriptions from "@/assets/descriptions/player_descriptions.json";
 import logo from "@/public/UDA.svg";
 
 type RowData = Record<string, unknown>;
+type TableData = { name: string; rows: RowData[] };
 
 type DatasetId =
   | "art"
@@ -69,6 +68,36 @@ const DESCRIPTION_SOURCES: Record<DatasetId, DatasetDescriptions> = {
   legal: legalDescriptions,
   player: playerDescriptions,
 };
+
+const DATASET_IDS: DatasetId[] = ["art", "cspaper", "player", "legal", "finance", "healthcare"];
+
+const isDatasetId = (value: string): value is DatasetId => DATASET_IDS.includes(value as DatasetId);
+
+const tableModules = import.meta.glob("./assets/table/**/*.json", {
+  eager: true,
+}) as Record<string, { default: RowData[] }>;
+
+const TABLE_REGISTRY: Record<DatasetId, TableData[]> = (() => {
+  const registry: Record<DatasetId, TableData[]> = {
+    art: [],
+    cspaper: [],
+    player: [],
+    legal: [],
+    finance: [],
+    healthcare: [],
+  };
+  for (const [path, mod] of Object.entries(tableModules)) {
+    const match = path.match(/table\/([^/]+)\/([^/]+)\.json$/);
+    if (!match) continue;
+    const [, dataset, tableName] = match;
+    if (!isDatasetId(dataset)) continue;
+    registry[dataset].push({ name: tableName, rows: mod.default ?? [] });
+  }
+  (Object.values(registry) as TableData[][]).forEach((tables) => {
+    tables.sort((a, b) => a.name.localeCompare(b.name));
+  });
+  return registry;
+})();
 
 const splitPipes = (value?: string): string[] => {
   if (!value) return [];
@@ -134,13 +163,13 @@ const DATASET_ATTRIBUTE_REGISTRY: Record<DatasetId, AttributeMeta[]> =
 const DATASETS: DatasetConfig[] = [
   { id: "art", label: "Art", data: [] },
   { id: "cspaper", label: "CSPaper", data: [] },
-  { id: "player", label: "Player", data: players as RowData[] },
+  { id: "player", label: "Player", data: [] },
   { id: "legal", label: "Legal", data: [] },
   { id: "finance", label: "Finance", data: [] },
   {
     id: "healthcare",
     label: "Healthcare",
-    data: medicine as RowData[],
+    data: [],
   },
 ];
 
@@ -152,6 +181,14 @@ const DATASET_OPTIONS: DatasetOption<DatasetId>[] = DATASETS.map((ds) => ({
 function App() {
   const [selectedDatasetId, setSelectedDatasetId] =
     useState<DatasetId>("player");
+  const [tableIndex, setTableIndex] = useState<Record<DatasetId, number>>({
+    art: 0,
+    cspaper: 0,
+    player: 0,
+    legal: 0,
+    finance: 0,
+    healthcare: 0,
+  });
 
   const currentDataset = useMemo(() => {
     return (
@@ -166,6 +203,27 @@ function App() {
     [selectedDatasetId]
   );
   const datasetOptions: DatasetOption<DatasetId>[] = DATASET_OPTIONS;
+
+  const currentTables = TABLE_REGISTRY[selectedDatasetId] ?? [];
+  const currentTableIdx = tableIndex[selectedDatasetId] ?? 0;
+  const safeTableIdx = currentTables.length
+    ? ((currentTableIdx % currentTables.length) + currentTables.length) % currentTables.length
+    : 0;
+  const currentTable = currentTables[safeTableIdx];
+  const tableRows = currentTable?.rows ?? deferredDataset.data ?? [];
+  const tableName = currentTable?.name ?? "default";
+
+  const cycleTable = (direction: number) => {
+    setTableIndex((prev) => {
+      const tables = TABLE_REGISTRY[selectedDatasetId] ?? [];
+      if (!tables.length) return prev;
+      const next = { ...prev };
+      const len = tables.length;
+      const cur = prev[selectedDatasetId] ?? 0;
+      next[selectedDatasetId] = (cur + direction + len) % len;
+      return next;
+    });
+  };
 
   return (
     <div
@@ -331,8 +389,11 @@ function App() {
 
           {/* Table */}
           <HoverSourceTable
-            data={deferredDataset.data}
+            data={tableRows}
             datasetKey={deferredDataset.id}
+            tableName={tableName}
+            onPrevTable={currentTables.length > 1 ? () => cycleTable(-1) : undefined}
+            onNextTable={currentTables.length > 1 ? () => cycleTable(1) : undefined}
           />
 
 

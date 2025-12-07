@@ -15,6 +15,9 @@ type RowData = Record<string, unknown>;
 interface HoverSourceTableProps {
   data: RowData[];
   datasetKey?: string;
+  tableName?: string;
+  onPrevTable?: () => void;
+  onNextTable?: () => void;
 }
 
 interface HoverCellProps {
@@ -106,14 +109,14 @@ const HoverCell = ({ value, source }: HoverCellProps) => {
   );
 };
 
-const HoverSourceTableComponent = ({ data, datasetKey = "default" }: HoverSourceTableProps) => {
+const HoverSourceTableComponent = ({ data, datasetKey = "default", tableName, onPrevTable, onNextTable }: HoverSourceTableProps) => {
   const columns = useMemo(() => {
     if (!data || data.length === 0) return [] as string[];
     const allKeys = Object.keys(data[0] ?? {});
     return allKeys.filter((key) => !key.endsWith("_source"));
   }, [data]);
 
-  const viewKey = `${datasetKey}-${data.length}`;
+  const viewKey = `${datasetKey}-${tableName ?? "default"}-${data.length}`;
 
   if (!data || data.length === 0) {
     return (
@@ -124,16 +127,41 @@ const HoverSourceTableComponent = ({ data, datasetKey = "default" }: HoverSource
   }
 
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white/80 backdrop-blur shadow-xl">
+    <div className="mt-6 rounded-2xl border border-slate-200 bg-white/80 backdrop-blur shadow-xl">
       {/* 头部 */}
-      <div className="px-5 pt-3 pb-2.5 border-b border-slate-200">
-        <h2 className="text-lg md:text-xl font-semibold text-slate-900">
-          Attribute Table
-        </h2>
-        <p className="mt-0.5 text-xs text-slate-500">
-          Hover a cell for at least 0.3 seconds to see the explanation. If no explanation is available,{" "}
-          <span className="font-mono text-xs">[No Source]</span> is shown.
-        </p>
+      <div className="px-5 pt-5 pb-3 border-b border-slate-200 flex items-start justify-between gap-3">
+        <div>
+          <h2 className="text-lg md:text-xl font-semibold text-slate-900">
+            Attribute Table
+          </h2>
+          <p className="mt-0.5 text-xs text-slate-500">
+            Hover a cell to see the evidence. If no evidence is available, {" "}
+            <span className="font-mono text-xs">[No Source]</span> is shown.
+          </p>
+        </div>
+        <div className="flex items-center gap-2 text-xs text-slate-600">
+          {onPrevTable && (
+            <button
+              type="button"
+              className="rounded-full border border-slate-200 bg-white px-2.5 py-1.5 text-slate-700 shadow-sm transition hover:bg-slate-50"
+              onClick={onPrevTable}
+            >
+              ◀
+            </button>
+          )}
+          <div className="rounded-full border border-slate-200 bg-slate-50 px-3.5 py-1 text-sm font-semibold text-slate-800">
+            {tableName || "Table"}
+          </div>
+          {onNextTable && (
+            <button
+              type="button"
+              className="rounded-full border border-slate-200 bg-white px-2.5 py-1.5 text-slate-700 shadow-sm transition hover:bg-slate-50"
+              onClick={onNextTable}
+            >
+              ▶
+            </button>
+          )}
+        </div>
       </div>
 
       {/* 表格主体 */}

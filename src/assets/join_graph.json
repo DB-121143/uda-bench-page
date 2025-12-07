@@ -1,16 +1,25 @@
 [
   {
-    "key": "name",
+    "key": "team name",
     "columns": [
-      { "id": "player.name", "label": "player_name", "table": "player" },
-      { "id": "manager.name", "label": "manager_name", "table": "manager" }
+      { "id": "player.team", "label": "player.team", "table": "player" },
+      { "id": "team.team_name", "label": "team.team_name", "table": "team" },
+      { "id": "manager.nba_team", "label": "manager.nba_team", "table": "manager" }
     ]
   },
   {
-    "key": "team",
+    "key": "person name",
     "columns": [
-      { "id": "player.team_id", "label": "player.team_id", "table": "player" },
-      { "id": "team.id", "label": "team.id", "table": "team" }
+      { "id": "team.ownership", "label": "team.ownership", "table": "team" },
+      { "id": "manager.name", "label": "manager.name", "table": "manager" }
+    ]
+  },
+  {
+    "key": "disease name",
+    "columns": [
+      { "id": "drug.disease_name", "label": "drug.disease_name", "table": "drug" },
+      { "id": "disease.disease_name", "label": "disease.disease_name", "table": "disease" },
+      { "id": "institution.research_diseases", "label": "institution.research_diseases", "table": "institution" }
     ]
   }
 ]
