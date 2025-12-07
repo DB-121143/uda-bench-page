@@ -11,96 +11,108 @@
         "SELECT remuneration_policy, major_events, company_name, auditor \nFROM finance;",
         "SELECT company_name, total_assets \nFROM finance;"
     ],
-    "1110": [
+    "1120": [
         "SELECT auditor, AVG(bussiness_profit) AS avg_bussiness_profit \nFROM finance \nWHERE remuneration_policy = 'Performance-based' \nGROUP BY auditor;"
     ],
-    "1210": [
-        "SELECT remuneration_policy, MIN(bussiness_profit) AS min_bussiness_profit \nFROM finance \nWHERE dividend_per_share > 0.00 AND revenue <= 12857200000 \nGROUP BY remuneration_policy;",
-        "SELECT auditor, MAX(earnings_per_share) AS max_earnings_per_share \nFROM finance \nWHERE major_events != 'Litigation' AND remuneration_policy = 'Performance-based' AND total_Debt < '258804000' \nGROUP BY auditor;"
+    "1220": [
+        "SELECT remuneration_policy, MIN(bussiness_profit) AS min_bussiness_profit \nFROM finance \nWHERE dividend_per_share > 0.00 AND revenue <= 12857200000 \nGROUP BY remuneration_policy;"
     ],
-    "1310": [
-        "SELECT remuneration_policy, AVG(the_highest_ownership_stake) AS avg_the_highest_ownership_stake \nFROM finance \nWHERE net_assets <= 249398000 OR total_assets = 1358991000 \nGROUP BY remuneration_policy;",
+    "1320": [
+        "SELECT remuneration_policy, AVG(the_highest_ownership_stake) AS avg_the_highest_ownership_stake \nFROM finance \nWHERE net_assets <= 249398000 OR total_assets < 1358991000 \nGROUP BY remuneration_policy;"
+    ],
+    "1420": [
+        "SELECT auditor, MAX(earnings_per_share) AS max_earnings_per_share \nFROM finance \nWHERE major_events != 'Litigation' AND remuneration_policy != 'Performance-based' AND total_assets < 1358991000 \nGROUP BY auditor;"
+    ],
+    "1520": [
         "SELECT auditor, MIN(earnings_per_share) AS min_earnings_per_share \nFROM finance \nWHERE remuneration_policy = 'Performance-based' OR registered_office != '22 Bishopsgate, London, EC2N 4BQ, United Kingdom' OR registered_office != '901 W Walnut Hill Lane, Irving, TX 75038' \nGROUP BY auditor;"
     ],
-    "1410": [
-        "SELECT major_equity_changes, SUM(dividend_per_share) AS sum_dividend_per_share \nFROM finance \nWHERE (executive_profiles = 'Michael A. Marks' AND net_assets != 1362019954) OR (bussiness_sales != '42984000' AND board_members = 'John Reizenstein') \nGROUP BY major_equity_changes;"
+    "1620": [
+        "SELECT major_equity_changes, SUM(dividend_per_share) AS sum_dividend_per_share \nFROM finance \nWHERE (executive_profiles != 'Michael A. Marks' AND net_assets != 1362019954) OR (bussiness_sales != '42984000' AND board_members = 'John Reizenstein') \nGROUP BY major_equity_changes;"
     ],
     "1100": [
-        "SELECT business_segments_num, dividend_per_share, auditor \nFROM finance \nWHERE auditor = 'PKF Littlejohn LLP';",
-        "SELECT net_assets, board_members, net_profit_or_loss \nFROM finance \nWHERE net_profit_or_loss = '1460000000';",
-        "SELECT bussiness_cost, remuneration_policy, registered_office \nFROM finance \nWHERE bussiness_cost != '2129327000';",
-        "SELECT net_profit_or_loss, exchange_code, total_Debt \nFROM finance \nWHERE total_Debt = '21325000000';",
-        "SELECT principal_activities, bussiness_profit, major_events \nFROM finance \nWHERE bussiness_profit = '230400000';",
-        "SELECT major_equity_changes, exchange_code, the_highest_ownership_stake \nFROM finance \nWHERE exchange_code = 'RFT';",
-        "SELECT bussiness_profit, auditor, total_assets \nFROM finance \nWHERE auditor != 'PKF Littlejohn LLP';",
-        "SELECT bussiness_sales, net_profit_or_loss, net_assets \nFROM finance \nWHERE net_assets = 249398000;",
-        "SELECT principal_activities, total_Debt, major_equity_changes \nFROM finance \nWHERE major_equity_changes != 'Yes';",
-        "SELECT largest_shareholder, company_name, executive_profiles \nFROM finance \nWHERE company_name != 'NuCana plc';"
+        "SELECT business_segments_num, dividend_per_share, auditor \nFROM Finance \nWHERE auditor = 'PKF Littlejohn LLP';",
+        "SELECT net_assets, board_members, net_profit_or_loss \nFROM Finance \nWHERE net_profit_or_loss > '1460000000';",
+        "SELECT bussiness_cost, remuneration_policy, registered_office \nFROM Finance \nWHERE bussiness_cost <= '2129327000';",
+        "SELECT net_profit_or_loss, exchange_code, total_Debt \nFROM Finance \nWHERE total_Debt = '21325000000';",
+        "SELECT principal_activities, bussiness_profit, major_events \nFROM Finance \nWHERE bussiness_profit > '230400000';",
+        "SELECT major_equity_changes, exchange_code, the_highest_ownership_stake \nFROM Finance \nWHERE exchange_code = 'RFT';",
+        "SELECT bussiness_profit, auditor, total_assets \nFROM Finance \nWHERE auditor != 'PKF Littlejohn LLP';",
+        "SELECT bussiness_sales, net_profit_or_loss, net_assets \nFROM Finance \nWHERE net_assets != 249398000;",
+        "SELECT principal_activities, total_Debt, major_equity_changes \nFROM Finance \nWHERE major_equity_changes != 'Yes';",
+        "SELECT largest_shareholder, company_name, executive_profiles \nFROM Finance \nWHERE company_name != 'NuCana plc';"
     ],
     "1200": [
-        "SELECT largest_shareholder, auditor, registered_office \nFROM finance \nWHERE largest_shareholder != 'Kelly Investments 1 PTY Ltd' AND business_risks = 'Environmental Risk';",
-        "SELECT cash_reserves, bussiness_profit, auditor \nFROM finance \nWHERE auditor = 'PKF Littlejohn LLP' AND major_equity_changes = 'Yes';",
-        "SELECT dividend_per_share, bussiness_profit, total_Debt \nFROM finance \nWHERE dividend_per_share != 0.40 AND earnings_per_share = 0.49;",
-        "SELECT net_profit_or_loss, principal_activities, major_equity_changes \nFROM finance \nWHERE net_profit_or_loss != '2823562' AND earnings_per_share = 0.49;",
-        "SELECT total_assets, bussiness_profit, principal_activities \nFROM finance \nWHERE principal_activities != 'finance' AND exchange_code != 'AIM';",
-        "SELECT remuneration_policy, net_assets, principal_activities \nFROM finance \nWHERE remuneration_policy != 'Stock Option' AND total_assets != 136955488;",
-        "SELECT board_members, revenue, cash_reserves \nFROM finance \nWHERE board_members != 'Keith Bradley' AND business_segments_num < 1;",
-        "SELECT earnings_per_share, the_highest_ownership_stake, net_profit_or_loss \nFROM finance \nWHERE net_profit_or_loss = '165500000' AND bussiness_cost != '993529';",
-        "SELECT largest_shareholder, auditor, major_equity_changes \nFROM finance \nWHERE largest_shareholder != 'Drake Private Investments' AND business_risks != 'Credit Risk';",
-        "SELECT earnings_per_share, cash_reserves, principal_activities \nFROM finance \nWHERE principal_activities = 'Agriculture' AND the_highest_ownership_stake != 11.63;",
-        "SELECT business_risks, largest_shareholder, dividend_per_share \nFROM finance \nWHERE dividend_per_share = 0.40 AND major_equity_changes < 'No' AND earnings_per_share = 0.49 AND net_assets = 1362019954;",
-        "SELECT registered_office, bussiness_sales, major_equity_changes \nFROM finance \nWHERE bussiness_sales = '1793368000' AND executive_profiles != 'Michael Boggs' AND revenue != 12857200000 AND business_risks != 'Credit Risk';",
-        "SELECT net_profit_or_loss, business_risks, business_segments_num \nFROM finance \nWHERE business_risks = 'Strategic Risk' AND business_risks != 'Legal/Compliance Risk' AND earnings_per_share != 0.49 AND cash_reserves != 1987600000;",
-        "SELECT earnings_per_share, business_risks, net_assets \nFROM finance \nWHERE business_risks = 'Operational Risk' AND business_segments_num < 2 AND bussiness_sales = '2236000000' AND total_Debt = '3254939000';",
-        "SELECT exchange_code, principal_activities, earnings_per_share \nFROM finance \nWHERE principal_activities != 'Media' AND major_equity_changes != 'Yes' AND net_profit_or_loss = '1723000000' AND earnings_per_share = 0.49;",
-        "SELECT executive_profiles, total_assets, auditor \nFROM finance \nWHERE executive_profiles != 'Nancy L. Erba' AND business_risks != 'Market Risk' AND remuneration_policy = 'Mixed' AND business_segments_num = 2;",
-        "SELECT bussiness_sales, auditor, revenue \nFROM finance \nWHERE bussiness_sales != '-171254' AND business_risks != 'Other' AND the_highest_ownership_stake != 17.70 AND net_assets != 249398000;",
-        "SELECT company_name, business_segments_num, exchange_code \nFROM finance \nWHERE company_name != 'Swiss Water Decaffeinated Coffee Inc.' AND executive_profiles != 'Shayne Currie' AND the_highest_ownership_stake != 49.28 AND total_Debt = '0';",
-        "SELECT total_assets, net_profit_or_loss, bussiness_profit \nFROM finance \nWHERE bussiness_profit = '470734000' AND registered_office != '225 NE Mizner Blvd, Suite 640, Boca Raton, FL 33432' AND largest_shareholder = 'The Master Trust Bank \nof Japan, Ltd. (Trust \naccount)' AND net_profit_or_loss = '27299000';",
-        "SELECT total_Debt, bussiness_sales, business_segments_num \nFROM finance \nWHERE total_Debt != '258804000' AND registered_office != '340 Madison Avenue, Suite 3C, New York, New York, 10173' AND major_events != 'Other' AND net_profit_or_loss = '40423000';"
+        "SELECT largest_shareholder, auditor, registered_office \nFROM Finance \nWHERE largest_shareholder != 'Kelly Investments 1 PTY Ltd' AND business_risks = 'Environmental Risk';",
+        "SELECT cash_reserves, bussiness_profit, auditor \nFROM Finance \nWHERE auditor = 'PKF Littlejohn LLP' AND major_equity_changes = 'Yes';",
+        "SELECT dividend_per_share, bussiness_profit, total_Debt \nFROM Finance \nWHERE dividend_per_share < 0.40 AND earnings_per_share >= 0.49;",
+        "SELECT net_profit_or_loss, principal_activities, major_equity_changes \nFROM Finance \nWHERE net_profit_or_loss >= '2823562' AND total_Debt > '14437351';",
+        "SELECT total_assets, bussiness_profit, principal_activities \nFROM Finance \nWHERE principal_activities != 'Finance' AND exchange_code != 'AIM';",
+        "SELECT remuneration_policy, net_assets, principal_activities \nFROM Finance \nWHERE remuneration_policy != 'Stock Option' AND total_assets >= 136955488;",
+        "SELECT board_members, revenue, cash_reserves \nFROM Finance \nWHERE board_members != 'Keith Bradley' AND business_segments_num < 1;",
+        "SELECT earnings_per_share, the_highest_ownership_stake, net_profit_or_loss \nFROM Finance \nWHERE net_profit_or_loss != '165500000' AND bussiness_cost >= '993529';",
+        "SELECT largest_shareholder, auditor, major_equity_changes \nFROM Finance \nWHERE largest_shareholder != 'Drake Private Investments' AND business_risks != 'Credit Risk';",
+        "SELECT earnings_per_share, cash_reserves, principal_activities \nFROM Finance \nWHERE principal_activities = 'Agriculture' AND the_highest_ownership_stake > 11.63;"
     ],
     "1300": [
-        "SELECT total_assets, board_members, bussiness_cost \nFROM finance \nWHERE bussiness_cost = '10978000000' OR total_Debt = '168459000';",
-        "SELECT the_highest_ownership_stake, net_profit_or_loss, largest_shareholder \nFROM finance \nWHERE the_highest_ownership_stake != 49.28 OR remuneration_policy != 'Fixed';",
-        "SELECT auditor, board_members, major_events \nFROM finance \nWHERE major_events = 'Other' OR principal_activities != 'Biopharmaceuticals';",
-        "SELECT exchange_code, executive_profiles, principal_activities \nFROM finance \nWHERE exchange_code = 'MTA' OR net_assets != 41673000;",
-        "SELECT major_events, dividend_per_share, earnings_per_share \nFROM finance \nWHERE dividend_per_share != 0.00 OR major_equity_changes > 'Yes';",
-        "SELECT remuneration_policy, bussiness_sales, revenue \nFROM finance \nWHERE remuneration_policy != 'Fixed' OR total_Debt != '0';",
-        "SELECT bussiness_profit, largest_shareholder, net_profit_or_loss \nFROM finance \nWHERE bussiness_profit != '122600000' OR cash_reserves = 476657130;",
-        "SELECT net_assets, exchange_code, remuneration_policy \nFROM finance \nWHERE exchange_code = 'ASE' OR company_name != 'Playtech plc';",
-        "SELECT net_profit_or_loss, earnings_per_share, net_assets \nFROM finance \nWHERE net_profit_or_loss != '53392000' OR major_events = 'Major Contract';",
-        "SELECT net_assets, business_risks, auditor \nFROM finance \nWHERE auditor = 'KPMG' OR bussiness_cost = '31755000';",
-        "SELECT earnings_per_share, net_profit_or_loss, net_assets \nFROM finance \nWHERE net_profit_or_loss != '165500000' OR principal_activities = 'Other' OR major_equity_changes > 'Yes' OR total_Debt = '8613673';",
-        "SELECT auditor, revenue, remuneration_policy \nFROM finance \nWHERE revenue = 391926000 OR board_members != 'Jakob Pfaudler' OR company_name = 'Bionano Genomics, Inc.' OR auditor != 'BDO LLP';",
-        "SELECT bussiness_sales, registered_office, remuneration_policy \nFROM finance \nWHERE bussiness_sales != '0' OR total_assets != 1358991000 OR board_members = 'Anna Massion' OR total_assets = 33746800000;",
-        "SELECT the_highest_ownership_stake, revenue, board_members \nFROM finance \nWHERE revenue != 12857200000 OR total_assets = 33746800000 OR business_segments_num = 3 OR business_risks = 'Environmental Risk';",
-        "SELECT remuneration_policy, net_profit_or_loss, business_risks \nFROM finance \nWHERE net_profit_or_loss = '27299000' OR the_highest_ownership_stake != 17.70 OR company_name != 'Odyssey Gold Limited' OR earnings_per_share != -0.04;",
-        "SELECT net_assets, executive_profiles, business_risks \nFROM finance \nWHERE net_assets = 249398000 OR net_assets = 1362019954 OR cash_reserves = 87043000 OR total_Debt = '119701564920';",
-        "SELECT dividend_per_share, company_name, executive_profiles \nFROM finance \nWHERE dividend_per_share = 1.12 OR bussiness_cost != '682929600' OR bussiness_profit = '27299000' OR earnings_per_share = 2.18;",
-        "SELECT bussiness_profit, principal_activities, major_events \nFROM finance \nWHERE principal_activities != 'Transportation' OR registered_office != '2 Prologis Blvd., Suite 500, Mississauga, Ontario, L5W 0G8' OR dividend_per_share != 0.40 OR major_events = 'Leadership Change';",
-        "SELECT net_assets, total_assets, auditor \nFROM finance \nWHERE total_assets != 136955488 OR total_assets != 33746800000 OR remuneration_policy != 'Stock Option' OR major_events != 'Major Contract';",
-        "SELECT company_name, the_highest_ownership_stake, business_segments_num \nFROM finance \nWHERE business_segments_num = 1 OR earnings_per_share = -0.04 OR exchange_code = 'WHLR' OR dividend_per_share = 0.40;"
+        "SELECT total_assets, board_members, bussiness_cost \nFROM Finance \nWHERE bussiness_cost = '10978000000' OR total_Debt != '168459000';",
+        "SELECT the_highest_ownership_stake, net_profit_or_loss, largest_shareholder \nFROM Finance \nWHERE the_highest_ownership_stake <= 49.28 OR remuneration_policy != 'Fixed';",
+        "SELECT auditor, board_members, major_events \nFROM Finance \nWHERE major_events = 'Other' OR principal_activities != 'Biopharmaceuticals';",
+        "SELECT exchange_code, executive_profiles, principal_activities \nFROM Finance \nWHERE exchange_code = 'MTA' OR net_assets >= 41673000;",
+        "SELECT major_events, dividend_per_share, earnings_per_share \nFROM Finance \nWHERE dividend_per_share <= 0.00 OR major_equity_changes > 'Yes';",
+        "SELECT remuneration_policy, bussiness_sales, revenue \nFROM Finance \nWHERE remuneration_policy != 'Fixed' OR total_Debt < '0';",
+        "SELECT bussiness_profit, largest_shareholder, net_profit_or_loss \nFROM Finance \nWHERE bussiness_profit <= '122600000' OR cash_reserves >= 476657130;",
+        "SELECT net_assets, exchange_code, remuneration_policy \nFROM Finance \nWHERE exchange_code = 'ASE' OR company_name != 'Playtech plc';",
+        "SELECT net_profit_or_loss, earnings_per_share, net_assets \nFROM Finance \nWHERE net_profit_or_loss > '53392000' OR largest_shareholder = 'Aurora Founders';",
+        "SELECT net_assets, business_risks, auditor \nFROM Finance \nWHERE auditor = 'KPMG' OR bussiness_cost = '31755000';"
     ],
     "1400": [
-        "SELECT remuneration_policy, total_Debt, executive_profiles \nFROM finance \nWHERE (executive_profiles = 'Jakob Pfaudler' AND cash_reserves = 87043000) OR (registered_office != 'Beechfield, Hollinhurst Road, Radcliffe, Manchester, M26 1JN' AND auditor != 'BDO Audit Pty Ltd');",
-        "SELECT executive_profiles, business_risks, auditor \nFROM finance \nWHERE (auditor = 'PricewaterhouseCoopers LLP' AND major_equity_changes = 'No') OR (business_risks != 'Legal/Compliance Risk' AND bussiness_sales = '0');",
-        "SELECT major_events, net_profit_or_loss, net_assets \nFROM finance \nWHERE (net_profit_or_loss = '44060000' AND dividend_per_share = 0.40) OR (major_events = 'Major Contract' AND bussiness_cost = '2795073000');",
-        "SELECT board_members, registered_office, the_highest_ownership_stake \nFROM finance \nWHERE (the_highest_ownership_stake = 49.28 AND executive_profiles != 'D N Fletcher') OR (registered_office = '169 Inverness Dr W, Suite 300, Englewood, Colorado 80112' AND bussiness_profit = '1925000000');",
-        "SELECT principal_activities, remuneration_policy, business_segments_num \nFROM finance \nWHERE (principal_activities = 'Real Estate' AND business_risks != 'Other') OR (net_profit_or_loss != '1658085550' AND major_events != 'Leadership Change');",
-        "SELECT executive_profiles, principal_activities, revenue \nFROM finance \nWHERE (principal_activities != 'Agriculture' AND board_members = 'Nigel Machin') OR (bussiness_sales = '176940000' AND exchange_code != 'NYSE');",
-        "SELECT dividend_per_share, earnings_per_share, major_events \nFROM finance \nWHERE (dividend_per_share = 0.40 AND total_Debt != '119701564920') OR (company_name = 'Rectifier Technologies Ltd' AND registered_office != '5 Hanover Quay, Grand Canal Dock, Dublin, D02 VY79, Ireland');",
-        "SELECT exchange_code, bussiness_profit, business_segments_num \nFROM finance \nWHERE (exchange_code != 'MTA' AND cash_reserves != 87043000) OR (total_Debt != '0' AND bussiness_sales != '42963764');",
-        "SELECT dividend_per_share, bussiness_profit, registered_office \nFROM finance \nWHERE (bussiness_profit = '1102000000' AND business_risks != 'Legal/Compliance Risk') OR (bussiness_sales != '42984000' AND net_profit_or_loss != '1745099230');",
-        "SELECT business_segments_num, dividend_per_share, total_assets \nFROM finance \nWHERE (dividend_per_share != 0.00 AND bussiness_sales != '5268700000') OR (auditor = 'BDO LLP' AND bussiness_sales = '10927947660');"
+        "SELECT business_risks, largest_shareholder, dividend_per_share \nFROM Finance \nWHERE dividend_per_share >= 0.40 AND net_profit_or_loss < '681000000' AND earnings_per_share = 0.49 AND net_assets = 1362019954;",
+        "SELECT registered_office, bussiness_sales, major_equity_changes \nFROM Finance \nWHERE bussiness_sales >= '1793368000' AND bussiness_sales != '5268700000' AND company_name != 'Guaranty Bancshares, Inc.' AND revenue < 12857200000;",
+        "SELECT net_profit_or_loss, business_risks, business_segments_num \nFROM Finance \nWHERE business_risks = 'Strategic Risk' AND business_risks != 'Legal/Compliance Risk' AND earnings_per_share > 0.49 AND remuneration_policy = 'Stock Option';",
+        "SELECT earnings_per_share, business_risks, net_assets \nFROM Finance \nWHERE business_risks = 'Operational Risk' AND business_segments_num < 2 AND bussiness_sales = '2236000000' AND total_Debt > '3254939000';",
+        "SELECT exchange_code, principal_activities, earnings_per_share \nFROM Finance \nWHERE principal_activities != 'Media' AND major_equity_changes != 'Yes' AND net_profit_or_loss = '1723000000' AND earnings_per_share != 0.49;",
+        "SELECT executive_profiles, total_assets, auditor \nFROM Finance \nWHERE executive_profiles != 'Nancy L. Erba' AND business_risks != 'Market Risk' AND remuneration_policy = 'Mixed' AND business_segments_num = 2;",
+        "SELECT bussiness_sales, auditor, revenue \nFROM Finance \nWHERE bussiness_sales > '-171254' AND dividend_per_share >= 0.00 AND total_assets < 4345662000 AND major_equity_changes <= 'No';",
+        "SELECT company_name, business_segments_num, exchange_code \nFROM Finance \nWHERE company_name != 'Swiss Water Decaffeinated Coffee Inc.' AND executive_profiles != 'Shayne Currie' AND the_highest_ownership_stake <= 49.28 AND total_Debt != '0';",
+        "SELECT total_assets, net_profit_or_loss, bussiness_profit \nFROM Finance \nWHERE bussiness_profit != '470734000' AND registered_office != '225 NE Mizner Blvd, Suite 640, Boca Raton, FL 33432' AND largest_shareholder = 'The Master Trust Bank \nof Japan, Ltd. (Trust \naccount)' AND net_profit_or_loss = '27299000';",
+        "SELECT total_Debt, bussiness_sales, business_segments_num \nFROM Finance \nWHERE total_Debt <= '258804000' AND registered_office != '340 Madison Avenue, Suite 3C, New York, New York, 10173' AND major_events != 'Other' AND net_profit_or_loss >= '40423000';"
+    ],
+    "1500": [
+        "SELECT earnings_per_share, net_profit_or_loss, net_assets \nFROM Finance \nWHERE net_profit_or_loss <= '165500000' OR principal_activities = 'Other' OR major_equity_changes > 'Yes' OR total_Debt = '8613673';",
+        "SELECT auditor, revenue, remuneration_policy \nFROM Finance \nWHERE revenue > 391926000 OR registered_office != '1654 Smallman St., Pittsburgh, Pennsylvania 15222' OR company_name = 'Bionano Genomics, Inc.' OR auditor != 'BDO LLP';",
+        "SELECT bussiness_sales, registered_office, remuneration_policy \nFROM Finance \nWHERE bussiness_sales < '0' OR total_assets >= 1358991000 OR the_highest_ownership_stake != 49.28 OR company_name = 'Guaranty Bancshares, Inc.';",
+        "SELECT the_highest_ownership_stake, revenue, board_members \nFROM Finance \nWHERE revenue <= 12857200000 OR total_assets > 33746800000 OR executive_profiles != 'Christine Oldridge' OR company_name = 'Rectifier Technologies Ltd';",
+        "SELECT remuneration_policy, net_profit_or_loss, business_risks \nFROM Finance \nWHERE net_profit_or_loss > '27299000' OR business_risks != 'Legal/Compliance Risk' OR company_name != 'Odyssey Gold Limited' OR earnings_per_share < -0.04;",
+        "SELECT net_assets, executive_profiles, business_risks \nFROM Finance \nWHERE net_assets != 249398000 OR net_assets = 1362019954 OR cash_reserves >= 87043000 OR company_name = 'Empire Company Limited';",
+        "SELECT dividend_per_share, company_name, executive_profiles \nFROM Finance \nWHERE dividend_per_share != 1.12 OR bussiness_cost < '682929600' OR bussiness_profit = '27299000' OR earnings_per_share > 2.18;",
+        "SELECT bussiness_profit, principal_activities, major_events \nFROM Finance \nWHERE principal_activities != 'Transportation' OR registered_office != '2 Prologis Blvd., Suite 500, Mississauga, Ontario, L5W 0G8' OR dividend_per_share < 0.40 OR major_events = 'Leadership Change';",
+        "SELECT net_assets, total_assets, auditor \nFROM Finance \nWHERE total_assets <= 136955488 OR total_assets >= 33746800000 OR major_equity_changes < 'No' OR major_events != 'Major Contract';",
+        "SELECT company_name, the_highest_ownership_stake, business_segments_num \nFROM Finance \nWHERE business_segments_num = 1 OR earnings_per_share != -0.04 OR exchange_code = 'WHLR' OR dividend_per_share = 0.40;"
+    ],
+    "1600": [
+        "SELECT remuneration_policy, total_Debt, executive_profiles \nFROM Finance \nWHERE (executive_profiles = 'Jakob Pfaudler' AND cash_reserves != 87043000) OR (registered_office != 'Beechfield, Hollinhurst Road, Radcliffe, Manchester, M26 1JN' AND auditor != 'BDO Audit Pty Ltd');",
+        "SELECT executive_profiles, business_risks, auditor \nFROM Finance \nWHERE (auditor = 'PricewaterhouseCoopers LLP' AND major_equity_changes = 'No') OR (business_risks != 'Legal/Compliance Risk' AND bussiness_sales >= '0');",
+        "SELECT major_events, net_profit_or_loss, net_assets \nFROM Finance \nWHERE (net_profit_or_loss >= '44060000' AND net_profit_or_loss >= '-1981676') OR (cash_reserves >= 87043000 AND principal_activities = 'Retail');",
+        "SELECT board_members, registered_office, the_highest_ownership_stake \nFROM Finance \nWHERE (the_highest_ownership_stake != 49.28 AND executive_profiles != 'D N Fletcher') OR (registered_office = '169 Inverness Dr W, Suite 300, Englewood, Colorado 80112' AND bussiness_profit != '1925000000');",
+        "SELECT principal_activities, remuneration_policy, business_segments_num \nFROM Finance \nWHERE (principal_activities = 'Real Estate' AND business_risks != 'Other') OR (net_profit_or_loss <= '1658085550' AND major_events != 'Leadership Change');",
+        "SELECT executive_profiles, principal_activities, revenue \nFROM Finance \nWHERE (principal_activities != 'Agriculture' AND board_members = 'Nigel Machin') OR (bussiness_sales != '176940000' AND exchange_code != 'NYSE');",
+        "SELECT dividend_per_share, earnings_per_share, major_events \nFROM Finance \nWHERE (dividend_per_share > 0.40 AND revenue < 35299000) OR (cash_reserves != 1987600000 AND company_name != 'Beazley plc');",
+        "SELECT exchange_code, bussiness_profit, business_segments_num \nFROM Finance \nWHERE (exchange_code != 'MTA' AND cash_reserves <= 87043000) OR (total_Debt <= '0' AND bussiness_sales >= '42963764');",
+        "SELECT dividend_per_share, bussiness_profit, registered_office \nFROM Finance \nWHERE (bussiness_profit >= '1102000000' AND net_profit_or_loss <= '1745099230') OR (total_assets != 1358991000 AND revenue >= 391926000);",
+        "SELECT business_segments_num, dividend_per_share, total_assets \nFROM Finance \nWHERE (dividend_per_share < 0.00 AND bussiness_sales >= '5268700000') OR (business_risks != 'Legal/Compliance Risk' AND board_members = 'Nigel Machin');"
+    ],
+    "1020": [
+        "SELECT auditor, MIN(business_segments_num) AS min_business_segments_num \nFROM finance \nGROUP BY auditor;",
+        "SELECT remuneration_policy, AVG(business_segments_num) AS avg_business_segments_num \nFROM finance \nGROUP BY remuneration_policy;",
+        "SELECT exchange_code, MAX(revenue) AS max_revenue \nFROM finance \nGROUP BY exchange_code;",
+        "SELECT auditor, MIN(revenue) AS min_revenue \nFROM finance \nGROUP BY auditor;",
+        "SELECT exchange_code, MAX(revenue) AS max_revenue \nFROM finance \nGROUP BY exchange_code;",
+        "SELECT major_equity_changes, SUM(revenue) AS sum_revenue \nFROM finance \nGROUP BY major_equity_changes;"
     ],
     "1010": [
-        "SELECT remuneration_policy, MIN(business_segments_num) AS min_business_segments_num \nFROM finance \nGROUP BY remuneration_policy;",
-        "SELECT auditor, COUNT(company_name) AS count_company_name \nFROM finance \nGROUP BY auditor;",
-        "SELECT auditor, AVG(business_segments_num) AS avg_business_segments_num \nFROM finance \nGROUP BY auditor;",
-        "SELECT auditor, MAX(revenue) AS max_revenue \nFROM finance \nGROUP BY auditor;",
-        "SELECT auditor, COUNT(major_equity_changes) AS count_major_equity_changes \nFROM finance \nGROUP BY auditor;",
-        "SELECT remuneration_policy, MIN(revenue) AS min_revenue \nFROM finance \nGROUP BY remuneration_policy;",
-        "SELECT auditor, MAX(revenue) AS max_revenue \nFROM finance \nGROUP BY auditor;",
-        "SELECT major_equity_changes, SUM(revenue) AS sum_revenue \nFROM finance \nGROUP BY major_equity_changes;"
+        "SELECT exchange_code, COUNT(company_name) AS count_company_name \nFROM finance \nGROUP BY exchange_code;",
+        "SELECT exchange_code, COUNT(major_equity_changes) AS count_major_equity_changes \nFROM finance \nGROUP BY exchange_code;",
+        "SELECT exchange_code, COUNT(auditor) AS count_auditor \nFROM finance \nGROUP BY exchange_code;",
+        "SELECT exchange_code, COUNT(total_assets) AS count_total_assets \nFROM finance \nGROUP BY exchange_code;"
     ]
 }

@@ -34,7 +34,7 @@ for (const [path, mod] of Object.entries(sqlModules)) {
 
 /** 四个类别的状态定义（索引从 0 开始） */
 const S_STATES = ["OFF", "ON"] as const;
-const F_STATES = ["OFF", "SINGLE", "AND", "OR", "MIXED"] as const;
+const F_STATES = ["OFF", "SINGLE", "AND", "OR", "CONJ", "DISJ", "MIXED"] as const;
 const A_STATES = ["OFF", "COUNT", "CALC"] as const;
 const J_STATES = ["OFF", "SINGLE", "MULTI"] as const;
 
@@ -120,7 +120,7 @@ const RollerToggle = memo(({ label, states, index, onChange }: RollerProps) => {
 const SqlShowcaseComponent = ({ datasetId }: SqlShowcaseProps) => {
   // 四个滚轮的索引状态
   const [sIndex, setSIndex] = useState(0); // S: OFF, ON
-  const [fIndex, setFIndex] = useState(0); // F: OFF, SINGLE, AND, OR, MIXED
+  const [fIndex, setFIndex] = useState(0); // F: OFF, SINGLE, AND, OR, CONJ, DISJ, MIXED
   const [aIndex, setAIndex] = useState(0); // A: OFF, COUNT, CALC
   const [jIndex, setJIndex] = useState(0); // J: OFF, SINGLE, MULTI
 

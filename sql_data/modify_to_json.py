@@ -23,10 +23,14 @@ def get_sql_state(sql):
         and_count = sql.count('AND')
         or_count = sql.count('OR')
         if and_count > 0 and or_count > 0:
-            b = 4  # AND和OR都有
-        elif and_count > 0:
+            b = 6  # AND和OR都有
+        elif and_count > 1:
+            b = 4  # conj
+        elif and_count == 1:
             b = 2  # 只有AND
-        elif or_count > 0:
+        elif or_count > 1:
+            b = 5  # disj
+        elif or_count == 1:
             b = 3  # 只有OR
         else:
             b = 1  # 只有WHERE，没有AND/OR
@@ -38,10 +42,10 @@ def get_sql_state(sql):
     
     if group_by_count > 0:
         c = 1  # 有GROUP BY
-    elif count_count > 0:
-        c = 2  # 有COUNT
-    elif min_max_avg_count > 0:
-        c = 2  # 有MIN/MAX/AVG
+        if count_count > 0:
+            c = 1
+        else:
+            c = 2
     else:
         c = 0  # 没有GROUP BY, COUNT, MIN/MAX/AVG
 
@@ -98,6 +102,6 @@ def main(input_folder, output_json):
 
 # 使用时提供文件夹路径和输出路径
 if __name__ == '__main__':
-    input_folder = "/home/lijianhui/worksp/gh-page/uda-bench-page/sql_data/medical"
-    output_json = "/home/lijianhui/worksp/gh-page/uda-bench-page/src/assets/sql/medical.json"
+    input_folder = "/home/lijianhui/worksp/gh-page/uda-bench-page/sql_data/player"
+    output_json = "/home/lijianhui/worksp/gh-page/uda-bench-page/src/assets/sql/player.json"
     main(input_folder, output_json)
