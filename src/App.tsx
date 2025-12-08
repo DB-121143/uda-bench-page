@@ -403,14 +403,14 @@ function App() {
               The benchmark includes six multi-domain, multi-modal datasets spanning healthcare, law, art, sports, science, and finance, with sizes from hundreds to hundreds of thousands of documents. The healthcare dataset alone contains over 100,000 long, complex documents, making it two orders of magnitude larger than existing benchmarks. Beyond text, the data also includes tables, images, and other modalities, enabling realistic end-to-end analysis.
             </p>
           </div>
-            <div className="mx-auto flex max-w-4xl justify-center">
+            {/* <div className="mx-auto flex max-w-4xl justify-center">
               <img
                 src={benchmarkBuild}
                 alt="UDA-Bench benchmark build overview"
                 className="w-full max-w-4xl rounded-2xl border border-slate-200 shadow-md"
                 loading="lazy"
               />
-            </div>
+            </div> */}
         </section>
 
         {/* Divider */}
