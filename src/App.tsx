@@ -27,7 +27,7 @@ import playerDescriptions from "@/assets/descriptions/player_descriptions.json";
 
 // 你的 logo 文件（请在 src/assets 下放一个 uda-logo.svg 或改成你自己的文件名）
 import logo from "@/public/UDA.svg";
-import benchmarkBuild from "@/public/benchmark_build.png";
+//import benchmarkBuild from "@/public/benchmark_build.png";
 import queryCategory from "@/public/Query_category.png";
 import udaBig from "@/public/UDA-big.png";
 
