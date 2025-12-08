@@ -1,5 +1,5 @@
 -- Query 1: 1 (player)
-SELECT mvp_awards, draft_pick, fiba_world_cup FROM player WHERE fiba_world_cup <= 0;
+SELECT mvp_awards, draft_pick, fiba_world_cup FROM player WHERE fiba_world_cup >=0;
 
 -- Query 2: 1 (player)
 SELECT position, nationality, age FROM player WHERE age < 91;
@@ -53,7 +53,7 @@ SELECT college, draft_pick, fiba_world_cup FROM player WHERE draft_pick <= 5 OR 
 SELECT olympic_gold_medals, nba_championships, age FROM player WHERE olympic_gold_medals > 1 OR position != 'Frontcourt';
 
 -- Query 19: 4 (player)
-SELECT fiba_world_cup, draft_pick, draft_year FROM player WHERE draft_pick >= 17 AND age >= 47 AND mvp_awards <= 0 AND mvp_awards < 1;
+SELECT fiba_world_cup, draft_pick, draft_year FROM player WHERE draft_pick >= 17 AND age >= 47 AND mvp_awards >=0 AND mvp_awards < 1;
 
 -- Query 20: 4 (player)
 SELECT name, nba_championships, college FROM player WHERE nba_championships > 2 AND olympic_gold_medals >= 0 AND olympic_gold_medals != 1 AND name != 'Toby Kimball';
@@ -83,7 +83,7 @@ SELECT nba_championships, name, olympic_gold_medals FROM player WHERE nba_champi
 SELECT draft_year, age, nationality FROM player WHERE age <= 91 OR team = 'Guaros de Lara' OR mvp_awards = 0 OR olympic_gold_medals > 1;
 
 -- Query 29: 5 (player)
-SELECT olympic_gold_medals, age, team FROM player WHERE age >= 47 OR team != 'San Antonio Spurs' OR nba_championships <= 0 OR nba_championships < 0;
+SELECT olympic_gold_medals, age, team FROM player WHERE age >= 47 OR team != 'San Antonio Spurs' OR nba_championships >=0 OR nba_championships < 0;
 
 -- Query 30: 5 (player)
 SELECT position, nationality, olympic_gold_medals FROM player WHERE position != 'Frontcourt' OR draft_pick > 5 OR olympic_gold_medals < 0 OR mvp_awards = 0;
