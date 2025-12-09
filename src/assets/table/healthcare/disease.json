@@ -60,26 +60,6 @@
         "quality_of_life_impact": ""
     },
     {
-        "disease_name": "Irritable Bowel Syndrome (IBS)",
-        "disease_type": "functional",
-        "pathogenesis": "",
-        "etiology": "",
-        "diagnostic_methods": "functional_test",
-        "common_symptoms": "abdominal pain||constipation||diarrhea||altered bowel movements",
-        "complications": "",
-        "affected_organs": "gastrointestinal tract||rectosigmoid colon",
-        "treatments": "oral_medication||dietary_intervention",
-        "drugs": "tegaserod maleate||alosetron",
-        "prognosis": "",
-        "sequelae": "",
-        "epidemiology": "",
-        "risk_factors": "",
-        "preventive_measures": "",
-        "diagnosis_challenges": "lack of accurate diagnostic test",
-        "treatment_challenges": "",
-        "quality_of_life_impact": "quality_of_life_decline||social_isolation"
-    },
-    {
         "disease_name": "Diabetes type 1",
         "disease_type": "autoimmune||endocrine",
         "pathogenesis": "autoimmune||endocrine_disorder",
