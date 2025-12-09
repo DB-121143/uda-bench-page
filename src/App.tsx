@@ -240,7 +240,7 @@ function App() {
   const [tableIndex, setTableIndex] = useState<Record<DatasetId, number>>({
     art: 0,
     cspaper: 0,
-    player: 0,
+    player: 2,
     legal: 0,
     finance: 0,
     healthcare: 0,
