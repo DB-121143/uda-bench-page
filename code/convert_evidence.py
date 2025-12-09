@@ -109,7 +109,7 @@ if __name__ == '__main__':
     #         name_dir = '/home/lijianhui/worksp/gh-page/uda-bench-page/src/assets/descriptions'  # 含有 name 字段的 JSON 目录
     #         convert_csv_to_json(csv_file, json_file, name_dir)
         
-    csv_file = '/home/lijianhui/worksp/UDA-Bench/Data/Med/institution.csv'  # 输入CSV文件名
-    json_file = '/home/lijianhui/worksp/gh-page/uda-bench-page/src/assets/table/healthcare/institution.json'    # 输出JSON文件名
+    csv_file = '/data/dengqiyan/uda-bench-page/tmp.csv'  # 输入CSV文件名
+    json_file = '/data/dengqiyan/uda-bench-page/src/assets/table/finance/finance.json'    # 输出JSON文件名
     name_dir = '/home/lijianhui/worksp/gh-page/uda-bench-page/src/assets/descriptions'  # 含有 name 字段的 JSON 目录
     convert_csv_to_json(csv_file, json_file, name_dir)
