@@ -485,15 +485,7 @@ function App() {
           <div className="mx-auto max-w-3xl space-y-3 text-xs md:text-sm leading-relaxed text-slate-600 text-justify">
             <p>
               Our benchmark distills diverse pipelines into a single, comparable
-              quality index that blends retrieval fidelity, reasoning accuracy,
-              and downstream execution stability. The score is recalculated with
-              every release to reflect the latest datasets and system upgrades.
-            </p>
-            <p>
-              Performance deltas are tracked longitudinally, allowing readers to
-              see how new techniques impact production-style traces instead of
-              cherry-picked demos. The view below will eventually host live
-              charts sourced from our evaluation pipeline.
+              quality index that blends reasoning accuracy, and downstream execution stability. Performance details can be seen in the technical report in our <a className="text-sky-600 underline" href="https://github.com/DB-121143/UDA-Bench" target="_blank" rel="noreferrer">GitHub repository</a>. 
             </p>
           </div>
         </section>
