@@ -95,7 +95,21 @@ def convert_csv_to_json(csv_file: str, json_file: str, name_dir: str | None = No
         print(f"发生错误: {e}")
 
 # 使用示例
-csv_file = '/home/lijianhui/worksp/UDA-Bench/Data/Med/institution.csv'  # 输入CSV文件名
-json_file = '/home/lijianhui/worksp/gh-page/uda-bench-page/src/assets/table/healthcare/institution.json'    # 输出JSON文件名
-name_dir = '/home/lijianhui/worksp/gh-page/uda-bench-page/src/assets/descriptions'  # 含有 name 字段的 JSON 目录
-convert_csv_to_json(csv_file, json_file, name_dir)
+if __name__ == '__main__':
+    datasets = {'player' : {'dir':'Player', 'table':['city', 'manager', 'player', 'team'], 'totable':['city', 'manager', 'player', 'team']}, 
+                'art': {'dir':'Art', 'table':['Art'], 'table':['art']},
+                'cspaper': {'dir':'CSPaper', 'table':['CSPaper'], 'totable':['cspaper']}, 
+                'finance': {'dir':'Finan', 'table':['Finan'], 'totable':['finance']},
+                'healthcare': {'dir':'Med', 'table':['disease', 'institution', 'drug'], 'totable':['disease', 'institution', 'drug']},
+                'legal': {'dir':'Legal', 'table':['Legal'], 'totable':['legal']}}
+    for dataset_name, dataset in datasets.items():
+        for i, table in enumerate(dataset['table']):
+            csv_file = f'/home/lijianhui/worksp/UDA-Bench/Data/{dataset["dir"]}/{dataset["table"][i]}.csv'  # 输入CSV文件名
+            json_file = f'/home/lijianhui/worksp/gh-page/uda-bench-page/src/assets/table/{dataset_name}/{dataset["totable"][i]}.json'    # 输出JSON文件名
+            name_dir = '/home/lijianhui/worksp/gh-page/uda-bench-page/src/assets/descriptions'  # 含有 name 字段的 JSON 目录
+            convert_csv_to_json(csv_file, json_file, name_dir)
+        
+# csv_file = '/home/lijianhui/worksp/UDA-Bench/Data/Med/institution.csv'  # 输入CSV文件名
+# json_file = '/home/lijianhui/worksp/gh-page/uda-bench-page/src/assets/table/healthcare/institution.json'    # 输出JSON文件名
+# name_dir = '/home/lijianhui/worksp/gh-page/uda-bench-page/src/assets/descriptions'  # 含有 name 字段的 JSON 目录
+# convert_csv_to_json(csv_file, json_file, name_dir)

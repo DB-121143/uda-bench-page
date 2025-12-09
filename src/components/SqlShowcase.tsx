@@ -35,7 +35,7 @@ for (const [path, mod] of Object.entries(sqlModules)) {
 /** 四个类别的状态定义（索引从 0 开始） */
 const S_STATES = ["OFF", "ON"] as const;
 const F_STATES = ["OFF", "SINGLE", "AND", "OR", "CONJ", "DISJ", "MIXED"] as const;
-const A_STATES = ["OFF", "COUNT", "CALC"] as const;
+const A_STATES = ["OFF", "ON"] as const;
 const J_STATES = ["OFF", "SINGLE", "MULTI"] as const;
 
 type RollerLabel = "S" | "F" | "A" | "J";

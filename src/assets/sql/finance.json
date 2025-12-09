@@ -11,22 +11,22 @@
         "SELECT remuneration_policy, major_events, company_name, auditor \nFROM finance;",
         "SELECT company_name, total_assets \nFROM finance;"
     ],
-    "1120": [
+    "1110": [
         "SELECT auditor, AVG(bussiness_profit) AS avg_bussiness_profit \nFROM finance \nWHERE remuneration_policy = 'Performance-based' \nGROUP BY auditor;"
     ],
-    "1220": [
+    "1210": [
         "SELECT remuneration_policy, MIN(bussiness_profit) AS min_bussiness_profit \nFROM finance \nWHERE dividend_per_share > 0.00 AND revenue <= 12857200000 \nGROUP BY remuneration_policy;"
     ],
-    "1320": [
+    "1310": [
         "SELECT remuneration_policy, AVG(the_highest_ownership_stake) AS avg_the_highest_ownership_stake \nFROM finance \nWHERE net_assets <= 249398000 OR total_assets < 1358991000 \nGROUP BY remuneration_policy;"
     ],
-    "1420": [
+    "1410": [
         "SELECT auditor, MAX(earnings_per_share) AS max_earnings_per_share \nFROM finance \nWHERE major_events != 'Litigation' AND remuneration_policy != 'Performance-based' AND total_assets < 1358991000 \nGROUP BY auditor;"
     ],
-    "1520": [
+    "1510": [
         "SELECT auditor, MIN(earnings_per_share) AS min_earnings_per_share \nFROM finance \nWHERE remuneration_policy = 'Performance-based' OR registered_office != '22 Bishopsgate, London, EC2N 4BQ, United Kingdom' OR registered_office != '901 W Walnut Hill Lane, Irving, TX 75038' \nGROUP BY auditor;"
     ],
-    "1620": [
+    "1610": [
         "SELECT major_equity_changes, SUM(dividend_per_share) AS sum_dividend_per_share \nFROM finance \nWHERE (executive_profiles != 'Michael A. Marks' AND net_assets != 1362019954) OR (bussiness_sales != '42984000' AND board_members = 'John Reizenstein') \nGROUP BY major_equity_changes;"
     ],
     "1100": [
@@ -101,17 +101,15 @@
         "SELECT dividend_per_share, bussiness_profit, registered_office \nFROM Finance \nWHERE (bussiness_profit >= '1102000000' AND net_profit_or_loss <= '1745099230') OR (total_assets != 1358991000 AND revenue >= 391926000);",
         "SELECT business_segments_num, dividend_per_share, total_assets \nFROM Finance \nWHERE (dividend_per_share < 0.00 AND bussiness_sales >= '5268700000') OR (business_risks != 'Legal/Compliance Risk' AND board_members = 'Nigel Machin');"
     ],
-    "1020": [
+    "1010": [
         "SELECT auditor, MIN(business_segments_num) AS min_business_segments_num \nFROM finance \nGROUP BY auditor;",
+        "SELECT exchange_code, COUNT(company_name) AS count_company_name \nFROM finance \nGROUP BY exchange_code;",
         "SELECT remuneration_policy, AVG(business_segments_num) AS avg_business_segments_num \nFROM finance \nGROUP BY remuneration_policy;",
         "SELECT exchange_code, MAX(revenue) AS max_revenue \nFROM finance \nGROUP BY exchange_code;",
+        "SELECT exchange_code, COUNT(major_equity_changes) AS count_major_equity_changes \nFROM finance \nGROUP BY exchange_code;",
         "SELECT auditor, MIN(revenue) AS min_revenue \nFROM finance \nGROUP BY auditor;",
         "SELECT exchange_code, MAX(revenue) AS max_revenue \nFROM finance \nGROUP BY exchange_code;",
-        "SELECT major_equity_changes, SUM(revenue) AS sum_revenue \nFROM finance \nGROUP BY major_equity_changes;"
-    ],
-    "1010": [
-        "SELECT exchange_code, COUNT(company_name) AS count_company_name \nFROM finance \nGROUP BY exchange_code;",
-        "SELECT exchange_code, COUNT(major_equity_changes) AS count_major_equity_changes \nFROM finance \nGROUP BY exchange_code;",
+        "SELECT major_equity_changes, SUM(revenue) AS sum_revenue \nFROM finance \nGROUP BY major_equity_changes;",
         "SELECT exchange_code, COUNT(auditor) AS count_auditor \nFROM finance \nGROUP BY exchange_code;",
         "SELECT exchange_code, COUNT(total_assets) AS count_total_assets \nFROM finance \nGROUP BY exchange_code;"
     ]

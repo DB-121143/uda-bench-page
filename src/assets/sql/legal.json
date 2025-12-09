@@ -11,36 +11,34 @@
         "SELECT evidence, judge_name \nFROM legal;",
         "SELECT judge_name, case_number \nFROM legal;"
     ],
-    "1020": [
+    "1010": [
         "SELECT verdict, MIN(case_number) AS min_case_number \nFROM legal \nGROUP BY verdict;",
+        "SELECT nationality_for_applicant, COUNT(judge_name) AS count_judge_name \nFROM legal \nGROUP BY nationality_for_applicant;",
         "SELECT nationality_for_applicant, AVG(legal_basis_num) AS avg_legal_basis_num \nFROM legal \nGROUP BY nationality_for_applicant;",
         "SELECT nationality_for_applicant, MAX(legal_basis_num) AS max_legal_basis_num \nFROM legal \nGROUP BY nationality_for_applicant;",
+        "SELECT nationality_for_applicant, COUNT(defendant_current_status) AS count_defendant_current_status \nFROM legal \nGROUP BY nationality_for_applicant;",
         "SELECT verdict, MIN(legal_basis_num) AS min_legal_basis_num \nFROM legal \nGROUP BY verdict;",
         "SELECT nationality_for_applicant, MAX(legal_basis_num) AS max_legal_basis_num \nFROM legal \nGROUP BY nationality_for_applicant;",
-        "SELECT case_type, SUM(legal_basis_num) AS sum_legal_basis_num \nFROM legal \nGROUP BY case_type;"
-    ],
-    "1010": [
-        "SELECT nationality_for_applicant, COUNT(judge_name) AS count_judge_name \nFROM legal \nGROUP BY nationality_for_applicant;",
-        "SELECT nationality_for_applicant, COUNT(defendant_current_status) AS count_defendant_current_status \nFROM legal \nGROUP BY nationality_for_applicant;",
+        "SELECT case_type, SUM(legal_basis_num) AS sum_legal_basis_num \nFROM legal \nGROUP BY case_type;",
         "SELECT case_type, COUNT(evidence) AS count_evidence \nFROM legal \nGROUP BY case_type;",
         "SELECT case_type, COUNT(case_number) AS count_case_number \nFROM legal \nGROUP BY case_type;"
     ],
-    "1120": [
+    "1110": [
         "SELECT verdict, MIN(case_number) AS min_case_number \nFROM legal \nWHERE plaintiff_current_status != 'Activist' \nGROUP BY verdict;"
     ],
-    "1220": [
+    "1210": [
         "SELECT nationality_for_applicant, MAX(case_number) AS max_case_number \nFROM legal \nWHERE defendant_current_status != 'Company' AND legal_basis_num >= 1 \nGROUP BY nationality_for_applicant;"
     ],
-    "1320": [
+    "1310": [
         "SELECT nationality_for_applicant, MAX(legal_basis_num) AS max_legal_basis_num \nFROM legal \nWHERE verdict != 'Dismissed' OR first_judge != 0 \nGROUP BY nationality_for_applicant;"
     ],
-    "1420": [
+    "1410": [
         "SELECT verdict, MIN(legal_basis_num) AS min_legal_basis_num \nFROM legal \nWHERE legal_fees = '3265' AND defendant != 'Construction, Forestry, Mining and Energy Union' AND legal_fees != '2000' \nGROUP BY verdict;"
     ],
-    "1520": [
+    "1510": [
         "SELECT nationality_for_applicant, MAX(case_number) AS max_case_number \nFROM legal \nWHERE first_judge != 0 OR evidence < 1 OR defendant = 'Secretary, Department of Employment and Workplace Relations' \nGROUP BY nationality_for_applicant;"
     ],
-    "1620": [
+    "1610": [
         "SELECT case_type, SUM(legal_basis_num) AS sum_legal_basis_num \nFROM legal \nWHERE (judgment_year = 2009 AND plaintiff != 'Telstra Corporation Limited') OR (verdict != 'Others' AND counsel_for_applicant = 'Dr J G Azzi') \nGROUP BY case_type;"
     ],
     "1100": [
