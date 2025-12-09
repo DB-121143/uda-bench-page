@@ -62,7 +62,7 @@ WHERE birth_city = 'Boston';`,`SELECT awards, zodiac, object
 FROM art 
 WHERE death_country = 'Italy';`,`SELECT birth_date, birth_country, tone 
 FROM art 
-WHERE art_institution = 'China Academy of Art';`,`SELECT genre, style, age 
+WHERE art_institution = '';`,`SELECT genre, style, age 
 FROM art 
 WHERE name != 'Christiaan Karel Appel';`],1110:[`SELECT field, AVG(age) AS avg_age 
 FROM art 
@@ -85,7 +85,7 @@ WHERE death_date != '1943/1/13' AND birth_city = 'Bucharest';`,`SELECT death_cit
 FROM art 
 WHERE zodiac = 'Cancer' AND birth_city != 'San Francisco';`,`SELECT color, genre, art_institution 
 FROM art 
-WHERE genre != 'Surrealist' AND teaching > 0;`,`SELECT death_city, birth_continent, style 
+WHERE genre != 'Surrealist' AND teaching < 0;`,`SELECT death_city, birth_continent, style 
 FROM art 
 WHERE birth_date = '1905/3/12' AND marriage = 'Separated';`],1210:[`SELECT nationality, COUNT(birth_continent) AS count_birth_continent 
 FROM art 
@@ -96,7 +96,7 @@ WHERE death_date != '1943/1/13' OR birth_city != 'Buenos Aires';`,`SELECT color,
 FROM art 
 WHERE marriage != 'Cohabiting' OR art_institution != 'Slade School of art';`,`SELECT teaching, death_date, tone 
 FROM art 
-WHERE teaching != 0 OR age <= 50;`,`SELECT art_movement, birth_date, style 
+WHERE teaching != 0 OR age != 90;`,`SELECT art_movement, birth_date, style 
 FROM art 
 WHERE art_movement = 'Generación de la Ruptura' OR death_country != 'Brazil';`,`SELECT teaching, color, death_city 
 FROM art 
@@ -127,13 +127,13 @@ WHERE birth_date != '1905/4/25' AND art_institution = 'Claremont Graduate Univer
 FROM art 
 WHERE age <= 83 AND death_city != 'Stuttgart' AND birth_date = '1905/4/4' AND genre = 'Still life';`,`SELECT tone, century, awards 
 FROM art 
-WHERE awards <= 1 AND awards >= 0 AND birth_city != 'Stockholm' AND death_country = 'Switzerland';`,`SELECT death_city, style, art_movement 
+WHERE awards >= 1 AND awards <= 0 AND birth_city != 'Stockholm' AND death_country = 'Switzerland';`,`SELECT death_city, style, art_movement 
 FROM art 
-WHERE name != 'Eduardo Chillida Juantegui' AND age < 90 AND birth_continent != 'Africa' AND birth_country = 'United States';`,`SELECT birth_city, zodiac, tone 
+WHERE name != 'Eduardo Chillida Juantegui' AND age > 90 AND birth_continent != 'Africa' AND birth_country = 'United States';`,`SELECT birth_city, zodiac, tone 
 FROM art 
-WHERE birth_city = 'Addis Ababa' AND death_city != 'Tigre' AND birth_country = 'Switzerland' AND teaching > 0;`,`SELECT marriage, object, awards 
+WHERE birth_city = 'Addis Ababa' AND death_city != 'Tigre' AND birth_country = 'Switzerland' AND teaching < 0;`,`SELECT marriage, object, awards 
 FROM art 
-WHERE birth_country != 'Spain' AND nationality != 'Canadian' AND teaching >= 0 AND teaching <= 1;`],1410:[`SELECT image_genre, MAX(awards) AS max_awards 
+WHERE birth_country != 'Spain' AND nationality != 'Canadian' AND teaching >= 0 AND teaching <= 0;`],1410:[`SELECT image_genre, MAX(awards) AS max_awards 
 FROM art 
 WHERE art_institution != 'National Academy of Design' AND name != 'Emma Amos' AND birth_date = '1905/5/11' 
 GROUP BY image_genre;`],1500:[`SELECT death_city, genre, death_country 
@@ -142,7 +142,7 @@ WHERE zodiac != 'Cancer' OR birth_date = '1905/4/4' OR art_institution != 'Hunte
 FROM art 
 WHERE century = '19th-20th' OR birth_date != '1905/5/12' OR birth_country = 'Chile' OR birth_continent != 'Australia';`,`SELECT tone, birth_city, nationality 
 FROM art 
-WHERE awards = 0 OR birth_city = 'Brussels' OR zodiac != 'Aries' OR age <= 90;`,`SELECT marriage, genre, death_date 
+WHERE awards = 0 OR birth_city = 'Brussels' OR zodiac != 'Aries' OR age >= 90;`,`SELECT marriage, genre, death_date 
 FROM art 
 WHERE century != '19th' OR name != 'Oswald Achenbach' OR art_institution = 'National Academy of Design' OR teaching > 0;`,`SELECT birth_city, genre, awards 
 FROM art 
@@ -152,7 +152,7 @@ WHERE death_country != 'United Kingdom' OR field != 'Design' OR nationality != '
 FROM art 
 WHERE field != 'Writer' OR birth_city = 'Paris' OR nationality != 'Indian' OR awards <= 1;`,`SELECT field, teaching, style 
 FROM art 
-WHERE birth_date != '1905/4/15' OR nationality != 'Irish' OR birth_city != 'Warsaw' OR age >= 34;`,`SELECT object, birth_date, death_country 
+WHERE birth_date != '1905/4/15' OR nationality != 'Irish' OR birth_city != 'Warsaw' OR age >= 74;`,`SELECT object, birth_date, death_country 
 FROM art 
 WHERE birth_city = 'Dublin' OR marriage != 'Married' OR teaching != 0 OR birth_city = 'Paris';`,`SELECT name, marriage, composition 
 FROM art 
@@ -161,9 +161,9 @@ FROM art
 WHERE awards > 0 OR birth_country = 'Kingdom of Hungary' OR birth_country = 'Italy' 
 GROUP BY color;`],1600:[`SELECT birth_country, genre, age 
 FROM art 
-WHERE (age >= 61 AND age < 70) OR (death_city != 'Leningrad' AND field != 'Installation art');`,`SELECT composition, age, name 
+WHERE (age >= 61 AND age = 61) OR (death_city != 'Leningrad' AND field != 'Installation art');`,`SELECT composition, age, name 
 FROM art 
-WHERE (age < 90 AND genre != 'Nature') OR (death_city = 'Paris' AND zodiac != 'Aries');`,`SELECT teaching, genre, death_country 
+WHERE (age > 90 AND genre != 'Nature') OR (death_city = 'Paris' AND zodiac != 'Aries');`,`SELECT teaching, genre, death_country 
 FROM art 
 WHERE (zodiac = 'Aquarius' AND field = 'Video') OR (teaching != 0 AND birth_city != 'Los Angeles');`,`SELECT death_date, nationality, color 
 FROM art 
@@ -596,14 +596,14 @@ GROUP BY prescription_status;`,`SELECT prescription_status, MAX(recommended_usag
 FROM drug 
 GROUP BY prescription_status;`,`SELECT prescription_status, SUM(recommended_usage) AS sum_recommended_usage 
 FROM drug 
-GROUP BY prescription_status;`],1011:[`SELECT Med_drug.prescription_status, MIN(Med_drug.recommended_usage) AS min_Med_drug_recommended_usage 
+GROUP BY prescription_status;`],1011:[`SELECT drug.prescription_status, MIN(drug.recommended_usage) AS min_drug_recommended_usage 
 FROM disease 
 JOIN drug ON disease.disease_name = drug.disease_name 
-GROUP BY Med_drug.prescription_status;`],1012:[`SELECT Med_institution.institution_type, MIN(Med_drug.recommended_usage) AS min_Med_drug_recommended_usage 
+GROUP BY drug.prescription_status;`],1012:[`SELECT institution.institution_type, MIN(drug.recommended_usage) AS min_drug_recommended_usage 
 FROM disease 
+JOIN drug ON disease.disease_name = drug.disease_name 
 JOIN institution ON disease.disease_name = institution.research_diseases 
-JOIN drug ON disease.disease_name = drug.disease_name 
-GROUP BY Med_institution.institution_type;`],1100:[`SELECT manufacturer, activation_conditions, indication 
+GROUP BY institution.institution_type;`],1100:[`SELECT manufacturer, activation_conditions, indication 
 FROM drug 
 WHERE activation_conditions = 'requires stimulation';`,`SELECT pharmaceutical_form, active_ingredients, administration_route 
 FROM drug 
@@ -625,26 +625,24 @@ WHERE epidemiology != '3,500 to 4,000 children worldwide;`,`SELECT key_technolog
 FROM institution 
 WHERE technology_application != 'FDA drug approval';`,`SELECT leadership, parent_organization, establishment_year 
 FROM institution 
-WHERE leadership = 'Tanja Gruber';`],1101:[`SELECT Med_disease.epidemiology, Med_drug.brand_name, Med_disease.risk_factors, Med_drug.recommended_usage 
+WHERE leadership = 'Tanja Gruber';`],1101:[`SELECT disease.epidemiology, drug.brand_name, disease.risk_factors, drug.recommended_usage 
 FROM disease 
 JOIN drug ON disease.disease_name = drug.disease_name 
-WHERE Med_drug.manufacturer != 'GSK';`],1102:[`SELECT Med_institution.key_achievements, Med_drug.manufacturer, Med_institution.funding_sources, Med_disease.disease_type 
+WHERE drug.manufacturer != 'GSK';`,`SELECT disease.drugs, drug.disease_name, drug.indication, disease.prognosis 
 FROM disease 
-JOIN institution ON disease.disease_name = institution.research_diseases 
 JOIN drug ON disease.disease_name = drug.disease_name 
-WHERE Med_disease.pathogenesis = 'congenital';`],1110:[`SELECT research_fields, MIN(institution_country) AS min_institution_country 
+WHERE drug.brand_name = 'Nucala';`],1110:[`SELECT research_fields, MIN(institution_country) AS min_institution_country 
 FROM institution 
 WHERE research_diseases != 'post-traumatic stress disorder' 
-GROUP BY research_fields;`],1111:[`SELECT Med_drug.prescription_status, MIN(Med_drug.recommended_usage) AS min_Med_drug_recommended_usage 
+GROUP BY research_fields;`],1111:[`SELECT drug.prescription_status, MIN(drug.recommended_usage) AS min_drug_recommended_usage 
 FROM disease 
 JOIN drug ON disease.disease_name = drug.disease_name 
-WHERE Med_drug.manufacturer != 'GSK' 
-GROUP BY Med_drug.prescription_status;`],1112:[`SELECT Med_institution.research_fields, MAX(Med_disease.quality_of_life_impact) AS max_Med_disease_quality_of_life_impact 
+WHERE drug.manufacturer != 'GSK' 
+GROUP BY drug.prescription_status;`,`SELECT drug.prescription_status, AVG(disease.epidemiology) AS avg_disease_epidemiology 
 FROM disease 
-JOIN institution ON disease.disease_name = institution.research_diseases 
 JOIN drug ON disease.disease_name = drug.disease_name 
-WHERE Med_institution.leadership = 'Pierre-Yves Marcy' 
-GROUP BY Med_institution.research_fields;`],1200:[`SELECT prescription_status, side_effects, brand_name 
+WHERE drug.pharmaceutical_form = 'tablet' 
+GROUP BY drug.prescription_status;`],1200:[`SELECT prescription_status, side_effects, brand_name 
 FROM drug 
 WHERE prescription_status < 'unclassified' AND pharmaceutical_form != 'capsule';`,`SELECT recommended_usage, administration_route, dosage_frequency 
 FROM drug 
@@ -664,26 +662,28 @@ WHERE affected_organs != 'cervix' AND epidemiology = 'occurs most often among Ca
 FROM institution 
 WHERE research_fields != 'molecular_biology' AND funding_sources = 'university grant';`,`SELECT leadership, research_fields, international_collaboration 
 FROM institution 
-WHERE technology_application = 'early diagnosis of cardiac TTR amyloidosis using DPD scintigraphy' AND key_technologies = 'navigation for insertion of screws';`],1201:[`SELECT Med_disease.drugs, Med_drug.disease_name, Med_disease.treatments, Med_drug.unsuitable_population 
+WHERE technology_application = 'early diagnosis of cardiac TTR amyloidosis using DPD scintigraphy' AND key_technologies = 'navigation for insertion of screws';`],1202:[`SELECT institution.key_achievements, drug.manufacturer, institution.funding_sources, disease.disease_type 
 FROM disease 
 JOIN drug ON disease.disease_name = drug.disease_name 
-WHERE Med_drug.brand_name = 'REQUIP XL' AND Med_drug.activation_conditions != 'before meals';`],1202:[`SELECT Med_drug.side_effects, Med_disease.treatments, Med_institution.key_technologies, Med_drug.mechanism_of_action 
-FROM disease 
 JOIN institution ON disease.disease_name = institution.research_diseases 
+WHERE disease.pathogenesis = 'congenital' AND institution.institution_country >= 'Egypt';`,`SELECT disease.common_symptoms, drug.pharmaceutical_form, institution.funding_sources, drug.dosage_frequency 
+FROM disease 
 JOIN drug ON disease.disease_name = drug.disease_name 
-WHERE Med_disease.treatment_challenges != 'only_one_drug_available' AND Med_disease.drugs != 'diuretics';`],1210:[`SELECT institution_type, SUM(institution_country) AS sum_institution_country 
+JOIN institution ON disease.disease_name = institution.research_diseases 
+WHERE disease.prognosis != 'partial_recovery' AND drug.active_ingredients != 'bendamustine';`],1210:[`SELECT institution_type, SUM(institution_country) AS sum_institution_country 
 FROM institution 
 WHERE parent_organization = 'University of Wisconsin' AND funding_sources != 'other' 
-GROUP BY institution_type;`],1211:[`SELECT Med_drug.prescription_status, AVG(Med_disease.quality_of_life_impact) AS avg_Med_disease_quality_of_life_impact 
+GROUP BY institution_type;`],1212:[`SELECT institution.research_fields, MAX(disease.quality_of_life_impact) AS max_disease_quality_of_life_impact 
 FROM disease 
 JOIN drug ON disease.disease_name = drug.disease_name 
-WHERE Med_disease.treatment_challenges != 'only_one_drug_available' AND Med_disease.drugs != 'diuretics' 
-GROUP BY Med_drug.prescription_status;`],1212:[`SELECT Med_institution.research_fields, MAX(Med_disease.diagnosis_challenges) AS max_Med_disease_diagnosis_challenges 
-FROM disease 
 JOIN institution ON disease.disease_name = institution.research_diseases 
+WHERE institution.leadership = 'Pierre-Yves Marcy' AND drug.activation_conditions != 'take with food' 
+GROUP BY institution.research_fields;`,`SELECT institution.institution_type, AVG(drug.dosage_frequency) AS avg_drug_dosage_frequency 
+FROM disease 
 JOIN drug ON disease.disease_name = drug.disease_name 
-WHERE Med_institution.institution_country = 'United Kingdom' AND Med_institution.research_fields != 'gastroenterology' 
-GROUP BY Med_institution.research_fields;`],1300:[`SELECT active_ingredients, brand_name, single_dose 
+JOIN institution ON disease.disease_name = institution.research_diseases 
+WHERE drug.generic_name != 'Linaclotide' AND disease.common_symptoms != 'headache' 
+GROUP BY institution.institution_type;`],1300:[`SELECT active_ingredients, brand_name, single_dose 
 FROM drug 
 WHERE active_ingredients != 'Antihistamines' OR single_dose != 'children 2-5 years 36 mcg';`,`SELECT unsuitable_population, administration_route, storage_conditions 
 FROM drug 
@@ -703,26 +703,24 @@ WHERE pathogenesis = 'congenital' OR sequelae != 'chronic pain';`,`SELECT number
 FROM institution 
 WHERE international_collaboration = 'NCI cancer centers in the United States' OR institution_country != 'China';`,`SELECT institution_city, establishment_year, technology_application 
 FROM institution 
-WHERE research_fields != 'molecular_biology' OR international_collaboration != 'collaboration with research centres throughout Europe and the UK';`],1301:[`SELECT Med_disease.disease_type, Med_disease.diagnosis_challenges, Med_drug.prescription_status, Med_drug.unsuitable_population 
+WHERE research_fields != 'molecular_biology' OR international_collaboration != 'collaboration with research centres throughout Europe and the UK';`],1301:[`SELECT disease.drugs, drug.disease_name, disease.treatments, drug.unsuitable_population 
 FROM disease 
 JOIN drug ON disease.disease_name = drug.disease_name 
-WHERE Med_drug.activation_conditions != 'no special condition' OR Med_drug.dosage_frequency = 'once or twice a day';`],1302:[`SELECT Med_institution.institution_country, Med_drug.manufacturer, Med_drug.indication, Med_disease.risk_factors 
+WHERE drug.brand_name = 'REQUIP XL' OR drug.activation_conditions != 'before meals';`,`SELECT drug.active_ingredients, disease.disease_name, disease.sequelae, drug.side_effects 
 FROM disease 
-JOIN institution ON disease.disease_name = institution.research_diseases 
 JOIN drug ON disease.disease_name = drug.disease_name 
-WHERE Med_drug.single_dose != 'adults 10 mg' OR Med_drug.active_ingredients = 'Roflumilast';`],1310:[`SELECT prescription_status, COUNT(manufacturer) AS count_manufacturer 
+WHERE disease.disease_name = 'Metastatic Colorectal Cancer' OR drug.administration_route != 'injection';`],1310:[`SELECT prescription_status, COUNT(manufacturer) AS count_manufacturer 
 FROM drug 
 WHERE brand_name = 'Savella' OR recommended_usage >= 'oral' 
-GROUP BY prescription_status;`],1311:[`SELECT Med_drug.prescription_status, AVG(Med_disease.quality_of_life_impact) AS avg_Med_disease_quality_of_life_impact 
+GROUP BY prescription_status;`],1311:[`SELECT drug.prescription_status, AVG(disease.quality_of_life_impact) AS avg_disease_quality_of_life_impact 
 FROM disease 
 JOIN drug ON disease.disease_name = drug.disease_name 
-WHERE Med_drug.brand_name = 'Nucala' OR Med_disease.diagnostic_methods = 'genetic_testing' 
-GROUP BY Med_drug.prescription_status;`],1312:[`SELECT Med_institution.institution_type, AVG(Med_disease.epidemiology) AS avg_Med_disease_epidemiology 
+WHERE disease.treatment_challenges != 'only_one_drug_available' OR disease.drugs != 'diuretics' 
+GROUP BY drug.prescription_status;`,`SELECT drug.prescription_status, COUNT(disease.common_symptoms) AS count_disease_common_symptoms 
 FROM disease 
-JOIN institution ON disease.disease_name = institution.research_diseases 
 JOIN drug ON disease.disease_name = drug.disease_name 
-WHERE Med_drug.brand_name != 'Daliresp' OR Med_disease.common_symptoms != 'back pain' 
-GROUP BY Med_institution.institution_type;`],1400:[`SELECT prescription_status, activation_conditions, storage_conditions 
+WHERE disease.diagnostic_methods = 'genetic_testing' OR disease.pathogenesis = 'traumatic' 
+GROUP BY drug.prescription_status;`],1400:[`SELECT prescription_status, activation_conditions, storage_conditions 
 FROM drug 
 WHERE activation_conditions = 'before meals' AND storage_conditions < 'protect from moisture' AND side_effects != 'headache' AND mechanism_of_action != 'induces loss of consciousness';`,`SELECT disease_name, pharmaceutical_form, brand_name 
 FROM drug 
@@ -740,26 +738,28 @@ WHERE affected_organs = 'abdomen' AND complications != 'panic disorders' AND qua
 FROM institution 
 WHERE research_diseases = 'portal hypertensive gastropathy' AND key_technologies != 'bacteriological culture' AND research_diseases != 'chronic pain' AND institution_city != 'Ferndale';`,`SELECT institution_name, research_fields, research_diseases 
 FROM institution 
-WHERE key_achievements = 'post-graduate education in gastroenterology' AND parent_organization != 'University of Texas' AND leadership != 'K Persson Waller' AND institution_country > 'Vietnam';`],1401:[`SELECT Med_disease.drugs, Med_drug.disease_name, Med_drug.indication, Med_disease.prognosis 
+WHERE key_achievements = 'post-graduate education in gastroenterology' AND parent_organization != 'University of Texas' AND leadership != 'K Persson Waller' AND institution_country > 'Vietnam';`],1402:[`SELECT drug.side_effects, disease.treatments, institution.key_technologies, drug.mechanism_of_action 
 FROM disease 
 JOIN drug ON disease.disease_name = drug.disease_name 
-WHERE Med_drug.brand_name = 'Nucala' AND Med_disease.diagnostic_methods = 'genetic_testing' AND Med_drug.activation_conditions = 'requires co-administration with other drugs';`],1402:[`SELECT Med_disease.common_symptoms, Med_drug.pharmaceutical_form, Med_institution.funding_sources, Med_drug.dosage_frequency 
-FROM disease 
 JOIN institution ON disease.disease_name = institution.research_diseases 
+WHERE disease.treatment_challenges != 'only_one_drug_available' AND disease.drugs != 'diuretics' AND drug.administration_route = 'injection';`,`SELECT disease.sequelae, drug.brand_name, drug.pharmaceutical_form, institution.parent_organization 
+FROM disease 
 JOIN drug ON disease.disease_name = drug.disease_name 
-WHERE Med_disease.prognosis != 'partial_recovery' AND Med_drug.active_ingredients != 'bendamustine' AND Med_drug.manufacturer = 'Astellas';`],1410:[`SELECT prescription_status, MAX(dosage_frequency) AS max_dosage_frequency 
+JOIN institution ON disease.disease_name = institution.research_diseases 
+WHERE drug.pharmaceutical_form = 'tablet' AND drug.indication != 'Runny nose' AND disease.preventive_measures = 'meditation';`],1410:[`SELECT prescription_status, MAX(dosage_frequency) AS max_dosage_frequency 
 FROM drug 
 WHERE mechanism_of_action != 'competitive inhibition of HMG-CoA reductase, reduces cholesterol synthesis, increases LDL receptor expression, increases LDL catabolism, inhibits VLDL synthesis' AND mechanism_of_action = 'relieve watery eyes, itchy eyes/nose/throat, runny nose, and sneezing' AND pharmaceutical_form != 'gel' 
-GROUP BY prescription_status;`],1411:[`SELECT Med_drug.prescription_status, AVG(Med_disease.epidemiology) AS avg_Med_disease_epidemiology 
+GROUP BY prescription_status;`],1412:[`SELECT institution.research_fields, MAX(disease.diagnosis_challenges) AS max_disease_diagnosis_challenges 
 FROM disease 
 JOIN drug ON disease.disease_name = drug.disease_name 
-WHERE Med_drug.pharmaceutical_form = 'tablet' AND Med_drug.indication != 'Runny nose' AND Med_disease.preventive_measures = 'meditation' 
-GROUP BY Med_drug.prescription_status;`],1412:[`SELECT Med_institution.institution_type, AVG(Med_drug.dosage_frequency) AS avg_Med_drug_dosage_frequency 
-FROM disease 
 JOIN institution ON disease.disease_name = institution.research_diseases 
+WHERE institution.institution_country = 'United Kingdom' AND institution.research_fields != 'gastroenterology' AND disease.etiology = 'pulmonary embolism' 
+GROUP BY institution.research_fields;`,`SELECT drug.prescription_status, SUM(institution.institution_country) AS sum_institution_institution_country 
+FROM disease 
 JOIN drug ON disease.disease_name = drug.disease_name 
-WHERE Med_drug.generic_name != 'Linaclotide' AND Med_disease.common_symptoms != 'headache' AND Med_institution.key_achievements = 'Less than 1% perioperative infection and readmission rates following spinal surgery' 
-GROUP BY Med_institution.institution_type;`],1500:[`SELECT administration_route, side_effects, mechanism_of_action 
+JOIN institution ON disease.disease_name = institution.research_diseases 
+WHERE disease.diagnosis_challenges = 'lack of early recognition' AND disease.disease_name = 'Acute Intermittent Porphyria' AND disease.epidemiology = '27% of constipated patients relate constipation to medications' 
+GROUP BY drug.prescription_status;`],1500:[`SELECT administration_route, side_effects, mechanism_of_action 
 FROM drug 
 WHERE administration_route != 'injection' OR indication = 'heartburn' OR storage_conditions > 'store in a tight, light-resistant container' OR recommended_usage = 'other';`,`SELECT brand_name, manufacturer, disease_name 
 FROM drug 
@@ -779,26 +779,24 @@ WHERE complications != 'large_blood_vessel_damage' OR disease_name != 'Pleural E
 FROM institution 
 WHERE leadership != 'John Niederhuber' OR research_fields != 'surgery' OR institution_name != 'Emory University' OR key_technologies = 'antibacterial photodynamic treatment (aPDT)';`,`SELECT international_collaboration, establishment_year, key_achievements 
 FROM institution 
-WHERE leadership = 'K Persson Waller' OR parent_organization != 'UNSW Sydney' OR institution_name = 'Flushing Hospital Medical Center' OR technology_application != 'individual counseling';`],1501:[`SELECT Med_drug.active_ingredients, Med_disease.disease_name, Med_disease.sequelae, Med_drug.side_effects 
+WHERE leadership = 'K Persson Waller' OR parent_organization != 'UNSW Sydney' OR institution_name = 'Flushing Hospital Medical Center' OR technology_application != 'individual counseling';`],1501:[`SELECT disease.disease_type, disease.diagnosis_challenges, drug.prescription_status, drug.unsuitable_population 
 FROM disease 
 JOIN drug ON disease.disease_name = drug.disease_name 
-WHERE Med_disease.disease_name = 'Metastatic Colorectal Cancer' OR Med_drug.administration_route != 'injection' OR Med_drug.recommended_usage = 'after meals';`],1502:[`SELECT Med_disease.sequelae, Med_drug.brand_name, Med_drug.pharmaceutical_form, Med_institution.parent_organization 
+WHERE drug.activation_conditions != 'no special condition' OR drug.dosage_frequency >= 'once or twice a day' OR disease.pathogenesis = 'endocrine_disorder';`,`SELECT drug.recommended_usage, disease.preventive_measures, drug.unsuitable_population, disease.disease_type 
 FROM disease 
-JOIN institution ON disease.disease_name = institution.research_diseases 
 JOIN drug ON disease.disease_name = drug.disease_name 
-WHERE Med_drug.pharmaceutical_form = 'tablet' OR Med_drug.indication != 'Runny nose' OR Med_disease.preventive_measures = 'meditation';`],1510:[`SELECT prescription_status, AVG(storage_conditions) AS avg_storage_conditions 
+WHERE drug.dosage_frequency < '2 or 3 times daily' OR disease.sequelae != 'disability' OR disease.epidemiology != 'especially amongst young men and women';`],1510:[`SELECT prescription_status, AVG(storage_conditions) AS avg_storage_conditions 
 FROM drug 
 WHERE single_dose = 'adults 25 mg' OR unsuitable_population != 'patients with diabetes' OR recommended_usage != 'intravenous' 
-GROUP BY prescription_status;`],1511:[`SELECT Med_drug.prescription_status, COUNT(Med_disease.common_symptoms) AS count_Med_disease_common_symptoms 
+GROUP BY prescription_status;`],1511:[`SELECT drug.prescription_status, AVG(disease.quality_of_life_impact) AS avg_disease_quality_of_life_impact 
 FROM disease 
 JOIN drug ON disease.disease_name = drug.disease_name 
-WHERE Med_disease.diagnostic_methods = 'genetic_testing' OR Med_disease.pathogenesis = 'traumatic' OR Med_drug.mechanism_of_action = 'PDE4 inhibitor that blocks the action of PDE4, reducing inflammation and relaxing smooth muscle in the airways' 
-GROUP BY Med_drug.prescription_status;`],1512:[`SELECT Med_drug.prescription_status, SUM(Med_institution.institution_country) AS sum_Med_institution_institution_country 
+WHERE drug.brand_name = 'Nucala' OR disease.diagnostic_methods = 'genetic_testing' OR drug.activation_conditions = 'requires co-administration with other drugs' 
+GROUP BY drug.prescription_status;`,`SELECT drug.prescription_status, SUM(disease.treatment_challenges) AS sum_disease_treatment_challenges 
 FROM disease 
-JOIN institution ON disease.disease_name = institution.research_diseases 
 JOIN drug ON disease.disease_name = drug.disease_name 
-WHERE Med_disease.diagnosis_challenges = 'lack of early recognition' OR Med_disease.disease_name = 'Acute Intermittent Porphyria' OR Med_disease.epidemiology = '27% of constipated patients relate constipation to medications' 
-GROUP BY Med_drug.prescription_status;`],1600:[`SELECT recommended_usage, pharmaceutical_form, disease_name 
+WHERE disease.treatments != 'radiotherapy' OR drug.brand_name != 'Lo Loestrin FE' OR drug.brand_name = 'Nucala' 
+GROUP BY drug.prescription_status;`],1600:[`SELECT recommended_usage, pharmaceutical_form, disease_name 
 FROM drug 
 WHERE (pharmaceutical_form = 'spray' AND dosage_frequency = 'twice daily') OR (side_effects != 'weight loss' AND activation_conditions != 'before meals');`,`SELECT recommended_usage, pharmaceutical_form, generic_name 
 FROM drug 
@@ -818,26 +816,28 @@ WHERE (diagnosis_challenges = 'difficult to define onset after opioid initiation
 FROM institution 
 WHERE (parent_organization = 'Shanghai Jiao Tong University School of Medicine' AND institution_city = 'London') OR (research_diseases != 'lower limb complications of diabetes' AND technology_application != 'intensive case management');`,`SELECT parent_organization, key_achievements, international_collaboration 
 FROM institution 
-WHERE (technology_application = 'inpatient psychiatric treatment' AND key_technologies = 'blood sample collection') OR (funding_sources != 'industry grant' AND key_achievements = 'Largest neuroscience study of mindfulness for addiction');`],1601:[`SELECT Med_drug.recommended_usage, Med_disease.preventive_measures, Med_drug.unsuitable_population, Med_disease.disease_type 
+WHERE (technology_application = 'inpatient psychiatric treatment' AND key_technologies = 'blood sample collection') OR (funding_sources != 'industry grant' AND key_achievements = 'Largest neuroscience study of mindfulness for addiction');`],1602:[`SELECT institution.institution_country, drug.manufacturer, drug.indication, disease.risk_factors 
 FROM disease 
 JOIN drug ON disease.disease_name = drug.disease_name 
-WHERE (Med_drug.dosage_frequency != '2 or 3 times daily' AND Med_disease.sequelae != 'disability') OR (Med_disease.epidemiology != 'especially amongst young men and women' AND Med_drug.active_ingredients = 'Clomiphene');`],1602:[`SELECT Med_drug.indication, Med_institution.international_collaboration, Med_disease.prognosis, Med_drug.recommended_usage 
-FROM disease 
 JOIN institution ON disease.disease_name = institution.research_diseases 
+WHERE (drug.single_dose != 'adults 10 mg' AND drug.active_ingredients = 'Roflumilast') OR (drug.storage_conditions != 'do not freeze liquid forms' AND institution.research_fields != 'cardiology');`,`SELECT drug.indication, institution.international_collaboration, disease.prognosis, drug.recommended_usage 
+FROM disease 
 JOIN drug ON disease.disease_name = drug.disease_name 
-WHERE (Med_drug.indication != 'constipation' AND Med_disease.diagnosis_challenges != 'lack of accurate diagnostic test') OR (Med_drug.single_dose = 'adult patients with EGPA 3x100 mg' AND Med_disease.sequelae != 'gangrene');`],1610:[`SELECT prescription_status, MIN(storage_conditions) AS min_storage_conditions 
+JOIN institution ON disease.disease_name = institution.research_diseases 
+WHERE (drug.indication != 'constipation' AND disease.diagnosis_challenges != 'lack of accurate diagnostic test') OR (drug.single_dose = 'adult patients with EGPA 3x100 mg' AND disease.sequelae != 'gangrene');`],1610:[`SELECT prescription_status, MIN(storage_conditions) AS min_storage_conditions 
 FROM drug 
 WHERE (prescription_status < 'unclassified' AND side_effects != 'hair loss') OR (disease_name != 'Chronic Obstructive Pulmonary Disease' AND administration_route = 'intravenous') 
-GROUP BY prescription_status;`],1611:[`SELECT Med_drug.prescription_status, SUM(Med_disease.treatment_challenges) AS sum_Med_disease_treatment_challenges 
+GROUP BY prescription_status;`],1612:[`SELECT institution.institution_type, AVG(disease.epidemiology) AS avg_disease_epidemiology 
 FROM disease 
 JOIN drug ON disease.disease_name = drug.disease_name 
-WHERE (Med_disease.treatments != 'radiotherapy' AND Med_drug.brand_name != 'Lo Loestrin FE') OR (Med_drug.brand_name = 'Nucala' AND Med_disease.risk_factors != 'diabetes') 
-GROUP BY Med_drug.prescription_status;`],1612:[`SELECT Med_institution.institution_type, MIN(Med_disease.diagnosis_challenges) AS min_Med_disease_diagnosis_challenges 
-FROM disease 
 JOIN institution ON disease.disease_name = institution.research_diseases 
+WHERE (drug.brand_name != 'Daliresp' AND disease.common_symptoms != 'back pain') OR (institution.key_technologies = 'enzyme-linked immunosorbent assay (ELISA)' AND drug.pharmaceutical_form != 'ointment') 
+GROUP BY institution.institution_type;`,`SELECT institution.institution_type, MIN(disease.diagnosis_challenges) AS min_disease_diagnosis_challenges 
+FROM disease 
 JOIN drug ON disease.disease_name = drug.disease_name 
-WHERE (Med_drug.side_effects = 'diarrhea' AND Med_drug.generic_name = 'Esomeprazole') OR (Med_institution.research_diseases = 'Gut Microbiome Imbalance' AND Med_disease.pathogenesis = 'infectious_fungal') 
-GROUP BY Med_institution.institution_type;`]},vD=Object.freeze(Object.defineProperty({__proto__:null,default:_D},Symbol.toStringTag,{value:"Module"})),wD={1e3:[`SELECT nationality_for_applicant, plaintiff, fine_amount, plaintiff_current_status, legal_basis_num 
+JOIN institution ON disease.disease_name = institution.research_diseases 
+WHERE (drug.side_effects = 'diarrhea' AND drug.generic_name = 'Esomeprazole') OR (institution.research_diseases = 'Gut Microbiome Imbalance' AND disease.pathogenesis = 'infectious_fungal') 
+GROUP BY institution.institution_type;`]},vD=Object.freeze(Object.defineProperty({__proto__:null,default:_D},Symbol.toStringTag,{value:"Module"})),wD={1e3:[`SELECT nationality_for_applicant, plaintiff, fine_amount, plaintiff_current_status, legal_basis_num 
 FROM legal;`,`SELECT judge_name, legal_basis_num, hearing_year 
 FROM legal;`,`SELECT case_number, plaintiff 
 FROM legal;`,`SELECT first_judge 
@@ -1097,7 +1097,7 @@ JOIN manager ON team.ownership = manager.name
 JOIN city ON team.location = city.city_name 
 GROUP BY player.position;`],1100:[`SELECT mvp_awards, draft_pick, fiba_world_cup 
 FROM player 
-WHERE fiba_world_cup >=0;`,`SELECT position, nationality, age 
+WHERE fiba_world_cup <= 0;`,`SELECT position, nationality, age 
 FROM player 
 WHERE age < 91;`,`SELECT mvp_awards, draft_pick, name 
 FROM player 
@@ -1105,25 +1105,23 @@ WHERE mvp_awards >= 1;`,`SELECT age, birth_date, team
 FROM player 
 WHERE team = 'Phoenix Suns';`,`SELECT fiba_world_cup, nba_championships, birth_date 
 FROM player 
-WHERE nba_championships >= 0;`,`SELECT college, birth_date, draft_year 
+WHERE nba_championships = 0;`,`SELECT college, birth_date, draft_year 
 FROM player 
 WHERE birth_date = '1973/11/25';`,`SELECT founded_year, ownership, team_name 
 FROM team 
-WHERE ownership = 'Joseph Tsai';`,`SELECT ownership, championships, founded_year 
+WHERE ownership != '  ';`,`SELECT ownership, championships, founded_year 
 FROM team 
 WHERE founded_year < 1989;`,`SELECT age, nba_team, name 
 FROM manager 
 WHERE nba_team != 'Cleveland Cavaliers';`,`SELECT state_name, area, city_name 
 FROM city 
-WHERE area > 375.78;`],1101:[`SELECT player.draft_pick, team.team_name, player.fiba_world_cup, team.location 
+WHERE area = 375.78;`],1101:[`SELECT player.draft_pick, team.team_name, player.fiba_world_cup, team.location 
 FROM player 
 JOIN team ON player.team = team.team_name 
-WHERE player.fiba_world_cup > 0;`],1102:[`SELECT team.location, player.nba_championships, team.team_name, player.team 
-FROM player 
+WHERE player.fiba_world_cup > 0;`,`SELECT team.location, player.nba_championships, team.team_name, player.team 
 FROM player 
 JOIN team ON player.team = team.team_name 
-JOIN manager ON team.ownership = manager.name 
-WHERE player.nba_championships > 0;`],1110:[`SELECT nationality, MIN(age) AS min_age 
+WHERE player.nba_championships < 0;`],1110:[`SELECT nationality, MIN(age) AS min_age 
 FROM manager 
 WHERE nba_team != 'Cleveland Cavaliers' 
 GROUP BY nationality;`],1111:[`SELECT player.nationality, MIN(player.olympic_gold_medals) AS min_player_olympic_gold_medals 
@@ -1134,13 +1132,11 @@ GROUP BY player.nationality;`,`SELECT player.nationality, AVG(player.mvp_awards)
 FROM player 
 JOIN team ON player.team = team.team_name 
 WHERE player.age <= 66 
-GROUP BY player.nationality;`],1112:[`SELECT player.nationality, MIN(player.olympic_gold_medals) AS min_player_olympic_gold_medals 
+GROUP BY player.nationality;`,`SELECT player.position, AVG(player.fiba_world_cup) AS avg_player_fiba_world_cup 
 FROM player 
 JOIN team ON player.team = team.team_name 
-JOIN manager ON team.ownership = manager.name 
-JOIN city ON team.location = city.city_name 
-WHERE player.fiba_world_cup > 0 
-GROUP BY player.nationality;`],1200:[`SELECT fiba_world_cup, draft_year, name 
+WHERE player.olympic_gold_medals = 0 
+GROUP BY player.position;`],1200:[`SELECT fiba_world_cup, draft_year, name 
 FROM player 
 WHERE draft_year <= 2017 AND fiba_world_cup > 0;`,`SELECT position, nba_championships, fiba_world_cup 
 FROM player 
@@ -1148,11 +1144,11 @@ WHERE fiba_world_cup > 0 AND nationality != 'French  ';`,`SELECT draft_pick, nba
 FROM player 
 WHERE draft_pick < 17 AND draft_pick >= 5;`,`SELECT age, birth_date, college 
 FROM player 
-WHERE age < 35 AND mvp_awards > 0;`,`SELECT fiba_world_cup, birth_date, nba_championships 
+WHERE age > 91 AND mvp_awards > 0;`,`SELECT fiba_world_cup, birth_date, nba_championships 
 FROM player 
 WHERE birth_date != '1959/6/10' AND birth_date != '1964/2/15';`,`SELECT olympic_gold_medals, position, birth_date 
 FROM player 
-WHERE olympic_gold_medals < 1 AND draft_pick < 17;`,`SELECT founded_year, ownership, team_name 
+WHERE olympic_gold_medals < 1 AND draft_pick = 17;`,`SELECT founded_year, ownership, team_name 
 FROM team 
 WHERE ownership != 'Harris Blitzer Sports & Entertainment (HBSE)  ' AND founded_year >= 1967;`,`SELECT championships, founded_year, location 
 FROM team 
@@ -1160,10 +1156,12 @@ WHERE location = 'Brooklyn' AND location = 'Memphis';`,`SELECT age, nba_team, na
 FROM manager 
 WHERE nba_team != 'Golden State Warriors' AND age >= 66;`,`SELECT state_name, area, city_name 
 FROM city 
-WHERE area != 1314.80 AND population = '887642';`],1201:[`SELECT manager.age, team.founded_year, player.name, city.city_name 
+WHERE area != 1314.80 AND population = '887642';`],1202:[`SELECT manager.age, team.founded_year, player.name, city.city_name 
 FROM player 
 JOIN team ON player.team = team.team_name 
-WHERE player.birth_date > '1994/2/2' AND player.position != 'Backcourt';`],1202:[`SELECT player.nationality, manager.nationality, city.population, team.championships 
+JOIN manager ON team.ownership = manager.name 
+JOIN city ON team.location = city.city_name 
+WHERE player.birth_date > '1994/2/2' AND city.population > '715522';`,`SELECT player.nationality, manager.nationality, city.population, team.championships 
 FROM player 
 JOIN team ON player.team = team.team_name 
 JOIN manager ON team.ownership = manager.name 
@@ -1179,7 +1177,7 @@ JOIN city ON team.location = city.city_name
 WHERE manager.nationality = 'Israeli-American' AND team.founded_year > 1989 
 GROUP BY player.position;`],1300:[`SELECT team, nationality, mvp_awards 
 FROM player 
-WHERE mvp_awards > 1 OR birth_date = '1995/10/2';`,`SELECT draft_year, age, fiba_world_cup 
+WHERE mvp_awards < 1 OR birth_date = '1995/10/2';`,`SELECT draft_year, age, fiba_world_cup 
 FROM player 
 WHERE draft_year <= 2017 OR olympic_gold_medals >= 0;`,`SELECT fiba_world_cup, nationality, college 
 FROM player 
@@ -1200,41 +1198,38 @@ FROM city
 WHERE state_name != 'Indiana' OR population != '372,624';`],1301:[`SELECT player.team, team.location, player.college, team.team_name 
 FROM player 
 JOIN team ON player.team = team.team_name 
-WHERE player.nba_championships > 0 OR player.nationality != 'American-Venezuelan';`],1302:[`SELECT player.name, player.position, team.championships, team.founded_year 
+WHERE player.nba_championships > 0 OR player.nationality != 'American-Venezuelan';`,`SELECT player.name, player.position, team.championships, team.founded_year 
 FROM player 
 JOIN team ON player.team = team.team_name 
-JOIN manager ON team.ownership = manager.name 
 WHERE player.name = 'Kobe Bean Bryant' OR player.fiba_world_cup >= 0;`],1310:[`SELECT nationality, COUNT(*) AS count_all 
 FROM player 
 WHERE name = 'Antonius Cleveland' OR nba_championships >= 0 
 GROUP BY nationality;`,`SELECT nationality, MAX(mvp_awards) AS max_mvp_awards 
 FROM player 
 WHERE draft_year > 2012 OR nba_championships > 0 
-GROUP BY nationality;`],1312:[`SELECT manager.nationality, MAX(player.mvp_awards) AS max_player_mvp_awards 
+GROUP BY nationality;`],1311:[`SELECT player.nationality, COUNT(*) AS count_all 
+FROM player 
+JOIN team ON player.team = team.team_name 
+WHERE player.nationality = 'Cameroonian-American' OR player.birth_date = '1972/3/6' 
+GROUP BY player.nationality;`],1312:[`SELECT manager.nationality, MAX(player.mvp_awards) AS max_player_mvp_awards 
 FROM player 
 JOIN team ON player.team = team.team_name 
 JOIN manager ON team.ownership = manager.name 
 JOIN city ON team.location = city.city_name 
 WHERE city.population < '1603797' OR team.location != 'Minneapolis' 
-GROUP BY manager.nationality;`,`SELECT player.position, AVG(player.olympic_gold_medals) AS avg_player_olympic_gold_medals 
+GROUP BY manager.nationality;`],1400:[`SELECT fiba_world_cup, draft_pick, draft_year 
 FROM player 
-JOIN team ON player.team = team.team_name 
-JOIN manager ON team.ownership = manager.name 
-JOIN city ON team.location = city.city_name 
-WHERE manager.nationality != 'Israeli-American' OR team.founded_year < 1989 
-GROUP BY player.position;`],1400:[`SELECT fiba_world_cup, draft_pick, draft_year 
+WHERE draft_pick >= 17 AND age >= 47 AND mvp_awards <= 0 AND mvp_awards < 1;`,`SELECT name, nba_championships, college 
 FROM player 
-WHERE draft_pick >= 17 AND age >= 47 AND mvp_awards >=0 AND mvp_awards < 1;`,`SELECT name, nba_championships, college 
-FROM player 
-WHERE nba_championships > 2 AND olympic_gold_medals >= 0 AND olympic_gold_medals != 1 AND name != 'Toby Kimball';`,`SELECT age, olympic_gold_medals, mvp_awards 
+WHERE nba_championships > 2 AND olympic_gold_medals >= 0 AND olympic_gold_medals != 1 AND name != 'Toby Kimball  ';`,`SELECT age, olympic_gold_medals, mvp_awards 
 FROM player 
 WHERE olympic_gold_medals >= 1 AND college = 'UCLA  ' AND draft_year > 2012 AND fiba_world_cup >= 0;`,`SELECT draft_pick, olympic_gold_medals, position 
 FROM player 
 WHERE olympic_gold_medals > 0 AND birth_date != '1943/12/23' AND nba_championships < 2 AND birth_date = '1992/12/17';`,`SELECT fiba_world_cup, birth_date, draft_pick 
 FROM player 
-WHERE birth_date != '1950/1/29' AND college = 'University of Florida' AND age < 47 AND name = 'Walter Berry ';`,`SELECT nationality, draft_pick, team 
+WHERE birth_date != '1950/1/29' AND college = 'University of Florida' AND age != 47 AND name = 'Walter Berry ';`,`SELECT nationality, draft_pick, team 
 FROM player 
-WHERE nationality != 'Croatian  ' AND olympic_gold_medals < 0 AND olympic_gold_medals != 0 AND mvp_awards > 0;`,`SELECT championships, ownership, founded_year 
+WHERE nationality != 'Croatian  ' AND olympic_gold_medals < 0 AND olympic_gold_medals != 0 AND mvp_awards = 0;`,`SELECT championships, ownership, founded_year 
 FROM team 
 WHERE ownership = 'James L. Dolan' AND ownership = 'Glen Taylor' AND location = 'Houston' AND location != 'Brooklyn';`,`SELECT team_name, championships, location 
 FROM team 
@@ -1242,26 +1237,29 @@ WHERE team_name = 'Golden State Warriors' AND founded_year >= 1989 AND ownership
 FROM manager 
 WHERE nba_team = 'Miami Heat' AND own_year != 2008 AND nationality != 'American  ' AND nationality != 'American  ';`,`SELECT gdp, area, state_name 
 FROM city 
-WHERE area < 976.15 AND gdp != '473,000' AND area > 375.78 AND population = '808988';`],1401:[`SELECT player.position, manager.age, team.championships, city.city_name 
-FROM player 
-JOIN team ON player.team = team.team_name 
-WHERE player.olympic_gold_medals = 0 AND player.position != 'Backcourt' AND player.nationality != 'American-Venezuelan';`],1402:[`SELECT manager.age, city.area, team.location, player.team 
+WHERE area = 976.15 AND gdp != '473,000' AND area = 375.78 AND population = '808988';`],1402:[`SELECT manager.age, city.area, team.location, player.team 
 FROM player 
 JOIN team ON player.team = team.team_name 
 JOIN manager ON team.ownership = manager.name 
 JOIN city ON team.location = city.city_name 
-WHERE player.college = 'University of Kentucky' AND city.population != '383,997' AND team.founded_year >= 1949;`],1412:[`SELECT player.nationality, SUM(team.championships) AS sum_team_championships 
+WHERE player.college = 'University of Kentucky' AND city.population != '383,997' AND team.founded_year >= 1949;`,`SELECT player.position, manager.age, team.championships, city.city_name 
 FROM player 
 JOIN team ON player.team = team.team_name 
-JOIN manager 
-WHERE player.draft_year <= 1990 AND player.position = 'Backcourt' AND player.draft_pick <= 35 
-GROUP BY player.nationality;`,`SELECT manager.nationality, MAX(player.nba_championships) AS max_player_nba_championships 
+JOIN manager ON team.ownership = manager.name 
+JOIN city ON team.location = city.city_name 
+WHERE player.olympic_gold_medals = 0 AND player.position != 'Backcourt' AND manager.name = 'Clay Bennett';`],1412:[`SELECT manager.nationality, MAX(player.nba_championships) AS max_player_nba_championships 
 FROM player 
 JOIN team ON player.team = team.team_name 
 JOIN manager ON team.ownership = manager.name 
 JOIN city ON team.location = city.city_name 
 WHERE city.population = '1603797' AND city.gdp != '518.5' AND player.birth_date = '1990/8/17' 
-GROUP BY manager.nationality;`],1500:[`SELECT draft_pick, age, position 
+GROUP BY manager.nationality;`,`SELECT player.nationality, SUM(team.championships) AS sum_team_championships 
+FROM player 
+JOIN team ON player.team = team.team_name 
+JOIN manager ON team.ownership = manager.name 
+JOIN city ON team.location = city.city_name 
+WHERE player.draft_year <= 1990 AND player.position = 'Backcourt' AND player.draft_pick <= 35 
+GROUP BY player.nationality;`],1500:[`SELECT draft_pick, age, position 
 FROM player 
 WHERE age <= 66 OR birth_date = '1997/8/7' OR college != 'Duke University' OR nba_championships = 2;`,`SELECT olympic_gold_medals, college, age 
 FROM player 
@@ -1271,7 +1269,7 @@ WHERE nba_championships = 0 OR team != 'Miami Heat  ' OR nationality = ' ' OR te
 FROM player 
 WHERE age <= 91 OR team = 'Guaros de Lara' OR mvp_awards = 0 OR olympic_gold_medals > 1;`,`SELECT olympic_gold_medals, age, team 
 FROM player 
-WHERE age >= 47 OR team != 'San Antonio Spurs' OR nba_championships >=0 OR nba_championships < 0;`,`SELECT position, nationality, olympic_gold_medals 
+WHERE age >= 47 OR team != 'San Antonio Spurs' OR nba_championships <= 0 OR nba_championships < 0;`,`SELECT position, nationality, olympic_gold_medals 
 FROM player 
 WHERE position != 'Frontcourt' OR draft_pick > 5 OR olympic_gold_medals < 0 OR mvp_awards = 0;`,`SELECT championships, founded_year, location 
 FROM team 
@@ -1281,26 +1279,22 @@ WHERE founded_year > 1967 OR team_name != 'Charlotte Hornets' OR team_name = 'De
 FROM manager 
 WHERE age <= 76 OR name = 'Joseph Chung-Hsin Tsai' OR own_year != 2012 OR own_year = 2017;`,`SELECT gdp, state_name, population 
 FROM city 
-WHERE state_name != 'Ontario' OR city_name = 'Minneapolis' OR gdp != '102,000,000,000';`],1501:[`SELECT player.mvp_awards, team.championships, player.draft_year, team.team_name 
+WHERE state_name != 'Ontario' OR city_name = 'Minneapolis' OR gdp != '102,000,000,000' OR gdp != ' ';`],1501:[`SELECT player.mvp_awards, team.championships, player.draft_year, team.team_name 
 FROM player 
 JOIN team ON player.team = team.team_name 
-WHERE team.location != 'Los Angeles' OR team.founded_year < 1967 OR player.birth_date = '1971/10/2';`],1502:[`SELECT team.location, player.draft_year, team.ownership, player.name 
+WHERE team.location != 'Los Angeles' OR team.founded_year < 1967 OR player.birth_date = '1971/10/2';`,`SELECT team.location, player.draft_year, team.ownership, player.name 
 FROM player 
 JOIN team ON player.team = team.team_name 
-JOIN manager ON team.ownership = manager.name 
-JOIN city ON team.location = city.city_name 
 WHERE team.founded_year <= 1989 OR player.college = 'UCLA  ' OR player.fiba_world_cup >= 1;`],1510:[`SELECT nationality, AVG(fiba_world_cup) AS avg_fiba_world_cup 
 FROM player 
-WHERE team = 'New York Knicks  ' OR nba_championships >= 0 OR fiba_world_cup > 0 
+WHERE team = 'New York Knicks  ' OR nba_championships <= 0 OR fiba_world_cup < 0 
 GROUP BY nationality;`],1511:[`SELECT player.position, AVG(player.fiba_world_cup) AS avg_player_fiba_world_cup 
 FROM player 
 JOIN team ON player.team = team.team_name 
 WHERE player.nba_championships < 0 OR player.age >= 47 OR player.nationality = 'Greek-American  ' 
-GROUP BY player.position;`],1512:[`SELECT player.nationality, SUM(player.mvp_awards) AS sum_player_mvp_awards 
+GROUP BY player.position;`,`SELECT player.nationality, SUM(player.mvp_awards) AS sum_player_mvp_awards 
 FROM player 
 JOIN team ON player.team = team.team_name 
-JOIN manager ON team.ownership = manager.name 
-JOIN city ON team.location = city.city_name  
 WHERE player.team != 'Milwaukee Bucks' OR player.nba_championships > 2 OR team.founded_year != 1949 
 GROUP BY player.nationality;`],1600:[`SELECT team, nationality, fiba_world_cup 
 FROM player 
@@ -1314,30 +1308,34 @@ WHERE (draft_year != 2017 AND nationality != 'Croatian  ') OR (name = 'Donta Hal
 FROM player 
 WHERE (birth_date = '1973/11/25' AND olympic_gold_medals != 0) OR (team = 'Miami Heat' AND nationality = 'Canadian');`,`SELECT nationality, birth_date, age 
 FROM player 
-WHERE (birth_date != '1994/6/6' AND nationality = 'Dutch  ') OR (nba_championships <= 2 AND age < 44);`,`SELECT location, founded_year, team_name 
+WHERE (birth_date != '1994/6/6' AND nationality = 'Dutch  ') OR (nba_championships <= 2 AND age > 91);`,`SELECT location, founded_year, team_name 
 FROM team 
 WHERE (founded_year >= 1949 AND founded_year = 1949) OR (ownership != 'Paul Allen' AND ownership != 'Glen Taylor');`,`SELECT location, founded_year, team_name 
 FROM team 
-WHERE (founded_year > 1989 AND ownership != 'Gabe Plotkin and Rick Schnall') OR (ownership = 'Joseph Tsai' AND founded_year = 1967);`,`SELECT nationality, age, name 
+WHERE (founded_year > 1989 AND ownership != 'Gabe Plotkin and Rick Schnall') OR (ownership = ' ' AND founded_year = 1967);`,`SELECT nationality, age, name 
 FROM manager 
-WHERE (age >= 63 AND age <= 83) OR (nba_team != 'Indiana Pacers' AND nba_team != 'New Orleans Pelicans');`,`SELECT population, state_name, city_name 
+WHERE (age >= 63 AND age = 63) OR (nba_team != 'Indiana Pacers' AND nba_team != 'New Orleans Pelicans');`,`SELECT population, state_name, city_name 
 FROM city 
-WHERE (state_name = 'Minnesota' AND population = '887642') OR (area > 200 AND area < 1000);`],1601:[`SELECT manager.nba_team, team.ownership, player.fiba_world_cup, city.city_name 
+WHERE (state_name = 'Minnesota' AND population = '887642') OR (area != 976.15 AND area != 976.15);`],1602:[`SELECT manager.nba_team, team.ownership, player.fiba_world_cup, city.city_name 
 FROM player 
 JOIN team ON player.team = team.team_name 
-WHERE (player.college = 'UCLA  ' AND player.olympic_gold_medals <= 1) OR (player.position = 'Backcourt' AND player.draft_year != 1990);`],1602:[`SELECT team.team_name, city.area, player.position, manager.own_year 
+JOIN manager ON team.ownership = manager.name 
+JOIN city ON team.location = city.city_name 
+WHERE (manager.nationality != 'American  ' AND player.olympic_gold_medals <= 1) OR (player.position = 'Backcourt' AND player.draft_year != 1990);`,`SELECT team.team_name, city.area, player.position, manager.own_year 
 FROM player 
 JOIN team ON player.team = team.team_name 
 JOIN manager ON team.ownership = manager.name 
 JOIN city ON team.location = city.city_name 
 WHERE (player.mvp_awards <= 1 AND city.city_name = 'Miami') OR (player.draft_year < 2017 AND team.team_name = 'Detroit Pistons');`],1610:[`SELECT position, MIN(fiba_world_cup) AS min_fiba_world_cup 
 FROM player 
-WHERE (fiba_world_cup < 0 AND mvp_awards >=0) OR (age < 91 AND fiba_world_cup >= 0) 
-GROUP BY position;`],1611:[`SELECT player.position, AVG(player.age) AS avg_player_age 
+WHERE (fiba_world_cup < 0 AND mvp_awards <= 0) OR (age < 91 AND fiba_world_cup >= 0) 
+GROUP BY position;`],1612:[`SELECT player.position, AVG(player.age) AS avg_player_age 
 FROM player 
 JOIN team ON player.team = team.team_name 
+JOIN manager ON team.ownership = manager.name 
+JOIN city ON team.location = city.city_name 
 WHERE (player.nba_championships <= 2 AND player.mvp_awards < 1) OR (player.olympic_gold_medals != 0 AND player.nationality = 'American-born naturalized Azerbaijani  ') 
-GROUP BY player.position;`],1612:[`SELECT player.position, MIN(team.championships) AS min_team_championships 
+GROUP BY player.position;`,`SELECT player.position, MIN(team.championships) AS min_team_championships 
 FROM player 
 JOIN team ON player.team = team.team_name 
 JOIN manager ON team.ownership = manager.name 
