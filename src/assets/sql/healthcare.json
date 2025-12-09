@@ -47,31 +47,29 @@
         "SELECT institution.institution_country, drug.manufacturer, drug.indication, disease.risk_factors \nFROM disease \nJOIN drug ON disease.disease_name = drug.disease_name \nJOIN institution ON disease.disease_name = institution.research_diseases \nWHERE (drug.single_dose != 'adults 10 mg' AND drug.active_ingredients = 'Roflumilast') OR (drug.storage_conditions != 'do not freeze liquid forms' AND institution.research_fields != 'cardiology');",
         "SELECT drug.indication, institution.international_collaboration, disease.prognosis, drug.recommended_usage \nFROM disease \nJOIN drug ON disease.disease_name = drug.disease_name \nJOIN institution ON disease.disease_name = institution.research_diseases \nWHERE (drug.indication != 'constipation' AND disease.diagnosis_challenges != 'lack of accurate diagnostic test') OR (drug.single_dose = 'adult patients with EGPA 3x100 mg' AND disease.sequelae != 'gangrene');"
     ],
-    "1121": [
+    "1111": [
         "SELECT drug.prescription_status, MIN(drug.recommended_usage) AS min_drug_recommended_usage \nFROM disease \nJOIN drug ON disease.disease_name = drug.disease_name \nWHERE drug.manufacturer != 'GSK' \nGROUP BY drug.prescription_status;",
         "SELECT drug.prescription_status, AVG(disease.epidemiology) AS avg_disease_epidemiology \nFROM disease \nJOIN drug ON disease.disease_name = drug.disease_name \nWHERE drug.pharmaceutical_form = 'tablet' \nGROUP BY drug.prescription_status;"
     ],
-    "1222": [
+    "1212": [
         "SELECT institution.research_fields, MAX(disease.quality_of_life_impact) AS max_disease_quality_of_life_impact \nFROM disease \nJOIN drug ON disease.disease_name = drug.disease_name \nJOIN institution ON disease.disease_name = institution.research_diseases \nWHERE institution.leadership = 'Pierre-Yves Marcy' AND drug.activation_conditions != 'take with food' \nGROUP BY institution.research_fields;",
         "SELECT institution.institution_type, AVG(drug.dosage_frequency) AS avg_drug_dosage_frequency \nFROM disease \nJOIN drug ON disease.disease_name = drug.disease_name \nJOIN institution ON disease.disease_name = institution.research_diseases \nWHERE drug.generic_name != 'Linaclotide' AND disease.common_symptoms != 'headache' \nGROUP BY institution.institution_type;"
     ],
-    "1321": [
-        "SELECT drug.prescription_status, AVG(disease.quality_of_life_impact) AS avg_disease_quality_of_life_impact \nFROM disease \nJOIN drug ON disease.disease_name = drug.disease_name \nWHERE disease.treatment_challenges != 'only_one_drug_available' OR disease.drugs != 'diuretics' \nGROUP BY drug.prescription_status;"
+    "1311": [
+        "SELECT drug.prescription_status, AVG(disease.quality_of_life_impact) AS avg_disease_quality_of_life_impact \nFROM disease \nJOIN drug ON disease.disease_name = drug.disease_name \nWHERE disease.treatment_challenges != 'only_one_drug_available' OR disease.drugs != 'diuretics' \nGROUP BY drug.prescription_status;",
+        "SELECT drug.prescription_status, COUNT(disease.common_symptoms) AS count_disease_common_symptoms \nFROM disease \nJOIN drug ON disease.disease_name = drug.disease_name \nWHERE disease.diagnostic_methods = 'genetic_testing' OR disease.pathogenesis = 'traumatic' \nGROUP BY drug.prescription_status;"
     ],
-    "1422": [
+    "1412": [
         "SELECT institution.research_fields, MAX(disease.diagnosis_challenges) AS max_disease_diagnosis_challenges \nFROM disease \nJOIN drug ON disease.disease_name = drug.disease_name \nJOIN institution ON disease.disease_name = institution.research_diseases \nWHERE institution.institution_country = 'United Kingdom' AND institution.research_fields != 'gastroenterology' AND disease.etiology = 'pulmonary embolism' \nGROUP BY institution.research_fields;",
         "SELECT drug.prescription_status, SUM(institution.institution_country) AS sum_institution_institution_country \nFROM disease \nJOIN drug ON disease.disease_name = drug.disease_name \nJOIN institution ON disease.disease_name = institution.research_diseases \nWHERE disease.diagnosis_challenges = 'lack of early recognition' AND disease.disease_name = 'Acute Intermittent Porphyria' AND disease.epidemiology = '27% of constipated patients relate constipation to medications' \nGROUP BY drug.prescription_status;"
     ],
-    "1521": [
+    "1511": [
         "SELECT drug.prescription_status, AVG(disease.quality_of_life_impact) AS avg_disease_quality_of_life_impact \nFROM disease \nJOIN drug ON disease.disease_name = drug.disease_name \nWHERE drug.brand_name = 'Nucala' OR disease.diagnostic_methods = 'genetic_testing' OR drug.activation_conditions = 'requires co-administration with other drugs' \nGROUP BY drug.prescription_status;",
         "SELECT drug.prescription_status, SUM(disease.treatment_challenges) AS sum_disease_treatment_challenges \nFROM disease \nJOIN drug ON disease.disease_name = drug.disease_name \nWHERE disease.treatments != 'radiotherapy' OR drug.brand_name != 'Lo Loestrin FE' OR drug.brand_name = 'Nucala' \nGROUP BY drug.prescription_status;"
     ],
-    "1622": [
+    "1612": [
         "SELECT institution.institution_type, AVG(disease.epidemiology) AS avg_disease_epidemiology \nFROM disease \nJOIN drug ON disease.disease_name = drug.disease_name \nJOIN institution ON disease.disease_name = institution.research_diseases \nWHERE (drug.brand_name != 'Daliresp' AND disease.common_symptoms != 'back pain') OR (institution.key_technologies = 'enzyme-linked immunosorbent assay (ELISA)' AND drug.pharmaceutical_form != 'ointment') \nGROUP BY institution.institution_type;",
         "SELECT institution.institution_type, MIN(disease.diagnosis_challenges) AS min_disease_diagnosis_challenges \nFROM disease \nJOIN drug ON disease.disease_name = drug.disease_name \nJOIN institution ON disease.disease_name = institution.research_diseases \nWHERE (drug.side_effects = 'diarrhea' AND drug.generic_name = 'Esomeprazole') OR (institution.research_diseases = 'Gut Microbiome Imbalance' AND disease.pathogenesis = 'infectious_fungal') \nGROUP BY institution.institution_type;"
-    ],
-    "1311": [
-        "SELECT drug.prescription_status, COUNT(disease.common_symptoms) AS count_disease_common_symptoms \nFROM disease \nJOIN drug ON disease.disease_name = drug.disease_name \nWHERE disease.diagnostic_methods = 'genetic_testing' OR disease.pathogenesis = 'traumatic' \nGROUP BY drug.prescription_status;"
     ],
     "1100": [
         "SELECT manufacturer, activation_conditions, indication \nFROM drug \nWHERE activation_conditions = 'requires stimulation';",
@@ -145,19 +143,17 @@
         "SELECT number_of_staff, parent_organization, technology_application \nFROM institution \nWHERE (parent_organization = 'Shanghai Jiao Tong University School of Medicine' AND institution_city = 'London') OR (research_diseases != 'lower limb complications of diabetes' AND technology_application != 'intensive case management');",
         "SELECT parent_organization, key_achievements, international_collaboration \nFROM institution \nWHERE (technology_application = 'inpatient psychiatric treatment' AND key_technologies = 'blood sample collection') OR (funding_sources != 'industry grant' AND key_achievements = 'Largest neuroscience study of mindfulness for addiction');"
     ],
-    "1020": [
+    "1010": [
         "SELECT research_fields, MIN(institution_country) AS min_institution_country \nFROM institution \nGROUP BY research_fields;",
+        "SELECT institution_type, COUNT(institution_name) AS count_institution_name \nFROM institution \nGROUP BY institution_type;",
         "SELECT prescription_status, MIN(dosage_frequency) AS min_dosage_frequency \nFROM drug \nGROUP BY prescription_status;",
+        "SELECT prescription_status, COUNT(generic_name) AS count_generic_name \nFROM drug \nGROUP BY prescription_status;",
         "SELECT prescription_status, AVG(recommended_usage) AS avg_recommended_usage \nFROM drug \nGROUP BY prescription_status;",
         "SELECT prescription_status, MAX(recommended_usage) AS max_recommended_usage \nFROM drug \nGROUP BY prescription_status;",
+        "SELECT prescription_status, COUNT(storage_conditions) AS count_storage_conditions \nFROM drug \nGROUP BY prescription_status;",
         "SELECT prescription_status, MIN(recommended_usage) AS min_recommended_usage \nFROM drug \nGROUP BY prescription_status;",
         "SELECT prescription_status, MAX(recommended_usage) AS max_recommended_usage \nFROM drug \nGROUP BY prescription_status;",
         "SELECT prescription_status, SUM(recommended_usage) AS sum_recommended_usage \nFROM drug \nGROUP BY prescription_status;"
-    ],
-    "1010": [
-        "SELECT institution_type, COUNT(institution_name) AS count_institution_name \nFROM institution \nGROUP BY institution_type;",
-        "SELECT prescription_status, COUNT(generic_name) AS count_generic_name \nFROM drug \nGROUP BY prescription_status;",
-        "SELECT prescription_status, COUNT(storage_conditions) AS count_storage_conditions \nFROM drug \nGROUP BY prescription_status;"
     ],
     "1000": [
         "SELECT international_collaboration, funding_sources, institution_country \nFROM institution;",
@@ -171,28 +167,28 @@
         "SELECT drugs, disease_type \nFROM disease;",
         "SELECT disease_type \nFROM disease;"
     ],
-    "1021": [
+    "1011": [
         "SELECT drug.prescription_status, MIN(drug.recommended_usage) AS min_drug_recommended_usage \nFROM disease \nJOIN drug ON disease.disease_name = drug.disease_name \nGROUP BY drug.prescription_status;"
     ],
-    "1022": [
+    "1012": [
         "SELECT institution.institution_type, MIN(drug.recommended_usage) AS min_drug_recommended_usage \nFROM disease \nJOIN drug ON disease.disease_name = drug.disease_name \nJOIN institution ON disease.disease_name = institution.research_diseases \nGROUP BY institution.institution_type;"
     ],
-    "1120": [
+    "1110": [
         "SELECT research_fields, MIN(institution_country) AS min_institution_country \nFROM institution \nWHERE research_diseases != 'post-traumatic stress disorder' \nGROUP BY research_fields;"
     ],
-    "1220": [
+    "1210": [
         "SELECT institution_type, SUM(institution_country) AS sum_institution_country \nFROM institution \nWHERE parent_organization = 'University of Wisconsin' AND funding_sources != 'other' \nGROUP BY institution_type;"
     ],
     "1310": [
         "SELECT prescription_status, COUNT(manufacturer) AS count_manufacturer \nFROM drug \nWHERE brand_name = 'Savella' OR recommended_usage >= 'oral' \nGROUP BY prescription_status;"
     ],
-    "1420": [
+    "1410": [
         "SELECT prescription_status, MAX(dosage_frequency) AS max_dosage_frequency \nFROM drug \nWHERE mechanism_of_action != 'competitive inhibition of HMG-CoA reductase, reduces cholesterol synthesis, increases LDL receptor expression, increases LDL catabolism, inhibits VLDL synthesis' AND mechanism_of_action = 'relieve watery eyes, itchy eyes/nose/throat, runny nose, and sneezing' AND pharmaceutical_form != 'gel' \nGROUP BY prescription_status;"
     ],
-    "1520": [
+    "1510": [
         "SELECT prescription_status, AVG(storage_conditions) AS avg_storage_conditions \nFROM drug \nWHERE single_dose = 'adults 25 mg' OR unsuitable_population != 'patients with diabetes' OR recommended_usage != 'intravenous' \nGROUP BY prescription_status;"
     ],
-    "1620": [
+    "1610": [
         "SELECT prescription_status, MIN(storage_conditions) AS min_storage_conditions \nFROM drug \nWHERE (prescription_status < 'unclassified' AND side_effects != 'hair loss') OR (disease_name != 'Chronic Obstructive Pulmonary Disease' AND administration_route = 'intravenous') \nGROUP BY prescription_status;"
     ]
 }

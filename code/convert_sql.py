@@ -42,10 +42,10 @@ def get_sql_state(sql):
     
     if group_by_count > 0:
         c = 1  # 有GROUP BY
-        if count_count > 0:
-            c = 1
-        else:
-            c = 2
+        # if count_count > 0:
+        #     c = 1
+        # else:
+        #     c = 2
     else:
         c = 0  # 没有GROUP BY, COUNT, MIN/MAX/AVG
 
@@ -102,6 +102,11 @@ def main(input_folder, output_json):
 
 # 使用时提供文件夹路径和输出路径
 if __name__ == '__main__':
-    input_folder = "/home/lijianhui/worksp/gh-page/uda-bench-page/sql_data/player"
-    output_json = "/home/lijianhui/worksp/gh-page/uda-bench-page/src/assets/sql/player.json"
-    main(input_folder, output_json)
+    datasets = ['player', 'art', 'cspaper', 'finance', 'healthcare', 'legal']
+    for dataset in datasets:
+        input_folder = f"/home/lijianhui/worksp/gh-page/uda-bench-page/sql_data/{dataset}"
+        output_json = f"/home/lijianhui/worksp/gh-page/uda-bench-page/src/assets/sql/{dataset}.json"
+        main(input_folder, output_json)
+    # input_folder = "/home/lijianhui/worksp/gh-page/uda-bench-page/sql_data/player"
+    # output_json = "/home/lijianhui/worksp/gh-page/uda-bench-page/src/assets/sql/player.json"
+    # main(input_folder, output_json)

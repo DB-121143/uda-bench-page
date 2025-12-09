@@ -20,11 +20,11 @@
         "SELECT art_institution, style, marriage \nFROM art \nWHERE art_movement = 'Pop art';",
         "SELECT marriage, theme, object \nFROM art \nWHERE birth_city = 'Boston';",
         "SELECT awards, zodiac, object \nFROM art \nWHERE death_country = 'Italy';",
-        "SELECT birth_date, birth_country, tone \nFROM art \nWHERE art_institution = 'China Academy of Art';",
+        "SELECT birth_date, birth_country, tone \nFROM art \nWHERE art_institution = '';",
         "SELECT genre, style, age \nFROM art \nWHERE name != 'Christiaan Karel Appel';"
     ],
     "1200": [
-        "SELECT marriage, color, nationality \nFROM art \nWHERE genre != 'Expressionist' AND age <= 74;",
+        "SELECT marriage, color, nationality \nFROM art \nWHERE genre != 'Expressionist' AND age >= 74;",
         "SELECT theme, object, zodiac \nFROM art \nWHERE birth_continent = 'Australia' AND art_institution = 'Northwestern University';",
         "SELECT color, birth_continent, birth_country \nFROM art \nWHERE field != 'Teaching' AND birth_continent = 'Oceania';",
         "SELECT genre, birth_date, art_institution \nFROM art \nWHERE zodiac != 'Cancer' AND death_city = 'Saint Petersburg';",
@@ -32,13 +32,13 @@
         "SELECT composition, death_country, birth_date \nFROM art \nWHERE birth_date != '1905/3/12' AND death_country = 'Nigeria';",
         "SELECT genre, century, birth_continent \nFROM art \nWHERE death_date != '1943/1/13' AND birth_city = 'Bucharest';",
         "SELECT death_city, marriage, genre \nFROM art \nWHERE zodiac = 'Cancer' AND birth_city != 'San Francisco';",
-        "SELECT color, genre, art_institution \nFROM art \nWHERE genre != 'Surrealist' AND teaching > 0;",
+        "SELECT color, genre, art_institution \nFROM art \nWHERE genre != 'Surrealist' AND teaching < 0;",
         "SELECT death_city, birth_continent, style \nFROM art \nWHERE birth_date = '1905/3/12' AND marriage = 'Separated';"
     ],
     "1300": [
         "SELECT birth_city, death_date, composition \nFROM art \nWHERE death_date != '1943/1/13' OR birth_city != 'Buenos Aires';",
         "SELECT color, zodiac, genre \nFROM art \nWHERE marriage != 'Cohabiting' OR art_institution != 'Slade School of art';",
-        "SELECT teaching, death_date, tone \nFROM art \nWHERE teaching != 0 OR age > 90;",
+        "SELECT teaching, death_date, tone \nFROM art \nWHERE teaching != 0 OR age != 90;",
         "SELECT art_movement, birth_date, style \nFROM art \nWHERE art_movement = 'Generación de la Ruptura' OR death_country != 'Brazil';",
         "SELECT teaching, color, death_city \nFROM art \nWHERE field = 'Drawing' OR death_country != 'France';",
         "SELECT composition, awards, century \nFROM art \nWHERE century != '20th-21st' OR name != 'George Dawe';",
@@ -55,9 +55,9 @@
         "SELECT art_movement, style, death_city \nFROM art \nWHERE birth_date != '1905/4/25' AND art_institution = 'Claremont Graduate University' AND zodiac = 'Pisces' AND death_city = 'London';",
         "SELECT genre, death_city, birth_city \nFROM art \nWHERE age <= 83 AND death_city != 'Stuttgart' AND birth_date = '1905/4/4' AND genre = 'Still life';",
         "SELECT tone, century, awards \nFROM art \nWHERE awards >= 1 AND awards <= 0 AND birth_city != 'Stockholm' AND death_country = 'Switzerland';",
-        "SELECT death_city, style, art_movement \nFROM art \nWHERE name != 'Eduardo Chillida Juantegui' AND age < 90 AND birth_continent != 'Africa' AND birth_country = 'United States';",
-        "SELECT birth_city, zodiac, tone \nFROM art \nWHERE birth_city = 'Addis Ababa' AND death_city != 'Tigre' AND birth_country = 'Switzerland' AND teaching > 0;",
-        "SELECT marriage, object, awards \nFROM art \nWHERE birth_country != 'Spain' AND nationality != 'Canadian' AND teaching >= 0 AND teaching <= 1;"
+        "SELECT death_city, style, art_movement \nFROM art \nWHERE name != 'Eduardo Chillida Juantegui' AND age > 90 AND birth_continent != 'Africa' AND birth_country = 'United States';",
+        "SELECT birth_city, zodiac, tone \nFROM art \nWHERE birth_city = 'Addis Ababa' AND death_city != 'Tigre' AND birth_country = 'Switzerland' AND teaching < 0;",
+        "SELECT marriage, object, awards \nFROM art \nWHERE birth_country != 'Spain' AND nationality != 'Canadian' AND teaching >= 0 AND teaching <= 0;"
     ],
     "1500": [
         "SELECT death_city, genre, death_country \nFROM art \nWHERE zodiac != 'Cancer' OR birth_date = '1905/4/4' OR art_institution != 'Hunter College' OR awards = 1;",
@@ -72,7 +72,7 @@
         "SELECT name, marriage, composition \nFROM art \nWHERE marriage != 'Cohabiting' OR field = 'Painting' OR art_movement = 'art Nouveau' OR field = 'Music';"
     ],
     "1600": [
-        "SELECT birth_country, genre, age \nFROM art \nWHERE (age >= 61 AND age < 81) OR (death_city != 'Leningrad' AND field != 'Installation art');",
+        "SELECT birth_country, genre, age \nFROM art \nWHERE (age >= 61 AND age = 61) OR (death_city != 'Leningrad' AND field != 'Installation art');",
         "SELECT composition, age, name \nFROM art \nWHERE (age > 90 AND genre != 'Nature') OR (death_city = 'Paris' AND zodiac != 'Aries');",
         "SELECT teaching, genre, death_country \nFROM art \nWHERE (zodiac = 'Aquarius' AND field = 'Video') OR (teaching != 0 AND birth_city != 'Los Angeles');",
         "SELECT death_date, nationality, color \nFROM art \nWHERE (marriage = 'Cohabiting' AND birth_continent != 'Australia') OR (nationality = 'Russian' AND death_country != 'Venezuela');",
@@ -83,36 +83,34 @@
         "SELECT field, tone, nationality \nFROM art \nWHERE (field != 'Playwriting' AND birth_city = 'New York City') OR (art_institution = 'Ecole des Beaux-arts' AND teaching >= 0);",
         "SELECT birth_city, awards, color \nFROM art \nWHERE (field = 'Illustration' AND nationality != 'Russian') OR (death_date = '1962/1/16' AND awards != 0);"
     ],
-    "1120": [
+    "1110": [
         "SELECT field, AVG(age) AS avg_age \nFROM art \nWHERE century = '19th-20th' \nGROUP BY field;"
     ],
     "1210": [
         "SELECT nationality, COUNT(birth_continent) AS count_birth_continent \nFROM art \nWHERE nationality = 'Japanese' AND birth_continent != 'Australia' \nGROUP BY nationality;"
     ],
-    "1320": [
+    "1310": [
         "SELECT genre, AVG(age) AS avg_age \nFROM art \nWHERE birth_country = 'British India' OR teaching != 0 \nGROUP BY genre;"
     ],
-    "1420": [
+    "1410": [
         "SELECT image_genre, MAX(awards) AS max_awards \nFROM art \nWHERE art_institution != 'National Academy of Design' AND name != 'Emma Amos' AND birth_date = '1905/5/11' \nGROUP BY image_genre;"
     ],
-    "1520": [
+    "1510": [
         "SELECT color, MAX(awards) AS max_awards \nFROM art \nWHERE awards > 0 OR birth_country = 'Kingdom of Hungary' OR birth_country = 'Italy' \nGROUP BY color;"
     ],
     "1610": [
         "SELECT nationality, COUNT(nationality) AS count_nationality \nFROM art \nWHERE (nationality = 'German-American' AND teaching = 1) OR (birth_continent != 'Australia' AND birth_date = '1905/5/15') \nGROUP BY nationality;"
     ],
-    "1020": [
+    "1010": [
         "SELECT teaching, MAX(awards) AS max_awards \nFROM art \nGROUP BY teaching;",
+        "SELECT zodiac, COUNT(name) AS count_name \nFROM art \nGROUP BY zodiac;",
         "SELECT image_genre, AVG(age) AS avg_age \nFROM art \nGROUP BY image_genre;",
         "SELECT color, AVG(age) AS avg_age \nFROM art \nGROUP BY color;",
+        "SELECT zodiac, COUNT(art_institution) AS count_art_institution \nFROM art \nGROUP BY zodiac;",
         "SELECT teaching, MIN(age) AS min_age \nFROM art \nGROUP BY teaching;",
         "SELECT color, MAX(age) AS max_age \nFROM art \nGROUP BY color;",
         "SELECT birth_continent, SUM(age) AS sum_age \nFROM art \nGROUP BY birth_continent;",
         "SELECT birth_continent, MIN(age) AS min_age \nFROM art \nGROUP BY birth_continent;",
         "SELECT color, MIN(age) AS min_age \nFROM art \nGROUP BY color;"
-    ],
-    "1010": [
-        "SELECT zodiac, COUNT(name) AS count_name \nFROM art \nGROUP BY zodiac;",
-        "SELECT zodiac, COUNT(art_institution) AS count_art_institution \nFROM art \nGROUP BY zodiac;"
     ]
 }

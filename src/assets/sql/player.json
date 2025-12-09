@@ -47,27 +47,27 @@
         "SELECT manager.nba_team, team.ownership, player.fiba_world_cup, city.city_name \nFROM player \nJOIN team ON player.team = team.team_name \nJOIN manager ON team.ownership = manager.name \nJOIN city ON team.location = city.city_name \nWHERE (manager.nationality != 'American  ' AND player.olympic_gold_medals <= 1) OR (player.position = 'Backcourt' AND player.draft_year != 1990);",
         "SELECT team.team_name, city.area, player.position, manager.own_year \nFROM player \nJOIN team ON player.team = team.team_name \nJOIN manager ON team.ownership = manager.name \nJOIN city ON team.location = city.city_name \nWHERE (player.mvp_awards <= 1 AND city.city_name = 'Miami') OR (player.draft_year < 2017 AND team.team_name = 'Detroit Pistons');"
     ],
-    "1121": [
+    "1111": [
         "SELECT player.nationality, MIN(player.olympic_gold_medals) AS min_player_olympic_gold_medals \nFROM player \nJOIN team ON player.team = team.team_name \nWHERE player.fiba_world_cup > 0 \nGROUP BY player.nationality;",
         "SELECT player.nationality, AVG(player.mvp_awards) AS avg_player_mvp_awards \nFROM player \nJOIN team ON player.team = team.team_name \nWHERE player.age <= 66 \nGROUP BY player.nationality;",
         "SELECT player.position, AVG(player.fiba_world_cup) AS avg_player_fiba_world_cup \nFROM player \nJOIN team ON player.team = team.team_name \nWHERE player.olympic_gold_medals = 0 \nGROUP BY player.position;"
     ],
-    "1322": [
+    "1312": [
         "SELECT manager.nationality, MAX(player.mvp_awards) AS max_player_mvp_awards \nFROM player \nJOIN team ON player.team = team.team_name \nJOIN manager ON team.ownership = manager.name \nJOIN city ON team.location = city.city_name \nWHERE city.population < '1603797' OR team.location != 'Minneapolis' \nGROUP BY manager.nationality;"
     ],
-    "1422": [
+    "1412": [
         "SELECT manager.nationality, MAX(player.nba_championships) AS max_player_nba_championships \nFROM player \nJOIN team ON player.team = team.team_name \nJOIN manager ON team.ownership = manager.name \nJOIN city ON team.location = city.city_name \nWHERE city.population = '1603797' AND city.gdp != '518.5' AND player.birth_date = '1990/8/17' \nGROUP BY manager.nationality;",
         "SELECT player.nationality, SUM(team.championships) AS sum_team_championships \nFROM player \nJOIN team ON player.team = team.team_name \nJOIN manager ON team.ownership = manager.name \nJOIN city ON team.location = city.city_name \nWHERE player.draft_year <= 1990 AND player.position = 'Backcourt' AND player.draft_pick <= 35 \nGROUP BY player.nationality;"
     ],
-    "1521": [
+    "1511": [
         "SELECT player.position, AVG(player.fiba_world_cup) AS avg_player_fiba_world_cup \nFROM player \nJOIN team ON player.team = team.team_name \nWHERE player.nba_championships < 0 OR player.age >= 47 OR player.nationality = 'Greek-American  ' \nGROUP BY player.position;",
         "SELECT player.nationality, SUM(player.mvp_awards) AS sum_player_mvp_awards \nFROM player \nJOIN team ON player.team = team.team_name \nWHERE player.team != 'Milwaukee Bucks' OR player.nba_championships > 2 OR team.founded_year != 1949 \nGROUP BY player.nationality;"
     ],
-    "1622": [
+    "1612": [
         "SELECT player.position, AVG(player.age) AS avg_player_age \nFROM player \nJOIN team ON player.team = team.team_name \nJOIN manager ON team.ownership = manager.name \nJOIN city ON team.location = city.city_name \nWHERE (player.nba_championships <= 2 AND player.mvp_awards < 1) OR (player.olympic_gold_medals != 0 AND player.nationality = 'American-born naturalized Azerbaijani  ') \nGROUP BY player.position;",
         "SELECT player.position, MIN(team.championships) AS min_team_championships \nFROM player \nJOIN team ON player.team = team.team_name \nJOIN manager ON team.ownership = manager.name \nJOIN city ON team.location = city.city_name \nWHERE (team.location = 'Brooklyn' AND player.nba_championships < 0) OR (player.team != 'Milwaukee Hawks  ' AND player.draft_pick != 35) \nGROUP BY player.position;"
     ],
-    "1222": [
+    "1212": [
         "SELECT player.position, AVG(player.olympic_gold_medals) AS avg_player_olympic_gold_medals \nFROM player \nJOIN team ON player.team = team.team_name \nJOIN manager ON team.ownership = manager.name \nJOIN city ON team.location = city.city_name \nWHERE manager.nationality = 'Israeli-American' AND team.founded_year > 1989 \nGROUP BY player.position;"
     ],
     "1311": [
@@ -157,42 +157,38 @@
         "SELECT nba_team, name, own_year \nFROM manager;",
         "SELECT area, city_name, gdp \nFROM city;"
     ],
-    "1021": [
+    "1011": [
         "SELECT player.position, MIN(player.olympic_gold_medals) AS min_player_olympic_gold_medals \nFROM player \nJOIN team ON player.team = team.team_name \nGROUP BY player.position;"
     ],
-    "1022": [
+    "1012": [
         "SELECT player.position, MIN(player.olympic_gold_medals) AS min_player_olympic_gold_medals \nFROM player \nJOIN team ON player.team = team.team_name \nJOIN manager ON team.ownership = manager.name \nJOIN city ON team.location = city.city_name \nGROUP BY player.position;"
     ],
-    "1120": [
+    "1110": [
         "SELECT nationality, MIN(age) AS min_age \nFROM manager \nWHERE nba_team != 'Cleveland Cavaliers' \nGROUP BY nationality;"
     ],
-    "1220": [
+    "1210": [
         "SELECT nationality, SUM(age) AS sum_age \nFROM manager \nWHERE age != 76 AND nba_team != 'Houston Rockets' \nGROUP BY nationality;"
     ],
     "1310": [
-        "SELECT nationality, COUNT(*) AS count_all \nFROM player \nWHERE name = 'Antonius Cleveland' OR nba_championships >= 0 \nGROUP BY nationality;"
-    ],
-    "1320": [
+        "SELECT nationality, COUNT(*) AS count_all \nFROM player \nWHERE name = 'Antonius Cleveland' OR nba_championships >= 0 \nGROUP BY nationality;",
         "SELECT nationality, MAX(mvp_awards) AS max_mvp_awards \nFROM player \nWHERE draft_year > 2012 OR nba_championships > 0 \nGROUP BY nationality;"
     ],
-    "1520": [
+    "1510": [
         "SELECT nationality, AVG(fiba_world_cup) AS avg_fiba_world_cup \nFROM player \nWHERE team = 'New York Knicks  ' OR nba_championships <= 0 OR fiba_world_cup < 0 \nGROUP BY nationality;"
     ],
-    "1620": [
+    "1610": [
         "SELECT position, MIN(fiba_world_cup) AS min_fiba_world_cup \nFROM player \nWHERE (fiba_world_cup < 0 AND mvp_awards <= 0) OR (age < 91 AND fiba_world_cup >= 0) \nGROUP BY position;"
     ],
-    "1020": [
+    "1010": [
         "SELECT position, MIN(olympic_gold_medals) AS min_olympic_gold_medals \nFROM player \nGROUP BY position;",
+        "SELECT nationality, COUNT(*) AS count_all \nFROM player \nGROUP BY nationality;",
         "SELECT position, AVG(age) AS avg_age \nFROM player \nGROUP BY position;",
         "SELECT nationality, MAX(age) AS max_age \nFROM player \nGROUP BY nationality;",
+        "SELECT nationality, COUNT(*) AS count_all \nFROM player \nGROUP BY nationality;",
         "SELECT nationality, MIN(age) AS min_age \nFROM player \nGROUP BY nationality;",
         "SELECT nationality, AVG(age) AS avg_age \nFROM player \nGROUP BY nationality;",
         "SELECT nationality, MIN(age) AS min_age \nFROM manager \nGROUP BY nationality;",
+        "SELECT nationality, COUNT(*) AS count_all \nFROM manager \nGROUP BY nationality;",
         "SELECT nationality, AVG(age) AS avg_age \nFROM manager \nGROUP BY nationality;"
-    ],
-    "1010": [
-        "SELECT nationality, COUNT(*) AS count_all \nFROM player \nGROUP BY nationality;",
-        "SELECT nationality, COUNT(*) AS count_all \nFROM player \nGROUP BY nationality;",
-        "SELECT nationality, COUNT(*) AS count_all \nFROM manager \nGROUP BY nationality;"
     ]
 }
