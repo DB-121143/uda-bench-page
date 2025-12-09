@@ -1,6 +1,6 @@
 import { useDeferredValue, useMemo, useRef, useState, useEffect } from "react";
 import type { JSX } from "react";
-import HoverSourceTable from "@/components/HoverSourceTable";
+// import HoverSourceTable from "@/components/HoverSourceTable";
 import AttributeGlossary from "@/components/AttributeGlossary";
 import { GitHubIcon, PaperIcon, DataIcon } from "@/components/Icons";
 import artIcon from "@/assets/icons/art.svg";
@@ -30,6 +30,7 @@ import logo from "@/public/UDA.svg";
 //import benchmarkBuild from "@/public/benchmark_build.png";
 import queryCategory from "@/public/Query_category.png";
 import udaBig from "@/public/UDA-big.png";
+import PlainSourceTable from "./components/PlainSourceTable";
 
 type RowData = Record<string, unknown>;
 type TableData = { name: string; rows: RowData[] };
@@ -454,7 +455,7 @@ function App() {
           />
 
           {/* Table */}
-          <HoverSourceTable
+          <PlainSourceTable
             data={tableRows}
             datasetKey={deferredDataset.id}
             tableName={tableName}
