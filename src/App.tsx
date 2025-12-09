@@ -430,11 +430,8 @@ function App() {
               <p>
                 The sections below show the current snapshot of UDA-Bench
                 entities, including a glossary of attribute definitions and a
-                row-level results table with hoverable source explanations. You
-                can switch between different datasets using the selector, and
-                the attribute reference and table will update accordingly,
-                providing a consistent view over heterogeneous unstructured data
-                sources.
+                row-level results table. You
+                can switch between different datasets using the selector.
               </p>
             </div>
 
