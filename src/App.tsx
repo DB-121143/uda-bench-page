@@ -356,7 +356,7 @@ function App() {
             </a>
 
             <a
-              href="https://arxiv.org/abs/0000.0000" // TODO: 替换为真实论文链接
+              href="https://github.com/DB-121143/UDA-Bench/blob/main/technical_report.pdf" // TODO: 替换为真实论文链接
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white pl-4 pr-5 md:pl-5 md:pr-6 py-2 text-base md:text-lg font-semibold text-slate-700 shadow shadow-slate-200/80 transition hover:border-slate-400 hover:bg-slate-50"
