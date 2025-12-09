@@ -66,7 +66,20 @@ def extract_sql_from_file(file_path):
     with open(file_path, 'r', encoding='utf-8') as file:
         content = file.read()
     # 正则表达式匹配SELECT语句
-    sql_pattern = re.compile(r'SELECT.*?;', re.DOTALL)
+    sql_pattern = re.compile(
+        r"""
+        \bSELECT\b
+        (?:                             # 重复匹配以下几种：
+            '(?:''|[^'])*'              # 1. 单引号字符串，支持 '' 作为转义
+        | "(?:""|[^"])*"              # 2. 双引号字符串，支持 "" 作为转义
+        | --[^\n]*                    # 3. 单行注释：-- 开头到行尾
+        | /\*.*?\*/                   # 4. 块注释：/* ... */
+        | [^'";]                      # 5. 其他任何不是引号、分号的字符（包括换行）
+        )*
+        ;
+        """,
+        re.DOTALL | re.VERBOSE
+    )
     sqls = sql_pattern.findall(content)
     return sqls
 

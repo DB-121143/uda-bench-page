@@ -104,7 +104,6 @@
         "SELECT sequelae, diagnostic_methods, affected_organs \nFROM disease \nWHERE affected_organs = 'ligaments';",
         "SELECT treatment_challenges, disease_type, risk_factors \nFROM disease \nWHERE disease_type != 'others';",
         "SELECT affected_organs, pathogenesis, treatments \nFROM disease \nWHERE treatments = 'stem cell transplantation';",
-        "SELECT epidemiology, sequelae, etiology \nFROM disease \nWHERE epidemiology != '3,500 to 4,000 children worldwide;",
         "SELECT key_technologies, institution_country, international_collaboration \nFROM institution \nWHERE technology_application != 'FDA drug approval';",
         "SELECT leadership, parent_organization, establishment_year \nFROM institution \nWHERE leadership = 'Tanja Gruber';"
     ],
@@ -140,6 +139,7 @@
         "SELECT quality_of_life_impact, risk_factors, preventive_measures \nFROM disease \nWHERE risk_factors != 'sedentary_lifestyle' AND affected_organs != 'bone' AND epidemiology != 'very common sexually transmitted infection' AND sequelae != 'blindness';",
         "SELECT treatment_challenges, common_symptoms, disease_type \nFROM disease \nWHERE disease_type = 'iatrogenic' AND common_symptoms != 'tenderness' AND complications != 'chlamydial conjunctivitis' AND treatments != 'immunotherapy';",
         "SELECT affected_organs, complications, diagnostic_methods \nFROM disease \nWHERE affected_organs = 'abdomen' AND complications != 'panic disorders' AND quality_of_life_impact != 'social_isolation' AND diagnostic_methods != 'clinical_evaluation';",
+        "SELECT epidemiology, sequelae, etiology \nFROM disease \nWHERE epidemiology != '3,500 to 4,000 children worldwide; up to 80% mortality' AND disease_type != 'autoimmune' AND epidemiology = 'reported in almost every state' AND disease_name != 'Chlamydia';",
         "SELECT technology_application, institution_country, institution_city \nFROM institution \nWHERE research_diseases = 'portal hypertensive gastropathy' AND key_technologies != 'bacteriological culture' AND research_diseases != 'chronic pain' AND institution_city != 'Ferndale';",
         "SELECT institution_name, research_fields, research_diseases \nFROM institution \nWHERE key_achievements = 'post-graduate education in gastroenterology' AND parent_organization != 'University of Texas' AND leadership != 'K Persson Waller' AND institution_country > 'Vietnam';"
     ],
